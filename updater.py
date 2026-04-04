@@ -757,20 +757,31 @@ def generar_roster_maestro(paths: dict):
     print(f"✅ Roster Maestro generado: {len(df_roster_final)} jugadores | {len(final_cols)} columnas → {paths['roster']}")
 
 # ==============================================================================
-# EJECUCIÓN PRINCIPAL
+# ORQUESTADOR MULTI-COMPETICIÓN
 # ==============================================================================
+def run_competition(comp: dict):
+    label = comp["label"]
+    print(f"\n{'='*60}")
+    print(f"🏀 PROCESANDO COMPETICIÓN: {label}")
+    print(f"{'='*60}")
+    paths = build_paths(comp)
+
+    actualizar_calendario_y_jsons(paths)
+
+    try:
+        procesados, fails = procesar_estadisticas_acumuladas(paths)
+        print(f"✅ ETL {label}: {procesados} nuevos | {fails} errores")
+    except Exception as e:
+        print(f"❌ Error ETL {label}:\n{traceback.format_exc()}")
+
+    try:
+        generar_roster_maestro(paths)
+    except Exception as e:
+        print(f"❌ Error Roster {label}:\n{traceback.format_exc()}")
+
+
 if __name__ == "__main__":
-    print("🚀 INICIANDO ROBOT ETL...")
-    actualizar_calendario_y_jsons()
-    try:
-        procesados, fails = procesar_estadisticas_acumuladas()
-        print(f"\n✅ ETL COMPLETADO. Nuevos: {procesados} | Errores: {fails}")
-    except Exception as e:
-        print(f"\n❌ Error Crítico en ETL:\n{traceback.format_exc()}")
-
-    try:
-        generar_roster_maestro()
-    except Exception as e:
-        print(f"\n❌ Error en generación del Roster:\n{traceback.format_exc()}")
-
-    print("\n🏁 PROCESO COMPLETO.")
+    print("🚀 INICIANDO ROBOT ETL MULTI-COMPETICIÓN...")
+    for comp in COMPETITIONS.values():
+        run_competition(comp)
+    print("\n🏁 TODAS LAS COMPETICIONES PROCESADAS.")
