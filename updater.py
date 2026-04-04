@@ -76,10 +76,10 @@ def build_paths(comp: dict) -> dict:
 # ==============================================================================
 # FASE 1: DESCARGA DE CALENDARIO Y JSONS RAW
 # ==============================================================================
-def actualizar_calendario_y_jsons():
+def actualizar_calendario_y_jsons(paths: dict):
     print("🗓️ Actualizando Calendario Maestro...")
     try:
-        r    = requests.get("https://www.feb.es/competiciones/calendario/primerafeb/1/2025", headers=HEADERS_WEB)
+        r    = requests.get(paths["cal_url"], headers=HEADERS_WEB)
         soup = BeautifulSoup(r.text, 'html.parser')
         datos = []
         for col in soup.find_all('div', class_='columna'):
@@ -99,12 +99,12 @@ def actualizar_calendario_y_jsons():
                     resultado = a_p.get_text(strip=True)
                     datos.append({"MATCHID": match_id, "ROUND": jornada, "SCORE_STR": resultado})
         df_cal = pd.DataFrame(datos).drop_duplicates(subset=['MATCHID'])
-        df_cal.to_csv(ARCHIVO_CALENDARIO, index=False, encoding='utf-8-sig')
+        df_cal.to_csv(paths["calendar"], index=False, encoding='utf-8-sig')
         print(f"✅ Calendario actualizado: {len(df_cal)} partidos registrados.")
     except Exception as e:
         print(f"⚠️ Error al actualizar calendario: {e}")
-        if not os.path.exists(ARCHIVO_CALENDARIO): return
-        df_cal = pd.read_csv(ARCHIVO_CALENDARIO)
+        if not os.path.exists(paths["calendar"]): return
+        df_cal = pd.read_csv(paths["calendar"])
 
     print("\n📡 Buscando partidos finalizados para descargar JSONs...")
     jugados = df_cal[df_cal['SCORE_STR'].astype(str).str.contains(r'\d+\s*-\s*\d+', regex=True, na=False)]
@@ -114,8 +114,8 @@ def actualizar_calendario_y_jsons():
 
     for _, partido in jugados.iterrows():
         match_id = str(partido['MATCHID'])
-        box_path = os.path.join(RAW_API_DIR, f"raw_boxscore_{match_id}.json")
-        pbp_path = os.path.join(RAW_API_DIR, f"raw_pbp_{match_id}.json")
+        box_path = os.path.join(paths["raw_dir"], f"raw_boxscore_{match_id}.json")
+        pbp_path = os.path.join(paths["raw_dir"], f"raw_pbp_{match_id}.json")
         if not os.path.exists(box_path) or not os.path.exists(pbp_path):
             print(f"   ⬇️ Descargando JSONs para el partido {match_id}...")
             url_web = f"https://www.feb.es/competiciones/partido/{match_id}"
@@ -204,13 +204,13 @@ def translate_pbp_action(raw_action, text):
     if 'rebound'   in a or 'rebote' in t or 'ro' == a or 'rd' == a: return 'Def. Reb'
     return raw_action.title()
 
-def procesar_estadisticas_acumuladas():
+def procesar_estadisticas_acumuladas(paths: dict):
     print("⏳ Iniciando Motor Matemático ETL...")
 
-    if not os.path.exists(ARCHIVO_ROSTER):
-        pd.DataFrame(columns=['PLAYER_ID','PLAYER','PLAYER_NAME','POSITION']).to_csv(ARCHIVO_ROSTER, index=False)
+    if not os.path.exists(paths["roster"]):
+        pd.DataFrame(columns=['PLAYER_ID','PLAYER','PLAYER_NAME','POSITION']).to_csv(paths["roster"], index=False)
 
-    df_roster    = pd.read_csv(ARCHIVO_ROSTER, dtype=str)
+    df_roster    = pd.read_csv(paths["roster"], dtype=str)
     dict_roster_id = {}
     for _, row in df_roster.iterrows():
         if pd.notna(row.get('PLAYER_ID')) and str(row.get('PLAYER_ID','')).strip() != "":
@@ -220,19 +220,19 @@ def procesar_estadisticas_acumuladas():
                 'POSITION':    str(row.get('POSITION',    'SF'))
             }
 
-    if not os.path.exists(ARCHIVO_CALENDARIO):
-        raise FileNotFoundError(f"Falta el Calendario: {ARCHIVO_CALENDARIO}")
-    df_cal        = pd.read_csv(ARCHIVO_CALENDARIO, dtype=str)
+    if not os.path.exists(paths["calendar"]):
+        raise FileNotFoundError(f"Falta el Calendario: {paths['calendar']}")
+    df_cal        = pd.read_csv(paths["calendar"], dtype=str)
     dict_calendar = df_cal.set_index('MATCHID')['ROUND'].to_dict()
 
     procesados_previos = set()
-    if os.path.exists(OUT_BOXSCORE):
+    if os.path.exists(paths["boxscore"]):
         try:
-            df_prev = pd.read_csv(OUT_BOXSCORE, usecols=['MATCHID'], dtype=str)
+            df_prev = pd.read_csv(paths["boxscore"], usecols=['MATCHID'], dtype=str)
             procesados_previos = set(df_prev['MATCHID'].unique())
         except Exception: pass
 
-    archivos_json      = [f for f in os.listdir(RAW_API_DIR) if f.startswith('raw_boxscore_') and f.endswith('.json')]
+    archivos_json      = [f for f in os.listdir(paths["raw_dir"]) if f.startswith('raw_boxscore_') and f.endswith('.json')]
     partidos_totales   = set([f.split('_')[2].split('.')[0] for f in archivos_json])
     partidos_a_procesar = partidos_totales - procesados_previos
     print(f"📊 En raw_data: {len(partidos_totales)} | Ya procesados: {len(procesados_previos)} | Nuevos: {len(partidos_a_procesar)}")
@@ -242,8 +242,8 @@ def procesar_estadisticas_acumuladas():
 
     for match_id in partidos_a_procesar:
         try:
-            box_path = os.path.join(RAW_API_DIR, f"raw_boxscore_{match_id}.json")
-            pbp_path = os.path.join(RAW_API_DIR, f"raw_pbp_{match_id}.json")
+            box_path = os.path.join(paths["raw_dir"], f"raw_boxscore_{match_id}.json")
+            pbp_path = os.path.join(paths["raw_dir"], f"raw_pbp_{match_id}.json")
             if not os.path.exists(box_path): continue
             with open(box_path, 'r', encoding='utf-8') as f: data_box = json.load(f)
 
@@ -571,16 +571,16 @@ def procesar_estadisticas_acumuladas():
                         float_format='%.1f')
 
     if all_boxscores:
-        append_and_save(all_boxscores, OUT_BOXSCORE,
-                        tabla='boxscore',
+        append_and_save(all_boxscores, paths["boxscore"],
+                        tabla=paths["db_boxscore"],
                         conflict_cols=['match_id', 'player_id'])
     if all_teamstats:
-        append_and_save(all_teamstats, OUT_TEAMSTATS,
-                        tabla='teamstats',
+        append_and_save(all_teamstats, paths["teamstats"],
+                        tabla=paths["db_teamstats"],
                         conflict_cols=['match_id', 'team_id'])
     if all_pbp:
-        append_and_save(all_pbp, OUT_PBP,
-                        tabla='pbp')
+        append_and_save(all_pbp, paths["pbp"],
+                        tabla=paths["db_pbp"])
     if all_lineups:
         df_lu = pd.DataFrame(all_lineups)
         agrupadores = ['MATCHID','ROUND','TEAM_ID','TEAM','LOCATION',
@@ -590,8 +590,8 @@ def procesar_estadisticas_acumuladas():
         df_lu_final['PTS_FOR_PER40'] = (df_lu_final['PTS_FOR']    *2400/df_lu_final['SECONDS'].replace(0,np.nan)).round(1).fillna(0)
         df_lu_final['PTS_AGT_PER40'] = (df_lu_final['PTS_AGAINST']*2400/df_lu_final['SECONDS'].replace(0,np.nan)).round(1).fillna(0)
         df_lu_final['NET_PER40']     = (df_lu_final['PLUS_MINUS'] *2400/df_lu_final['SECONDS'].replace(0,np.nan)).round(1).fillna(0)
-        append_and_save([df_lu_final], OUT_LINEUPS,
-                        tabla='lineups',
+        append_and_save([df_lu_final], paths["lineups"],
+                        tabla=paths["db_lineups"],
                         conflict_cols=['match_id', 'team_id',
                                        'p1_id', 'p2_id', 'p3_id', 'p4_id', 'p5_id'])
 
@@ -600,7 +600,7 @@ def procesar_estadisticas_acumuladas():
 # ==============================================================================
 # FASE 3: GENERACIÓN DEL ROSTER MAESTRO
 # ==============================================================================
-def generar_roster_maestro():
+def generar_roster_maestro(paths: dict):
     """
     Construye ROSTER_PRIMERAFEB_2526.csv combinando:
       - BOXSCORE: stats de temporada por jugador (totales + per game)
@@ -608,14 +608,14 @@ def generar_roster_maestro():
       - PLAYER_ROLES_FINAL_2526.csv: rol K-Means, métricas avanzadas
     Se regenera COMPLETO en cada ejecución para mantenerlo actualizado.
     """
-    if not os.path.exists(OUT_BOXSCORE):
+    if not os.path.exists(paths["boxscore"]):
         print("⚠️ No existe el BOXSCORE maestro. Saltando generación de Roster.")
         return
 
     print("\n👤 Generando Roster Maestro...")
 
     # ── 1. BASE: agregar BOXSCORE por jugador ──────────────────────────────────
-    df_box = pd.read_csv(OUT_BOXSCORE)
+    df_box = pd.read_csv(paths["boxscore"])
     df_box['PLAYER_ID'] = df_box['PLAYER_ID'].astype(str).str.replace('.0','',regex=False).str.strip()
     df_box['TEAM_ID']   = df_box['TEAM_ID'].astype(str).str.replace('.0','',regex=False).str.strip()
     df_box['TEAM']      = df_box['TEAM'].replace(TEAM_FIXES)
@@ -675,9 +675,9 @@ def generar_roster_maestro():
 
     # ── 2. ENRIQUECER: PLAYER_NAMES_DICT.json ─────────────────────────────────
     dict_photos = {}
-    if os.path.exists(ARCHIVO_PHOTOS):
+    if os.path.exists(paths["photos"]):
         try:
-            with open(ARCHIVO_PHOTOS, 'r', encoding='utf-8') as f:
+            with open(paths["photos"], 'r', encoding='utf-8') as f:
                 raw = json.load(f)
             for pid, info in raw.items():
                 pid_clean = str(pid).strip().replace('.0','')
@@ -694,9 +694,9 @@ def generar_roster_maestro():
     agg['POS_ORDER'] = agg['PLAYER_ID'].map(lambda pid: dict_photos.get(pid, {}).get('POS_ORDER', 6))
 
     # ── 3. ENRIQUECER: PLAYER_ROLES_FINAL_2526.csv ────────────────────────────
-    if os.path.exists(ARCHIVO_ROLES):
+    if os.path.exists(paths["roles"]):
         try:
-            df_roles = pd.read_csv(ARCHIVO_ROLES)
+            df_roles = pd.read_csv(paths["roles"])
             df_roles['PLAYER_ID'] = df_roles['PLAYER_ID'].astype(str).str.replace('.0','',regex=False).str.strip()
             df_roles = df_roles.rename(columns={
                 'ROLE_NAME': 'ROLE_NAME',
@@ -753,8 +753,8 @@ def generar_roster_maestro():
     # Solo incluir columnas que existan
     final_cols = [c for c in final_cols if c in agg.columns]
     df_roster_final = agg[final_cols].sort_values(by=['TEAM','POS_ORDER','PTS_PG'], ascending=[True,True,False])
-    df_roster_final.to_csv(ARCHIVO_ROSTER, index=False, encoding='utf-8-sig', float_format='%.1f')
-    print(f"✅ Roster Maestro generado: {len(df_roster_final)} jugadores | {len(final_cols)} columnas → {ARCHIVO_ROSTER}")
+    df_roster_final.to_csv(paths["roster"], index=False, encoding='utf-8-sig', float_format='%.1f')
+    print(f"✅ Roster Maestro generado: {len(df_roster_final)} jugadores | {len(final_cols)} columnas → {paths['roster']}")
 
 # ==============================================================================
 # EJECUCIÓN PRINCIPAL
