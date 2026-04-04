@@ -41,6 +41,39 @@ TEAM_FIXES = {
 }
 
 # ==============================================================================
+# MULTI-COMPETICIÓN: rutas dinámicas por competición
+# ==============================================================================
+from competitions import COMPETITIONS
+
+
+def build_paths(comp: dict) -> dict:
+    """Genera el dict de rutas para una competición dada."""
+    slug  = comp["slug"]
+    label = comp["label"]
+    raw_dir = os.path.join(RAW_API_DIR, slug)
+    os.makedirs(raw_dir, exist_ok=True)
+    return {
+        "slug":         slug,
+        "label":        label,
+        "cal_url":      f"https://www.feb.es/competiciones/calendario/{slug}/{comp['id']}/{comp['url_year']}",
+        "raw_dir":      raw_dir,
+        "roster":       os.path.join(DATA_DIR, f"ROSTER_{label}_2526.csv"),
+        "calendar":     os.path.join(DATA_DIR, f"CALENDAR_{label}_2526.csv"),
+        "roles":        os.path.join(DATA_DIR, f"PLAYER_ROLES_FINAL_2526_{label}.csv"),
+        "photos":       os.path.join(DATA_DIR, "raw_data", f"PLAYER_NAMES_DICT_{label}.json"),
+        "boxscore":     os.path.join(DATA_DIR, f"BOXSCORE_{label}_2526.csv"),
+        "teamstats":    os.path.join(DATA_DIR, f"TEAMSTATS_{label}_2526.csv"),
+        "pbp":          os.path.join(DATA_DIR, f"PLAYBYPLAY_{label}_2526.csv"),
+        "lineups":      os.path.join(DATA_DIR, f"LINEUPS_{label}_2526.csv"),
+        "logos":        os.path.join(DATA_DIR, f"logos_{slug}.json"),
+        "db_boxscore":  f"boxscore_{slug}",
+        "db_lineups":   f"lineups_{slug}",
+        "db_pbp":       f"pbp_{slug}",
+        "db_teamstats": f"teamstats_{slug}",
+        "db_roster":    f"roster_{slug}",
+    }
+
+# ==============================================================================
 # FASE 1: DESCARGA DE CALENDARIO Y JSONS RAW
 # ==============================================================================
 def actualizar_calendario_y_jsons():
