@@ -13,6 +13,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine, text as sql_text
 import uvicorn
+from competitions import COMPETITIONS
 
 # ==============================================================================
 # 0. CONEXIÓN A SUPABASE (opcional — si no hay DATABASE_URL usa solo ficheros)
@@ -52,6 +53,29 @@ _TABLE_CSV_MAP = {
     'boxscore': 'BOXSCORE_PRIMERAFEB_2526.csv',
     'lineups':  'LINEUPS_PRIMERAFEB_2526.csv',
 }
+
+def get_comp_paths(slug: str) -> dict:
+    """Devuelve rutas de ficheros y tablas Supabase para una competición."""
+    if slug not in COMPETITIONS:
+        slug = "primerafeb"
+    comp  = COMPETITIONS[slug]
+    label = comp["label"]
+    return {
+        "boxscore":    os.path.join(DATA_DIR, f"BOXSCORE_{label}_2526.csv"),
+        "lineups":     os.path.join(DATA_DIR, f"LINEUPS_{label}_2526.csv"),
+        "roster":      os.path.join(DATA_DIR, f"ROSTER_{label}_2526.csv"),
+        "calendar":    os.path.join(DATA_DIR, f"CALENDAR_{label}_2526.csv"),
+        "roles":       os.path.join(DATA_DIR, f"PLAYER_ROLES_FINAL_2526_{label}.csv"),
+        "photos":      os.path.join(DATA_DIR, "raw_data", f"PLAYER_NAMES_DICT_{label}.json"),
+        "pbp":         os.path.join(DATA_DIR, f"PLAYBYPLAY_{label}_2526.csv"),
+        "teamstats":   os.path.join(DATA_DIR, f"TEAMSTATS_{label}_2526.csv"),
+        "logos":       os.path.join(DATA_DIR, f"logos_{slug}.json"),
+        "db_boxscore": f"boxscore_{slug}",
+        "db_lineups":  f"lineups_{slug}",
+        "db_pbp":      f"pbp_{slug}",
+        "db_teamstats":f"teamstats_{slug}",
+        "db_roster":   f"roster_{slug}",
+    }
 
 _last_read_source = {}  # {tabla: "supabase" | "csv" | "empty"}
 
