@@ -152,6 +152,33 @@ def migrar_raw_jsons():
                                      index=False, method='multi', chunksize=50)
     print(f"  ✅ {len(records)} JSONs migrados.")
 
+def crear_tablas_multi_competicion():
+    # ==============================================================================
+    # MULTI-COMPETICIÓN: crear tablas prefijadas por competición
+    # ==============================================================================
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from competitions import COMPETITIONS
+
+    COMPETITION_TABLES = ["boxscore", "lineups", "pbp", "teamstats", "roster"]
+
+    print("\n🏗️  Creando tablas multi-competición...")
+    with engine.connect() as conn:
+        for slug in COMPETITIONS:
+            for base_table in COMPETITION_TABLES:
+                table_name = f"{base_table}_{slug}"
+                try:
+                    conn.execute(text(f"""
+                        CREATE TABLE IF NOT EXISTS {table_name}
+                        (LIKE {base_table} INCLUDING ALL)
+                    """))
+                    print(f"  ✓ Tabla {table_name} creada/verificada")
+                except Exception as e:
+                    print(f"  ⚠ Error en {table_name}: {e}")
+        conn.commit()
+    print("✅ Tablas multi-competición creadas.")
+
+
 if __name__ == "__main__":
     print("🚀 Iniciando migración histórica a Supabase...\n")
     migrar_calendario()
@@ -159,4 +186,5 @@ if __name__ == "__main__":
     migrar_lineups()
     migrar_teamstats()
     migrar_raw_jsons()
+    crear_tablas_multi_competicion()
     print("\n🏁 Migración completada.")
