@@ -250,9 +250,11 @@ def cargar_roles_m12(comp_paths: dict = None):
     except Exception as e:
         print(f"⚠️ Error M12 Roles: {e}")
 
-def extraer_diccionario_logos():
+def extraer_diccionario_logos(cal_url: str = None, logos_path: str = None):
+    _cal_url   = cal_url   if cal_url   else "https://www.feb.es/competiciones/calendario/primerafeb/1/2025"
+    _logos_path = logos_path if logos_path else FILE_LOGOS
     try:
-        r    = requests.get("https://www.feb.es/competiciones/calendario/primerafeb/1/2025", headers=HEADERS_WEB)
+        r    = requests.get(_cal_url, headers=HEADERS_WEB)
         soup = BeautifulSoup(r.text, 'html.parser')
         diccionario = {}
         for cont in soup.find_all("div", class_=lambda c: c and "contenedorLogoEquipoCalendario" in c):
@@ -261,13 +263,15 @@ def extraer_diccionario_logos():
                 url_logo = img.get("src")
                 if url_logo.startswith("/"): url_logo = "https://www.feb.es" + url_logo
                 diccionario[a.text.strip()] = url_logo
-        with open(FILE_LOGOS, "w", encoding="utf-8") as f:
+        with open(_logos_path, "w", encoding="utf-8") as f:
             json.dump(diccionario, f, ensure_ascii=False, indent=4)
     except Exception: pass
 
-def construir_calendario_maestro():
+def construir_calendario_maestro(cal_url: str = None, calendar_path: str = None):
+    _cal_url      = cal_url      if cal_url      else "https://www.feb.es/competiciones/calendario/primerafeb/1/2025"
+    _calendar_path = calendar_path if calendar_path else FILE_CALENDAR
     try:
-        r    = requests.get("https://www.feb.es/competiciones/calendario/primerafeb/1/2025", headers=HEADERS_WEB)
+        r    = requests.get(_cal_url, headers=HEADERS_WEB)
         soup = BeautifulSoup(r.text, 'html.parser')
         datos = []
         for col in soup.find_all('div', class_='columna'):
@@ -290,11 +294,12 @@ def construir_calendario_maestro():
                         "equipo_visitante": a_eq[-1].get_text(strip=True),
                         "resultado": a_p.get_text(strip=True)
                     })
-        pd.DataFrame(datos).drop_duplicates(subset=['match_id']).to_csv(FILE_CALENDAR, index=False, encoding='utf-8-sig')
+        pd.DataFrame(datos).drop_duplicates(subset=['match_id']).to_csv(_calendar_path, index=False, encoding='utf-8-sig')
     except Exception: pass
 
-def obtener_partidos_jornada(jornada_id):
-    res  = requests.get("https://www.feb.es/competiciones/calendario/primerafeb/1/2025", headers=HEADERS_WEB)
+def obtener_partidos_jornada(jornada_id, cal_url: str = None):
+    _cal_url = cal_url if cal_url else "https://www.feb.es/competiciones/calendario/primerafeb/1/2025"
+    res  = requests.get(_cal_url, headers=HEADERS_WEB)
     soup = BeautifulSoup(res.text, 'html.parser')
     datos_partidos = []
     for col in soup.find_all('div', class_='columna'):
@@ -325,13 +330,15 @@ def obtener_partidos_jornada(jornada_id):
 
 
 # ── Lookup de partido desde CSV (sin scraping) ────────────────────────────────
-def buscar_partido_en_csv(equipo: str, jornada: int):
+def buscar_partido_en_csv(equipo: str, jornada: int, comp_paths: dict = None):
     """
     Busca el partido de un equipo en una jornada usando el BOXSCORE maestro.
     Retorna None si la jornada no está en el CSV (partido futuro).
     """
+    _tabla = comp_paths["db_boxscore"] if comp_paths else "boxscore"
+    _csv   = comp_paths["boxscore"]    if comp_paths else FILE_MASTER_BOXSCORE
     try:
-        df = read_table('boxscore', FILE_MASTER_BOXSCORE)
+        df = read_table(_tabla, _csv)
         if df.empty:
             return None
         df['TEAM'] = df['TEAM'].replace(TEAM_FIXES_GLOBAL)
@@ -350,10 +357,11 @@ def buscar_partido_en_csv(equipo: str, jornada: int):
         return None
 
 # ── FALLBACK: scraping feb.es (solo para jornadas no en el CSV) ───────────────
-def obtener_partido_por_scraping(equipo: str, jornada: int):
+def obtener_partido_por_scraping(equipo: str, jornada: int, cal_url: str = None):
     """Scraping de feb.es como fallback para jornadas futuras no en el CSV."""
+    _cal_url = cal_url if cal_url else "https://www.feb.es/competiciones/calendario/primerafeb/1/2025"
     try:
-        res  = requests.get("https://www.feb.es/competiciones/calendario/primerafeb/1/2025", headers=HEADERS_WEB, timeout=10)
+        res  = requests.get(_cal_url, headers=HEADERS_WEB, timeout=10)
         soup = BeautifulSoup(res.text, 'html.parser')
         for col in soup.find_all('div', class_='columna'):
             h1 = col.find('h1', class_='titulo-modulo')
@@ -1581,11 +1589,11 @@ def health():
 def generar_scouting(jornada: int = 22, equipo: str = "MOVISTAR ESTUDIANTES", tipo_reporte: str = "quintetos", competicion: str = Query(default="primerafeb")):
     cp = get_comp_paths(competicion)
     cargar_roles_m12(comp_paths=cp)
-    if not os.path.exists(FILE_LOGOS): extraer_diccionario_logos()
+    if not os.path.exists(cp["logos"]): extraer_diccionario_logos(cal_url=cp["cal_url"], logos_path=cp["logos"])
 
-    partido = buscar_partido_en_csv(equipo, jornada)
+    partido = buscar_partido_en_csv(equipo, jornada, comp_paths=cp)
     if partido is None:
-        partido = obtener_partido_por_scraping(equipo, jornada)
+        partido = obtener_partido_por_scraping(equipo, jornada, cal_url=cp["cal_url"])
     if partido is None:
         raise HTTPException(status_code=404, detail=f"No se encontró el partido de {equipo} en la jornada {jornada}.")
     if not partido['jugado']:
