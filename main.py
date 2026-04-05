@@ -8,7 +8,7 @@ import json
 import base64
 import unicodedata
 from bs4 import BeautifulSoup
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine, text as sql_text
@@ -230,13 +230,14 @@ map_role_name = {}
 map_pos_id    = {}   # position keyed by player_id
 map_pos_name  = {}   # position keyed by normalized name
 
-def cargar_roles_m12():
+def cargar_roles_m12(comp_paths: dict = None):
     global map_role_id, map_role_name, map_pos_id, map_pos_name
     map_role_id.clear(); map_role_name.clear()
     map_pos_id.clear();  map_pos_name.clear()
     try:
-        if os.path.exists(FILE_ROLES):
-            df_roles = pd.read_csv(FILE_ROLES)
+        _roles_file = comp_paths["roles"] if comp_paths else FILE_ROLES
+        if os.path.exists(_roles_file):
+            df_roles = pd.read_csv(_roles_file)
             for _, r in df_roles.iterrows():
                 pid   = safe_id(str(r.get('PLAYER_ID', '')))
                 role  = str(r.get('ROLE_NAME', 'N/A'))
@@ -378,7 +379,7 @@ def obtener_partido_por_scraping(equipo: str, jornada: int):
     except Exception: pass
     return None
 
-def extraer_partido_api(match_id):
+def extraer_partido_api(match_id, comp_slug: str = "primerafeb"):
     ruta_pbp = os.path.join(DATA_DIR, f'pbp_{match_id}.csv')
     ruta_box = os.path.join(DATA_DIR, f'boxscore_{match_id}.csv')
     # ── CACHÉ: si ambos ficheros ya existen no hace falta descargar ──
@@ -400,7 +401,7 @@ def extraer_partido_api(match_id):
             if db_ok():
                 try:
                     df_pbp_db = pd.read_sql(
-                        f"SELECT * FROM pbp WHERE match_id = '{match_id}'", _engine)
+                        f"SELECT * FROM pbp_{comp_slug} WHERE match_id = '{match_id}'", _engine)
                     if not df_pbp_db.empty:
                         df_pbp_db.to_csv(ruta_pbp, index=False, encoding='utf-8-sig')
                         pbp_from_db = True
@@ -898,14 +899,15 @@ def generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, match_id, equipo_local
 # ==============================================================================
 # FUNCIONES COMPARTIDAS PARA MÓDULOS 13/14/16
 # ==============================================================================
-def _load_roles_data(map_role, map_pos, map_name, map_efg, map_ts, map_tov, map_orb, map_ftr, map_usg):
+def _load_roles_data(map_role, map_pos, map_name, map_efg, map_ts, map_tov, map_orb, map_ftr, map_usg, roles_path: str = None):
     """Carga FILE_ROLES en los diccionarios proporcionados (compartida por M13/M14)."""
     map_role.clear(); map_pos.clear(); map_name.clear()
     map_efg.clear();  map_ts.clear();  map_tov.clear()
     map_orb.clear();  map_ftr.clear(); map_usg.clear()
     try:
-        if os.path.exists(FILE_ROLES):
-            df_roles = pd.read_csv(FILE_ROLES)
+        _roles_file = roles_path if roles_path else FILE_ROLES
+        if os.path.exists(_roles_file):
+            df_roles = pd.read_csv(_roles_file)
             df_roles['TEAM'] = df_roles.get('TEAM', pd.Series()).replace(TEAM_FIXES_GLOBAL)
             for _, r in df_roles.iterrows():
                 pid = safe_id(str(r.get('PLAYER_ID', '')))
@@ -920,15 +922,17 @@ def _load_roles_data(map_role, map_pos, map_name, map_efg, map_ts, map_tov, map_
                 if 'USG%' in df_roles.columns: map_usg[pid] = r.get('USG%', 0)
     except Exception: pass
 
-def _load_photos_logos(photos_dict, logos_dict):
+def _load_photos_logos(photos_dict, logos_dict, photos_path: str = None, logos_path: str = None):
     """Carga FILE_PHOTOS y FILE_LOGOS (compartida por M13/M14)."""
+    _photos_file = photos_path if photos_path else FILE_PHOTOS
+    _logos_file  = logos_path  if logos_path  else FILE_LOGOS
     try:
-        if os.path.exists(FILE_PHOTOS):
-            with open(FILE_PHOTOS, "r", encoding="utf-8") as f: photos_dict.update(json.load(f))
+        if os.path.exists(_photos_file):
+            with open(_photos_file, "r", encoding="utf-8") as f: photos_dict.update(json.load(f))
     except Exception: pass
     try:
-        if os.path.exists(FILE_LOGOS):
-            with open(FILE_LOGOS, "r", encoding="utf-8") as f: logos_dict.update(json.load(f))
+        if os.path.exists(_logos_file):
+            with open(_logos_file, "r", encoding="utf-8") as f: logos_dict.update(json.load(f))
     except Exception: pass
 
 def _create_signatures(row, role_map):
@@ -1001,19 +1005,24 @@ map_efg_m13 = {}; map_ts_m13 = {}; map_tov_m13 = {}
 map_orb_m13 = {}; map_ftr_m13 = {}; map_usg_m13 = {}
 custom_photos_m13 = {}; dicc_logos_m13 = {}
 
-def cargar_datos_m13():
+def cargar_datos_m13(comp_paths: dict = None):
     global custom_photos_m13, dicc_logos_m13
-    _load_roles_data(map_role_m13, map_pos_m13, map_name_m13, map_efg_m13, map_ts_m13, map_tov_m13, map_orb_m13, map_ftr_m13, map_usg_m13)
+    _load_roles_data(map_role_m13, map_pos_m13, map_name_m13, map_efg_m13, map_ts_m13, map_tov_m13, map_orb_m13, map_ftr_m13, map_usg_m13,
+                     roles_path=comp_paths["roles"] if comp_paths else None)
     custom_photos_m13 = {}; dicc_logos_m13 = {}
-    _load_photos_logos(custom_photos_m13, dicc_logos_m13)
+    _load_photos_logos(custom_photos_m13, dicc_logos_m13,
+                       photos_path=comp_paths["photos"] if comp_paths else None,
+                       logos_path=comp_paths["logos"] if comp_paths else None)
 
 def create_signatures_m13(row):
     return _create_signatures(row, map_role_m13)
 
-def generar_html_splits(s_rnd, e_rnd, eq, m_filt):
-    cargar_datos_m13()
+def generar_html_splits(s_rnd, e_rnd, eq, m_filt, comp_paths: dict = None):
+    cargar_datos_m13(comp_paths=comp_paths)
 
-    df_lineups_master = read_table('lineups', FILE_LINEUPS)
+    _lineups_key  = comp_paths["db_lineups"] if comp_paths else "lineups"
+    _lineups_file = comp_paths["lineups"]    if comp_paths else FILE_LINEUPS
+    df_lineups_master = read_table(_lineups_key, _lineups_file)
     if df_lineups_master.empty:
         raise HTTPException(status_code=404, detail="No hay datos de lineups disponibles.")
     df_lineups_master['TEAM'] = df_lineups_master.get('TEAM', pd.Series()).replace(TEAM_FIXES_GLOBAL)
@@ -1122,11 +1131,14 @@ map_efg_m14 = {}; map_ts_m14 = {}; map_tov_m14 = {}
 map_orb_m14 = {}; map_ftr_m14 = {}; map_usg_m14 = {}
 custom_photos_m14 = {}; dicc_logos_m14 = {}
 
-def cargar_datos_m14():
+def cargar_datos_m14(comp_paths: dict = None):
     global custom_photos_m14, dicc_logos_m14
-    _load_roles_data(map_role_m14, map_pos_m14, map_name_m14, map_efg_m14, map_ts_m14, map_tov_m14, map_orb_m14, map_ftr_m14, map_usg_m14)
+    _load_roles_data(map_role_m14, map_pos_m14, map_name_m14, map_efg_m14, map_ts_m14, map_tov_m14, map_orb_m14, map_ftr_m14, map_usg_m14,
+                     roles_path=comp_paths["roles"] if comp_paths else None)
     custom_photos_m14 = {}; dicc_logos_m14 = {}
-    _load_photos_logos(custom_photos_m14, dicc_logos_m14)
+    _load_photos_logos(custom_photos_m14, dicc_logos_m14,
+                       photos_path=comp_paths["photos"] if comp_paths else None,
+                       logos_path=comp_paths["logos"] if comp_paths else None)
 
 def get_classic_order_m14(pid):
     return _get_player_order(pid, custom_photos_m14, map_pos_m14)
@@ -1417,15 +1429,17 @@ def HTML_BOXSCORE_AGREGADO_M14(df_all_box, eq_objetivo, context_str, team_games_
 # ==============================================================================
 # MÓDULO 16: MEGA-INFORME LIGA COMPLETA
 # ==============================================================================
-def generar_html_liga_lineups(m_filt: int = 15):
+def generar_html_liga_lineups(m_filt: int = 15, comp_paths: dict = None, competicion: str = "primerafeb"):
     # ── CACHÉ 24H: devolver HTML cacheado de BD si existe ──
-    cache_key = f"liga_lineups_m{m_filt}"
+    cache_key = f"{competicion}_liga_lineups_m{m_filt}"
     cached    = get_html_cache(cache_key)
     if cached: return cached
 
-    cargar_datos_m13()
+    cargar_datos_m13(comp_paths=comp_paths)
 
-    df_lineups = read_table('lineups', FILE_LINEUPS)
+    _lineups_key  = comp_paths["db_lineups"] if comp_paths else "lineups"
+    _lineups_file = comp_paths["lineups"]    if comp_paths else FILE_LINEUPS
+    df_lineups = read_table(_lineups_key, _lineups_file)
     if df_lineups.empty:
         raise HTTPException(status_code=404, detail="No hay datos de lineups disponibles.")
     df_lineups['TEAM'] = df_lineups.get('TEAM', pd.Series()).replace(TEAM_FIXES_GLOBAL)
@@ -1564,8 +1578,9 @@ def health():
 
 # === MÓDULO 12 ===
 @app.get("/generar", response_class=HTMLResponse)
-def generar_scouting(jornada: int = 22, equipo: str = "MOVISTAR ESTUDIANTES", tipo_reporte: str = "quintetos"):
-    cargar_roles_m12()
+def generar_scouting(jornada: int = 22, equipo: str = "MOVISTAR ESTUDIANTES", tipo_reporte: str = "quintetos", competicion: str = Query(default="primerafeb")):
+    cp = get_comp_paths(competicion)
+    cargar_roles_m12(comp_paths=cp)
     if not os.path.exists(FILE_LOGOS): extraer_diccionario_logos()
 
     partido = buscar_partido_en_csv(equipo, jornada)
@@ -1577,11 +1592,11 @@ def generar_scouting(jornada: int = 22, equipo: str = "MOVISTAR ESTUDIANTES", ti
         raise HTTPException(status_code=400, detail="El partido aún no se ha disputado.")
 
     # Devolver caché de BD si existe
-    _cache_key = f"{tipo_reporte.lower()}_{partido['match_id']}"
+    _cache_key = f"{competicion}_{tipo_reporte.lower()}_{partido['match_id']}"
     _cached    = get_html_cache(_cache_key)
     if _cached: return HTMLResponse(content=_cached, status_code=200)
 
-    if not extraer_partido_api(partido['match_id']):
+    if not extraer_partido_api(partido['match_id'], comp_slug=competicion):
         raise HTTPException(status_code=500, detail="Error al descargar datos del partido.")
     ruta_pbp_clean, ruta_box_clean = limpiar_y_avanzadas(
         partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], jornada
@@ -1596,18 +1611,20 @@ def generar_scouting(jornada: int = 22, equipo: str = "MOVISTAR ESTUDIANTES", ti
 
 # === MÓDULO 13 ===
 @app.get("/splits", response_class=HTMLResponse)
-def splits_api(s_rnd: int = 1, e_rnd: int = 22, eq: str = "MOVISTAR ESTUDIANTES", m_filt: int = 10):
+def splits_api(s_rnd: int = 1, e_rnd: int = 22, eq: str = "MOVISTAR ESTUDIANTES", m_filt: int = 10, competicion: str = Query(default="primerafeb")):
+    cp = get_comp_paths(competicion)
     if s_rnd > e_rnd: raise HTTPException(status_code=400, detail="La jornada de inicio no puede ser posterior a la jornada final.")
-    ruta_final = generar_html_splits(s_rnd, e_rnd, eq, m_filt)
+    ruta_final = generar_html_splits(s_rnd, e_rnd, eq, m_filt, comp_paths=cp)
     with open(ruta_final, "r", encoding="utf-8") as f: html_content = f.read()
     return HTMLResponse(content=html_content, status_code=200)
 
 # === MÓDULO 14 ===
 @app.get("/contextual", response_class=HTMLResponse)
-def generar_contextual(eq: str = "MOVISTAR ESTUDIANTES", venue: str = "ALL", n_games: int = 3, m_filt: int = 10, tipo_reporte: str = "quintetos"):
-    cargar_datos_m14()
+def generar_contextual(eq: str = "MOVISTAR ESTUDIANTES", venue: str = "ALL", n_games: int = 3, m_filt: int = 10, tipo_reporte: str = "quintetos", competicion: str = Query(default="primerafeb")):
+    cp = get_comp_paths(competicion)
+    cargar_datos_m14(comp_paths=cp)
 
-    df_master = read_table('boxscore', os.path.join(DATA_DIR, "BOXSCORE_PRIMERAFEB_2526.csv"))
+    df_master = read_table(cp["db_boxscore"], cp["boxscore"])
     if df_master.empty:
         raise HTTPException(status_code=404, detail="No hay datos de boxscore disponibles.")
     df_master['TEAM'] = df_master['TEAM'].replace(TEAM_FIXES_GLOBAL)
@@ -1633,7 +1650,7 @@ def generar_contextual(eq: str = "MOVISTAR ESTUDIANTES", venue: str = "ALL", n_g
 
     # ── RAMA QUINTETOS ──────────────────────────────────────────────────────────
     if tipo_reporte.lower() == "quintetos":
-        df_lineups_master = read_table('lineups', FILE_LINEUPS)
+        df_lineups_master = read_table(cp["db_lineups"], cp["lineups"])
         if df_lineups_master.empty:
             raise HTTPException(status_code=404, detail="No hay datos de lineups disponibles.")
         df_lineups_master['TEAM'] = df_lineups_master.get('TEAM', pd.Series()).replace(TEAM_FIXES_GLOBAL)
@@ -1700,8 +1717,9 @@ def generar_contextual(eq: str = "MOVISTAR ESTUDIANTES", venue: str = "ALL", n_g
 
 # === MÓDULO 16 ===
 @app.get("/liga_lineups", response_class=HTMLResponse)
-def liga_lineups_api(m_filt: int = 15):
-    html_content = generar_html_liga_lineups(m_filt=m_filt)
+def liga_lineups_api(m_filt: int = 15, competicion: str = Query(default="primerafeb")):
+    cp = get_comp_paths(competicion)
+    html_content = generar_html_liga_lineups(m_filt=m_filt, comp_paths=cp, competicion=competicion)
     return HTMLResponse(content=html_content, status_code=200)
 
 # ==============================================================================
