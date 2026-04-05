@@ -1542,7 +1542,7 @@ def generar_html_liga_lineups(m_filt: int = 15, comp_paths: dict = None, competi
         © 2026 Analizing Basketball | <a href="https://www.analizingbasketball.com" target="_blank">www.analizingbasketball.com</a>
     </div></body></html>"""
 
-    set_html_cache(f"liga_lineups_m{m_filt}", html_content)
+    set_html_cache(f"{competicion}_liga_lineups_m{m_filt}", html_content)
     return html_content
 
 # ==============================================================================
