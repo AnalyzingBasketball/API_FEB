@@ -533,7 +533,29 @@ def procesar_estadisticas_acumuladas(paths: dict):
                 staging = f"{tabla}_staging"
                 df_db.to_sql(staging, _engine, if_exists='replace',
                              index=False, method='multi', chunksize=200)
-                if conflict_cols:
+                # Verificar si la tabla destino existe
+                with _engine.connect() as conn:
+                    exists = conn.execute(sql_text(
+                        "SELECT EXISTS (SELECT FROM information_schema.tables "
+                        "WHERE table_schema='public' AND table_name=:t)"
+                    ), {"t": tabla}).scalar()
+                if not exists:
+                    # Primera vez: crear tabla + índice único + insertar todo de golpe
+                    with _engine.connect() as conn:
+                        conn.execute(sql_text(
+                            f"CREATE TABLE {tabla} AS SELECT * FROM {staging} WHERE FALSE"
+                        ))
+                        if conflict_cols:
+                            idx_cols = ", ".join(conflict_cols)
+                            conn.execute(sql_text(
+                                f"CREATE UNIQUE INDEX {tabla}_pk ON {tabla} ({idx_cols})"
+                            ))
+                        conn.execute(sql_text(
+                            f"INSERT INTO {tabla} SELECT * FROM {staging}; "
+                            f"DROP TABLE IF EXISTS {staging};"
+                        ))
+                        conn.commit()
+                elif conflict_cols:
                     conflict_str = ", ".join(conflict_cols)
                     with _engine.connect() as conn:
                         conn.execute(sql_text(f"""
