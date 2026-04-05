@@ -530,6 +530,8 @@ def procesar_estadisticas_acumuladas(paths: dict):
             try:
                 df_db = df_new.copy()
                 df_db.columns = df_db.columns.str.lower()
+                # Normalizar MATCHID → match_id para que coincida con conflict_cols
+                df_db = df_db.rename(columns={'matchid': 'match_id'})
                 staging = f"{tabla}_staging"
                 df_db.to_sql(staging, _engine, if_exists='replace',
                              index=False, method='multi', chunksize=200)
