@@ -238,7 +238,10 @@ def cargar_roles_m12(comp_paths: dict = None):
     map_pos_id.clear();  map_pos_name.clear()
     try:
         _roles_file = comp_paths["roles"] if comp_paths else FILE_ROLES
-        # Fallback: si el archivo con label no existe, usar el genérico (Primera FEB legacy)
+        # Fallback: si no existe roles, intentar ROSTER
+        if not os.path.exists(_roles_file) and comp_paths and os.path.exists(comp_paths.get("roster", "")):
+            _roles_file = comp_paths["roster"]
+        # Fallback final: roles genérico (Primera FEB legacy)
         if not os.path.exists(_roles_file):
             _roles_file = FILE_ROLES
         if os.path.exists(_roles_file):
@@ -246,6 +249,7 @@ def cargar_roles_m12(comp_paths: dict = None):
             for _, r in df_roles.iterrows():
                 pid   = safe_id(str(r.get('PLAYER_ID', '')))
                 role  = str(r.get('ROLE_NAME', 'N/A'))
+                if role in ('N/A', '', 'nan'): role = 'Scorer'
                 pos   = str(r.get('POSITION', 'N/A'))
                 map_role_id[pid] = role
                 map_pos_id[pid]  = pos
@@ -912,19 +916,33 @@ def generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, match_id, equipo_local
 # ==============================================================================
 # FUNCIONES COMPARTIDAS PARA MÓDULOS 13/14/16
 # ==============================================================================
-def _load_roles_data(map_role, map_pos, map_name, map_efg, map_ts, map_tov, map_orb, map_ftr, map_usg, roles_path: str = None):
-    """Carga FILE_ROLES en los diccionarios proporcionados (compartida por M13/M14)."""
+def _load_roles_data(map_role, map_pos, map_name, map_efg, map_ts, map_tov, map_orb, map_ftr, map_usg, roles_path: str = None, roster_path: str = None):
+    """Carga roles en los diccionarios proporcionados (compartida por M13/M14/M16).
+    Intenta: 1) roles_path, 2) roster_path (renombrando columnas), 3) FILE_ROLES."""
     map_role.clear(); map_pos.clear(); map_name.clear()
     map_efg.clear();  map_ts.clear();  map_tov.clear()
     map_orb.clear();  map_ftr.clear(); map_usg.clear()
     try:
         _roles_file = roles_path if roles_path else FILE_ROLES
+        # Fallback: si no existe el roles específico, intentar roster
+        if not os.path.exists(_roles_file) and roster_path and os.path.exists(roster_path):
+            _roles_file = roster_path
+        # Fallback final: roles genérico (Primera FEB legacy)
+        if not os.path.exists(_roles_file):
+            _roles_file = FILE_ROLES
         if os.path.exists(_roles_file):
             df_roles = pd.read_csv(_roles_file)
+            # Normalizar columnas para soportar ROSTER y ROLES
+            df_roles = df_roles.rename(columns={
+                'EFG_PCT': 'eFG%', 'TS_PCT': 'TS%', 'TOV_PCT': 'TOV%',
+            })
             df_roles['TEAM'] = df_roles.get('TEAM', pd.Series()).replace(TEAM_FIXES_GLOBAL)
+            # Asegurar que ROLE_NAME no es vacío/N/A (evita "Incomplete" en lineups)
+            if 'ROLE_NAME' in df_roles.columns:
+                df_roles['ROLE_NAME'] = df_roles['ROLE_NAME'].fillna('Scorer').replace({'N/A': 'Scorer', '': 'Scorer', 'nan': 'Scorer'})
             for _, r in df_roles.iterrows():
                 pid = safe_id(str(r.get('PLAYER_ID', '')))
-                map_role[pid] = str(r.get('ROLE_NAME', 'N/A'))
+                map_role[pid] = str(r.get('ROLE_NAME', 'Scorer'))
                 map_pos[pid]  = str(r.get('POSITION',  'N/A'))
                 map_name[pid] = str(r.get('PLAYER_NAME','Unknown'))
                 if 'eFG%' in df_roles.columns: map_efg[pid] = r.get('eFG%', 0)
@@ -935,14 +953,37 @@ def _load_roles_data(map_role, map_pos, map_name, map_efg, map_ts, map_tov, map_
                 if 'USG%' in df_roles.columns: map_usg[pid] = r.get('USG%', 0)
     except Exception: pass
 
-def _load_photos_logos(photos_dict, logos_dict, photos_path: str = None, logos_path: str = None):
-    """Carga FILE_PHOTOS y FILE_LOGOS (compartida por M13/M14)."""
+def _load_photos_logos(photos_dict, logos_dict, photos_path: str = None, logos_path: str = None, roster_path: str = None):
+    """Carga photos y logos (compartida por M13/M14/M16).
+    Si photos JSON no existe, genera en memoria desde ROSTER CSV."""
     _photos_file = photos_path if photos_path else FILE_PHOTOS
     _logos_file  = logos_path  if logos_path  else FILE_LOGOS
+    photos_loaded = False
     try:
         if os.path.exists(_photos_file):
             with open(_photos_file, "r", encoding="utf-8") as f: photos_dict.update(json.load(f))
+            photos_loaded = True
     except Exception: pass
+    # Fallback: generar photos desde ROSTER si no se cargó el JSON
+    if not photos_loaded and roster_path and os.path.exists(roster_path):
+        try:
+            df_r = pd.read_csv(roster_path)
+            for _, r in df_r.iterrows():
+                pid = str(r.get('PLAYER_ID', '')).replace('.0', '').strip()
+                if not pid: continue
+                photos_dict[pid] = {
+                    'PLAYER_NAME': str(r.get('PLAYER_NAME', 'Unknown')),
+                    'POSITION': str(r.get('POSITION', '')),
+                    'POS_ORDER': int(r.get('POS_ORDER', 6)) if pd.notna(r.get('POS_ORDER')) else 6,
+                    'PHOTO_URL': str(r.get('PHOTO_URL', f'https://imagenes.feb.es/Foto.aspx?c={pid}')),
+                    'TEAM': str(r.get('TEAM', '')),
+                }
+        except Exception: pass
+    # Fallback: si nada cargó, intentar con FILE_PHOTOS genérico
+    if not photos_dict and os.path.exists(FILE_PHOTOS):
+        try:
+            with open(FILE_PHOTOS, "r", encoding="utf-8") as f: photos_dict.update(json.load(f))
+        except Exception: pass
     try:
         if os.path.exists(_logos_file):
             with open(_logos_file, "r", encoding="utf-8") as f: logos_dict.update(json.load(f))
@@ -1021,11 +1062,13 @@ custom_photos_m13 = {}; dicc_logos_m13 = {}
 def cargar_datos_m13(comp_paths: dict = None):
     global custom_photos_m13, dicc_logos_m13
     _load_roles_data(map_role_m13, map_pos_m13, map_name_m13, map_efg_m13, map_ts_m13, map_tov_m13, map_orb_m13, map_ftr_m13, map_usg_m13,
-                     roles_path=comp_paths["roles"] if comp_paths else None)
+                     roles_path=comp_paths["roles"] if comp_paths else None,
+                     roster_path=comp_paths["roster"] if comp_paths else None)
     custom_photos_m13 = {}; dicc_logos_m13 = {}
     _load_photos_logos(custom_photos_m13, dicc_logos_m13,
                        photos_path=comp_paths["photos"] if comp_paths else None,
-                       logos_path=comp_paths["logos"] if comp_paths else None)
+                       logos_path=comp_paths["logos"] if comp_paths else None,
+                       roster_path=comp_paths["roster"] if comp_paths else None)
 
 def create_signatures_m13(row):
     return _create_signatures(row, map_role_m13)
@@ -1147,11 +1190,13 @@ custom_photos_m14 = {}; dicc_logos_m14 = {}
 def cargar_datos_m14(comp_paths: dict = None):
     global custom_photos_m14, dicc_logos_m14
     _load_roles_data(map_role_m14, map_pos_m14, map_name_m14, map_efg_m14, map_ts_m14, map_tov_m14, map_orb_m14, map_ftr_m14, map_usg_m14,
-                     roles_path=comp_paths["roles"] if comp_paths else None)
+                     roles_path=comp_paths["roles"] if comp_paths else None,
+                     roster_path=comp_paths["roster"] if comp_paths else None)
     custom_photos_m14 = {}; dicc_logos_m14 = {}
     _load_photos_logos(custom_photos_m14, dicc_logos_m14,
                        photos_path=comp_paths["photos"] if comp_paths else None,
-                       logos_path=comp_paths["logos"] if comp_paths else None)
+                       logos_path=comp_paths["logos"] if comp_paths else None,
+                       roster_path=comp_paths["roster"] if comp_paths else None)
 
 def get_classic_order_m14(pid):
     return _get_player_order(pid, custom_photos_m14, map_pos_m14)
@@ -1588,6 +1633,27 @@ def health():
         "data_sources": _last_read_source,
         "pbp_cache": pbp_status,
     }, status_code=200)
+
+# === ENDPOINT: EQUIPOS POR COMPETICIÓN ===
+@app.get("/equipos")
+def equipos_api(competicion: str = Query(default="primerafeb")):
+    """Devuelve la lista de equipos de una competición."""
+    cp = get_comp_paths(competicion)
+    df = read_table(cp["db_boxscore"], cp["boxscore"])
+    if df.empty:
+        return JSONResponse(content={"competicion": competicion, "equipos": []})
+    df['TEAM'] = df['TEAM'].replace(TEAM_FIXES_GLOBAL)
+    equipos = sorted(df['TEAM'].dropna().unique().tolist())
+    return JSONResponse(content={"competicion": competicion, "equipos": equipos})
+
+# === ENDPOINT: COMPETICIONES DISPONIBLES ===
+@app.get("/competiciones")
+def competiciones_api():
+    """Devuelve la lista de competiciones configuradas."""
+    result = []
+    for slug, comp in COMPETITIONS.items():
+        result.append({"slug": slug, "name": comp["name"], "id": comp["id"]})
+    return JSONResponse(content=result)
 
 # === MÓDULO 12 ===
 @app.get("/generar", response_class=HTMLResponse)

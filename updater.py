@@ -781,6 +781,84 @@ def generar_roster_maestro(paths: dict):
     print(f"✅ Roster Maestro generado: {len(df_roster_final)} jugadores | {len(final_cols)} columnas → {paths['roster']}")
 
 # ==============================================================================
+# FASE 4: GENERACIÓN DE PHOTOS DICT Y LOGOS
+# ==============================================================================
+def generar_photos_dict(paths: dict):
+    """Genera PLAYER_NAMES_DICT_{LABEL}.json desde el ROSTER generado."""
+    if not os.path.exists(paths["roster"]):
+        print("⚠️ No existe ROSTER para generar photos dict. Saltando.")
+        return
+    try:
+        df = pd.read_csv(paths["roster"])
+        photos = {}
+        for _, r in df.iterrows():
+            pid = str(r.get('PLAYER_ID', '')).replace('.0', '').strip()
+            if not pid:
+                continue
+            photos[pid] = {
+                'PLAYER_NAME': str(r.get('PLAYER_NAME', 'Unknown')),
+                'POSITION': str(r.get('POSITION', '')),
+                'POS_ORDER': int(r.get('POS_ORDER', 6)) if pd.notna(r.get('POS_ORDER')) else 6,
+                'PHOTO_URL': str(r.get('PHOTO_URL', f'https://imagenes.feb.es/Foto.aspx?c={pid}')),
+                'TEAM': str(r.get('TEAM', '')),
+            }
+        with open(paths["photos"], 'w', encoding='utf-8') as f:
+            json.dump(photos, f, ensure_ascii=False, indent=2)
+        print(f"📸 Photos dict generado: {len(photos)} jugadores → {paths['photos']}")
+    except Exception as e:
+        print(f"⚠️ Error generando photos dict: {e}")
+
+
+def generar_logos(paths: dict):
+    """Genera logos_{slug}.json scrapeando la web de FEB."""
+    try:
+        r = requests.get(paths["cal_url"], headers=HEADERS_WEB)
+        soup = BeautifulSoup(r.text, 'html.parser')
+        logos = {}
+        for cont in soup.find_all("div", class_=lambda c: c and "contenedorLogoEquipoCalendario" in c):
+            img, a = cont.find("img"), cont.find("a")
+            if img and a:
+                url_logo = img.get("src")
+                if url_logo.startswith("/"):
+                    url_logo = "https://www.feb.es" + url_logo
+                logos[a.text.strip()] = url_logo
+        with open(paths["logos"], "w", encoding="utf-8") as f:
+            json.dump(logos, f, ensure_ascii=False, indent=4)
+        print(f"🏷️ Logos generados: {len(logos)} equipos → {paths['logos']}")
+    except Exception as e:
+        print(f"⚠️ Error generando logos: {e}")
+
+
+def generar_roles_desde_roster(paths: dict):
+    """Genera PLAYER_ROLES_FINAL_2526_{LABEL}.csv desde el ROSTER para M13/M14/M16."""
+    if not os.path.exists(paths["roster"]):
+        print("⚠️ No existe ROSTER para generar roles. Saltando.")
+        return
+    try:
+        df = pd.read_csv(paths["roster"])
+        cols_map = {
+            'PLAYER_ID': 'PLAYER_ID', 'PLAYER_NAME': 'PLAYER_NAME',
+            'TEAM': 'TEAM', 'POSITION': 'POSITION', 'ROLE_NAME': 'ROLE_NAME',
+            'MIN_PG': 'MIN', 'PTS_PG': 'PTS',
+            'EFG_PCT': 'eFG%', 'TS_PCT': 'TS%', 'TOV_PCT': 'TOV%',
+            'FTr': 'FTr', '3PAr': '3PAr',
+        }
+        cols_present = {k: v for k, v in cols_map.items() if k in df.columns}
+        df_roles = df[list(cols_present.keys())].rename(columns=cols_present)
+        # Añadir columnas que _load_roles_data espera pero que no tenemos
+        if 'ORB%' not in df_roles.columns:
+            df_roles['ORB%'] = 0.0
+        if 'USG%' not in df_roles.columns:
+            df_roles['USG%'] = 0.0
+        # Rellenar ROLE_NAME vacío con 'Scorer' genérico para evitar "Incomplete"
+        df_roles['ROLE_NAME'] = df_roles['ROLE_NAME'].fillna('Scorer').replace({'N/A': 'Scorer', '': 'Scorer'})
+        df_roles.to_csv(paths["roles"], index=False, encoding='utf-8-sig', float_format='%.1f')
+        print(f"🎯 Roles generados: {len(df_roles)} jugadores → {paths['roles']}")
+    except Exception as e:
+        print(f"⚠️ Error generando roles: {e}")
+
+
+# ==============================================================================
 # ORQUESTADOR MULTI-COMPETICIÓN
 # ==============================================================================
 def run_competition(comp: dict):
@@ -802,6 +880,11 @@ def run_competition(comp: dict):
         generar_roster_maestro(paths)
     except Exception as e:
         print(f"❌ Error Roster {label}:\n{traceback.format_exc()}")
+
+    # Generar ficheros auxiliares para M13/M14/M16
+    generar_photos_dict(paths)
+    generar_logos(paths)
+    generar_roles_desde_roster(paths)
 
 
 if __name__ == "__main__":
