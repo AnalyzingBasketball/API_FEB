@@ -829,33 +829,153 @@ def generar_logos(paths: dict):
         print(f"⚠️ Error generando logos: {e}")
 
 
-def generar_roles_desde_roster(paths: dict):
-    """Genera PLAYER_ROLES_FINAL_2526_{LABEL}.csv desde el ROSTER para M13/M14/M16."""
-    if not os.path.exists(paths["roster"]):
-        print("⚠️ No existe ROSTER para generar roles. Saltando.")
+def generar_roles_kmeans(paths: dict):
+    """
+    Asigna roles a jugadores usando centroides de referencia (Primera FEB K-Means).
+    Calcula stats avanzadas desde el BOXSCORE y asigna cada jugador al rol más cercano.
+    Genera PLAYER_ROLES_FINAL_2526_{LABEL}.csv compatible con M13/M14/M16.
+    """
+    if not os.path.exists(paths["boxscore"]):
+        print("⚠️ No existe BOXSCORE para generar roles K-Means. Saltando.")
         return
+
+    # ── Centroides de referencia (calculados de Primera FEB K-Means) ─────────
+    FEATURES = ['eFG%', 'TS%', 'TOV%', 'ORB%', 'FTr', 'USG%', 'AST%',
+                'STL%', 'BLK%', '2PT%', '3PT%', 'FT%', 'DRB%', '3PAr']
+
+    CENTROIDS = {
+        "3&D Wing":            [64.36, 49.73, 11.78,  5.72, 26.78, 17.60,  8.19, 1.69, 0.58, 47.02, 29.01, 63.30, 13.68, 50.01],
+        "High Volume Scorer":  [70.72, 58.31, 14.36,  2.83, 28.79, 23.70, 18.15, 1.57, 0.21, 46.00, 40.27, 80.90,  9.25, 56.10],
+        "Lead Guard":          [62.29, 51.07, 14.99,  4.17, 31.23, 26.14, 22.58, 4.29, 0.20, 51.36, 27.11, 65.91, 11.74, 40.96],
+        "Offensive Engine":    [58.27, 43.92, 22.89,  3.27, 29.05, 20.73, 23.21, 2.09, 0.24, 37.41, 26.11, 69.41,  9.77, 52.39],
+        "Rolling Big":         [27.57, 21.35, 27.73, 13.43, 20.23, 15.37,  5.36, 0.57, 0.49, 19.20,  8.83, 15.25, 11.44, 16.57],
+        "Shooter Specialist":  [80.73, 65.91,  9.77,  5.07, 31.01, 17.60, 10.37, 1.67, 0.69, 67.19, 37.15, 70.87, 13.64, 56.19],
+        "Stretch Big":         [63.39, 62.15, 14.35,  9.60, 54.28, 20.14, 10.02, 1.22, 1.16, 54.35, 45.74, 71.76, 20.56, 21.27],
+        "Traditional Center":  [61.06, 61.91, 18.89, 12.27, 54.84, 18.36,  5.99, 1.20, 1.91, 61.08,  2.15, 60.05, 21.55,  2.64],
+    }
+
+    # Media y desviación estándar de Primera FEB para normalización z-score
+    NORM_MEAN = [61.67, 51.49, 16.59,  6.74, 32.89, 19.60, 12.61, 1.68, 0.66, 47.42, 26.95, 62.56, 13.50, 39.65]
+    NORM_STD  = [18.12, 17.26, 13.24, 13.15, 23.73,  6.84, 10.26, 1.25, 1.05, 19.54, 18.06, 27.19,  7.61, 25.79]
+
     try:
-        df = pd.read_csv(paths["roster"])
-        cols_map = {
-            'PLAYER_ID': 'PLAYER_ID', 'PLAYER_NAME': 'PLAYER_NAME',
-            'TEAM': 'TEAM', 'POSITION': 'POSITION', 'ROLE_NAME': 'ROLE_NAME',
-            'MIN_PG': 'MIN', 'PTS_PG': 'PTS',
-            'EFG_PCT': 'eFG%', 'TS_PCT': 'TS%', 'TOV_PCT': 'TOV%',
-            'FTr': 'FTr', '3PAr': '3PAr',
-        }
-        cols_present = {k: v for k, v in cols_map.items() if k in df.columns}
-        df_roles = df[list(cols_present.keys())].rename(columns=cols_present)
-        # Añadir columnas que _load_roles_data espera pero que no tenemos
-        if 'ORB%' not in df_roles.columns:
-            df_roles['ORB%'] = 0.0
-        if 'USG%' not in df_roles.columns:
-            df_roles['USG%'] = 0.0
-        # Rellenar ROLE_NAME vacío con 'Scorer' genérico para evitar "Incomplete"
-        df_roles['ROLE_NAME'] = df_roles['ROLE_NAME'].fillna('Scorer').replace({'N/A': 'Scorer', '': 'Scorer'})
-        df_roles.to_csv(paths["roles"], index=False, encoding='utf-8-sig', float_format='%.1f')
-        print(f"🎯 Roles generados: {len(df_roles)} jugadores → {paths['roles']}")
+        df_box = pd.read_csv(paths["boxscore"])
+        df_box['PLAYER_ID'] = df_box['PLAYER_ID'].astype(str).str.replace('.0', '', regex=False).str.strip()
+        df_box['TEAM_ID']   = df_box['TEAM_ID'].astype(str).str.replace('.0', '', regex=False).str.strip()
+        df_box['TEAM']      = df_box['TEAM'].replace(TEAM_FIXES)
+
+        # Asegurar columnas numéricas
+        num_cols = ['MIN', 'MIN_SECS', 'PTS', 'FGM_2', 'FGA_2', 'FGM_3', 'FGA_3',
+                    'FGM', 'FGA', 'FTM', 'FTA', 'ORB', 'DRB', 'TRB', 'AST', 'TOV',
+                    'STL', 'BLK', 'PF', 'PFD', 'PIR', 'PLUS_MINUS', 'IS_STARTER']
+        rate_cols = ['eFG%', 'TS%', 'TOV%', 'ORB%', 'DRB%', 'AST%', 'STL%',
+                     'BLK%', 'USG%', '3PAr', 'FTr']
+        for c in num_cols + rate_cols:
+            if c in df_box.columns:
+                df_box[c] = pd.to_numeric(df_box[c], errors='coerce').fillna(0)
+
+        # ── Agregar por jugador: totales + promedios ponderados por minutos ──
+        agg = df_box.groupby(['PLAYER_ID', 'PLAYER_NAME', 'TEAM_ID', 'TEAM']).agg(
+            GP=('MATCHID', 'nunique'),
+            GS=('IS_STARTER', 'sum'),
+            MIN_TOTAL=('MIN', 'sum'),
+            MIN_SECS_TOTAL=('MIN_SECS', 'sum'),
+            PTS=('PTS', 'sum'),
+            FGM_2=('FGM_2', 'sum'), FGA_2=('FGA_2', 'sum'),
+            FGM_3=('FGM_3', 'sum'), FGA_3=('FGA_3', 'sum'),
+            FGM=('FGM', 'sum'), FGA=('FGA', 'sum'),
+            FTM=('FTM', 'sum'), FTA=('FTA', 'sum'),
+            ORB=('ORB', 'sum'), DRB=('DRB', 'sum'), TRB=('TRB', 'sum'),
+            AST=('AST', 'sum'), TOV=('TOV', 'sum'),
+            STL=('STL', 'sum'), BLK=('BLK', 'sum'),
+        ).reset_index()
+
+        # Filtrar jugadores con mínimo de participación (≥5 partidos, ≥5 min/partido)
+        agg['MIN_PG'] = (agg['MIN_TOTAL'] / agg['GP'].replace(0, np.nan)).fillna(0)
+        agg = agg[agg['GP'] >= 5].copy()
+        agg = agg[agg['MIN_PG'] >= 5].copy()
+
+        if agg.empty:
+            print(f"⚠️ No hay suficientes jugadores con minutos mínimos. Saltando K-Means.")
+            return
+
+        # ── Calcular stats avanzadas por minutos ponderados ──────────────────
+        # Promedios ponderados de las rate stats (por minutos jugados por partido)
+        for feat in rate_cols:
+            if feat in df_box.columns:
+                weighted = df_box.groupby('PLAYER_ID', group_keys=False).apply(
+                    lambda g: pd.Series(
+                        {feat: np.average(g[feat], weights=g['MIN'].replace(0, 0.001))
+                         if g['MIN'].sum() > 0 else 0}
+                    )
+                )[feat]
+                agg[feat] = agg['PLAYER_ID'].map(weighted).fillna(0)
+
+        # Shooting percentages desde totales (más precisos que promediar %)
+        agg['2PT%'] = (agg['FGM_2'] / agg['FGA_2'].replace(0, np.nan) * 100).fillna(0).round(1)
+        agg['3PT%'] = (agg['FGM_3'] / agg['FGA_3'].replace(0, np.nan) * 100).fillna(0).round(1)
+        agg['FT%']  = (agg['FTM']   / agg['FTA'].replace(0, np.nan) * 100).fillna(0).round(1)
+
+        # Per game stats
+        agg['PTS_PG'] = (agg['PTS'] / agg['GP'].replace(0, np.nan)).fillna(0).round(1)
+
+        # ── Asignar rol por distancia euclidiana normalizada al centroide ────
+        centroids_arr = np.array(list(CENTROIDS.values()))
+        centroid_names = list(CENTROIDS.keys())
+        norm_mean = np.array(NORM_MEAN)
+        norm_std  = np.array(NORM_STD)
+        # Evitar división por cero
+        norm_std[norm_std == 0] = 1.0
+
+        # Normalizar centroides
+        centroids_norm = (centroids_arr - norm_mean) / norm_std
+
+        def assign_role(row):
+            player_vec = np.array([row.get(f, 0) for f in FEATURES], dtype=float)
+            # Reemplazar NaN/inf por 0
+            player_vec = np.nan_to_num(player_vec, nan=0.0, posinf=0.0, neginf=0.0)
+            player_norm = (player_vec - norm_mean) / norm_std
+            distances = np.sqrt(((centroids_norm - player_norm) ** 2).sum(axis=1))
+            return centroid_names[np.argmin(distances)]
+
+        agg['ROLE_NAME'] = agg.apply(assign_role, axis=1)
+
+        # ── Añadir posición desde ROSTER si existe ───────────────────────────
+        if os.path.exists(paths["roster"]):
+            df_roster = pd.read_csv(paths["roster"])
+            df_roster['PLAYER_ID'] = df_roster['PLAYER_ID'].astype(str).str.replace('.0', '', regex=False).str.strip()
+            pos_map = df_roster.set_index('PLAYER_ID')['POSITION'].to_dict()
+            photo_map = df_roster.set_index('PLAYER_ID')['PHOTO_URL'].to_dict()
+            agg['POSITION'] = agg['PLAYER_ID'].map(pos_map).fillna('')
+            agg['PHOTO_URL'] = agg['PLAYER_ID'].map(photo_map).fillna(
+                agg['PLAYER_ID'].apply(lambda pid: f'https://imagenes.feb.es/Foto.aspx?c={pid}'))
+        else:
+            agg['POSITION'] = ''
+            agg['PHOTO_URL'] = agg['PLAYER_ID'].apply(lambda pid: f'https://imagenes.feb.es/Foto.aspx?c={pid}')
+
+        # ── Guardar CSV con formato compatible con _load_roles_data ──────────
+        # Eliminar columnas de totales que no necesitamos en el output
+        agg = agg.drop(columns=['PTS', 'FGM_2', 'FGA_2', 'FGM_3', 'FGA_3',
+                                'FGM', 'FGA', 'FTM', 'FTA', 'ORB', 'DRB', 'TRB',
+                                'AST', 'TOV', 'STL', 'BLK', 'GP', 'GS',
+                                'MIN_TOTAL', 'MIN_SECS_TOTAL'], errors='ignore')
+        # Renombrar per-game stats para output
+        agg = agg.rename(columns={'MIN_PG': 'MIN', 'PTS_PG': 'PTS'})
+        out_cols = ['PLAYER_ID', 'PLAYER_NAME', 'TEAM', 'POSITION', 'ROLE_NAME',
+                    'MIN', 'PTS', 'eFG%', 'TS%', 'TOV%', 'ORB%', 'FTr',
+                    'USG%', 'AST%', 'STL%', 'BLK%', '2PT%', '3PT%', 'FT%', 'DRB%', '3PAr']
+        # Solo incluir columnas que existen
+        final_cols = [c for c in out_cols if c in agg.columns]
+        df_out = agg[final_cols].copy()
+        df_out.to_csv(paths["roles"], index=False, encoding='utf-8-sig', float_format='%.1f')
+
+        # Estadísticas de distribución
+        dist = df_out['ROLE_NAME'].value_counts().to_dict()
+        print(f"🎯 Roles K-Means asignados: {len(df_out)} jugadores → {paths['roles']}")
+        print(f"   Distribución: {dist}")
     except Exception as e:
-        print(f"⚠️ Error generando roles: {e}")
+        print(f"⚠️ Error generando roles K-Means: {e}")
+        traceback.print_exc()
 
 
 # ==============================================================================
@@ -884,7 +1004,7 @@ def run_competition(comp: dict):
     # Generar ficheros auxiliares para M13/M14/M16
     generar_photos_dict(paths)
     generar_logos(paths)
-    generar_roles_desde_roster(paths)
+    generar_roles_kmeans(paths)
 
 
 if __name__ == "__main__":
