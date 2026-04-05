@@ -86,9 +86,14 @@ def read_table(tabla: str, csv_path: str = None) -> pd.DataFrame:
     if _engine:
         try:
             df = pd.read_sql(f"SELECT * FROM {tabla}", _engine)
-            df.columns = df.columns.str.upper()
-            _last_read_source[tabla] = f"supabase ({len(df)} rows)"
-            return df
+            if len(df) > 0:
+                df.columns = df.columns.str.upper()
+                # Normalizar: en Supabase match_id → MATCH_ID, pero el código espera MATCHID
+                df = df.rename(columns={'MATCH_ID': 'MATCHID'})
+                _last_read_source[tabla] = f"supabase ({len(df)} rows)"
+                return df
+            else:
+                print(f"⚠️ Tabla {tabla} vacía en BD, fallback a CSV")
         except Exception as e:
             print(f"⚠️ Error leyendo {tabla} de BD, fallback a CSV: {e}")
     if csv_path and os.path.exists(csv_path):
@@ -415,7 +420,7 @@ def extraer_partido_api(match_id, comp_slug: str = "primerafeb"):
         if not os.path.exists(ruta_pbp):
             # Intentar leer de Supabase primero (más rápido que la API FEB)
             pbp_from_db = False
-            if db_ok():
+            if _engine:
                 try:
                     df_pbp_db = pd.read_sql(
                         f"SELECT * FROM pbp_{comp_slug} WHERE match_id = '{match_id}'", _engine)
