@@ -61,6 +61,8 @@ def get_comp_paths(slug: str) -> dict:
     comp  = COMPETITIONS[slug]
     label = comp["label"]
     return {
+        "slug":        slug,
+        "cal_url":     f"https://www.feb.es/competiciones/calendario/{slug}/{comp['id']}/{comp['url_year']}",
         "boxscore":    os.path.join(DATA_DIR, f"BOXSCORE_{label}_2526.csv"),
         "lineups":     os.path.join(DATA_DIR, f"LINEUPS_{label}_2526.csv"),
         "roster":      os.path.join(DATA_DIR, f"ROSTER_{label}_2526.csv"),
@@ -236,6 +238,9 @@ def cargar_roles_m12(comp_paths: dict = None):
     map_pos_id.clear();  map_pos_name.clear()
     try:
         _roles_file = comp_paths["roles"] if comp_paths else FILE_ROLES
+        # Fallback: si el archivo con label no existe, usar el genérico (Primera FEB legacy)
+        if not os.path.exists(_roles_file):
+            _roles_file = FILE_ROLES
         if os.path.exists(_roles_file):
             df_roles = pd.read_csv(_roles_file)
             for _, r in df_roles.iterrows():
