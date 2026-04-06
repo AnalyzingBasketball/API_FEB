@@ -737,8 +737,9 @@ def generar_roster_maestro(paths: dict):
             cols_roles = [c for c in cols_roles if c in df_roles.columns]
             agg = pd.merge(agg, df_roles[cols_roles], on='PLAYER_ID', how='left')
             # Rellenar POSITION con POSITION_ROLE si el JSON no tenía datos
+            _pos_invalid = agg['POSITION'].isna() | agg['POSITION'].astype(str).str.strip().isin(['', 'nan', 'N/A', 'None'])
             agg['POSITION'] = np.where(
-                agg['POSITION'].isna() | (agg['POSITION'].astype(str).str.strip() == ''),
+                _pos_invalid,
                 agg.get('POSITION_ROLE', ''),
                 agg['POSITION']
             )
@@ -795,9 +796,12 @@ def generar_photos_dict(paths: dict):
             pid = str(r.get('PLAYER_ID', '')).replace('.0', '').strip()
             if not pid:
                 continue
+            pos_val = str(r.get('POSITION', ''))
+            if pos_val in ('nan', 'N/A', 'None'):
+                pos_val = ''
             photos[pid] = {
                 'PLAYER_NAME': str(r.get('PLAYER_NAME', 'Unknown')),
-                'POSITION': str(r.get('POSITION', '')),
+                'POSITION': pos_val,
                 'POS_ORDER': int(r.get('POS_ORDER', 6)) if pd.notna(r.get('POS_ORDER')) else 6,
                 'PHOTO_URL': str(r.get('PHOTO_URL', f'https://imagenes.feb.es/Foto.aspx?c={pid}')),
                 'TEAM': str(r.get('TEAM', '')),
@@ -940,17 +944,71 @@ def generar_roles_kmeans(paths: dict):
 
         agg['ROLE_NAME'] = agg.apply(assign_role, axis=1)
 
-        # ── Añadir posición desde ROSTER si existe ───────────────────────────
+        # ── Inferir posición clásica por centroides (PG/SG/SF/PF/C) ─────────
+        POS_CENTROIDS = {
+            "PG": [64.05, 50.41, 18.15, 3.17, 31.73, 21.33, 27.13, 2.25, 0.34, 45.99, 31.00, 73.47, 11.00, 51.22],
+            "SG": [69.11, 56.38, 12.62, 3.56, 30.59, 22.81, 14.22, 2.11, 0.37, 47.96, 37.19, 76.18,  9.80, 54.57],
+            "SF": [67.66, 54.65, 11.80, 5.60, 29.70, 17.37, 10.13, 1.74, 0.39, 53.33, 33.71, 68.37, 13.04, 49.17],
+            "PF": [62.78, 54.02, 14.26, 8.77, 38.75, 17.47, 10.17, 1.47, 1.01, 53.58, 26.06, 65.50, 17.10, 35.14],
+            "C":  [59.82, 57.64, 16.22, 10.59, 49.46, 18.39, 7.30, 1.48, 1.58, 56.62, 17.12, 60.88, 18.84, 12.53],
+        }
+        POS_NORM_MEAN = [64.71, 54.59, 14.69, 6.21, 35.93, 19.52, 14.11, 1.83, 0.72, 51.43, 29.04, 68.93, 13.81, 40.63]
+        POS_NORM_STD  = [12.57, 11.86,  6.18, 4.19, 20.43,  5.37, 10.19, 1.03, 1.03, 13.90, 16.49, 19.11,  5.87, 23.53]
+
+        pos_centroids_arr = np.array(list(POS_CENTROIDS.values()))
+        pos_names = list(POS_CENTROIDS.keys())
+        pos_norm_mean = np.array(POS_NORM_MEAN)
+        pos_norm_std  = np.array(POS_NORM_STD)
+        pos_norm_std[pos_norm_std == 0] = 1.0
+        pos_centroids_norm = (pos_centroids_arr - pos_norm_mean) / pos_norm_std
+
+        def assign_position(row):
+            player_vec = np.array([row.get(f, 0) for f in FEATURES], dtype=float)
+            player_vec = np.nan_to_num(player_vec, nan=0.0, posinf=0.0, neginf=0.0)
+            player_norm = (player_vec - pos_norm_mean) / pos_norm_std
+            distances = np.sqrt(((pos_centroids_norm - player_norm) ** 2).sum(axis=1))
+            return pos_names[np.argmin(distances)]
+
+        # Intentar posición desde ROSTER/JSON; si no hay, inferir por centroides
+        pos_from_data = {}
         if os.path.exists(paths["roster"]):
             df_roster = pd.read_csv(paths["roster"])
             df_roster['PLAYER_ID'] = df_roster['PLAYER_ID'].astype(str).str.replace('.0', '', regex=False).str.strip()
-            pos_map = df_roster.set_index('PLAYER_ID')['POSITION'].to_dict()
+            for _, r in df_roster.iterrows():
+                pid = str(r['PLAYER_ID'])
+                pos = str(r.get('POSITION', '')) if pd.notna(r.get('POSITION')) else ''
+                if pos.strip() and pos.strip() not in ('nan', 'N/A', ''):
+                    pos_from_data[pid] = pos.strip()
+        # También intentar desde PLAYER_NAMES_DICT JSON
+        if os.path.exists(paths["photos"]):
+            try:
+                with open(paths["photos"], 'r', encoding='utf-8') as f:
+                    photos_json = json.load(f)
+                for pid, info in photos_json.items():
+                    pid_clean = str(pid).replace('.0', '').strip()
+                    pos = str(info.get('POSITION', ''))
+                    if pos.strip() and pos.strip() not in ('nan', 'N/A', '', 'None') and pid_clean not in pos_from_data:
+                        pos_from_data[pid_clean] = pos.strip()
+            except Exception:
+                pass
+
+        def get_position(row):
+            pid = str(row.get('PLAYER_ID', ''))
+            if pid in pos_from_data:
+                return pos_from_data[pid]
+            return assign_position(row)
+
+        agg['POSITION'] = agg.apply(get_position, axis=1)
+        # POS_ORDER para ordenación
+        _pos_order = {'PG': 1, 'SG': 2, 'SF': 3, 'PF': 4, 'C': 5}
+        agg['POS_ORDER'] = agg['POSITION'].map(_pos_order).fillna(6).astype(int)
+
+        # PHOTO_URL desde ROSTER
+        if os.path.exists(paths["roster"]):
             photo_map = df_roster.set_index('PLAYER_ID')['PHOTO_URL'].to_dict()
-            agg['POSITION'] = agg['PLAYER_ID'].map(pos_map).fillna('')
             agg['PHOTO_URL'] = agg['PLAYER_ID'].map(photo_map).fillna(
                 agg['PLAYER_ID'].apply(lambda pid: f'https://imagenes.feb.es/Foto.aspx?c={pid}'))
         else:
-            agg['POSITION'] = ''
             agg['PHOTO_URL'] = agg['PLAYER_ID'].apply(lambda pid: f'https://imagenes.feb.es/Foto.aspx?c={pid}')
 
         # ── Guardar CSV con formato compatible con _load_roles_data ──────────
@@ -996,15 +1054,18 @@ def run_competition(comp: dict):
     except Exception as e:
         print(f"❌ Error ETL {label}:\n{traceback.format_exc()}")
 
+    # 1. Roles K-Means PRIMERO (usa BOXSCORE, infiere posiciones)
+    generar_roles_kmeans(paths)
+
+    # 2. Roster Maestro (lee roles CSV → obtiene ROLE_NAME + POSITION)
     try:
         generar_roster_maestro(paths)
     except Exception as e:
         print(f"❌ Error Roster {label}:\n{traceback.format_exc()}")
 
-    # Generar ficheros auxiliares para M13/M14/M16
+    # 3. Photos dict y logos (lee ROSTER con posiciones ya asignadas)
     generar_photos_dict(paths)
     generar_logos(paths)
-    generar_roles_kmeans(paths)
 
 
 if __name__ == "__main__":
