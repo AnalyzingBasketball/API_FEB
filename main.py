@@ -536,16 +536,17 @@ def limpiar_y_avanzadas(match_id, local, visitante, jornada):
     df_pbp[[c for c in columnas_finales if c in df_pbp.columns]].to_csv(ruta_pbp_clean, index=False, encoding='utf-8-sig')
     return ruta_pbp_clean, ruta_box_clean
 
-def generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, match_id, equipo_local, equipo_visit, fecha_partido):
+def generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, match_id, equipo_local, equipo_visit, fecha_partido, comp_paths: dict = None):
     df_pbp = pd.read_csv(ruta_pbp_clean)
     df_box = pd.read_csv(ruta_box_clean)
-    cargar_roles_m12()
+    cargar_roles_m12(comp_paths=comp_paths)
 
     # Cargar fotos y posiciones del JSON (fuente primaria de posiciones)
+    _photos_file = comp_paths["photos"] if comp_paths else FILE_PHOTOS
     custom_photos_m12 = {}
     try:
-        if os.path.exists(FILE_PHOTOS):
-            with open(FILE_PHOTOS, "r", encoding="utf-8") as f:
+        if os.path.exists(_photos_file):
+            with open(_photos_file, "r", encoding="utf-8") as f:
                 raw_photos = json.load(f)
             for pid_k, info in raw_photos.items():
                 custom_photos_m12[str(pid_k).strip().replace('.0','')] = info
@@ -560,10 +561,11 @@ def generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, match_id, equipo_loca
         # Prioridad posición: JSON curado → FILE_ROLES → vacío
         pos_json  = custom_photos_m12.get(pid, {}).get('POSITION', '')
         pos_roles = map_pos_id.get(pid, map_pos_name.get(pname_clean, ''))
-        dict_pos[pname_clean] = pos_json if pos_json and pos_json not in ['','nan','None','N/A','SF'] else pos_roles
+        dict_pos[pname_clean] = pos_json if pos_json and pos_json not in ['','nan','None','N/A'] else pos_roles
 
+    _logos_file = comp_paths["logos"] if comp_paths else FILE_LOGOS
     try:
-        with open(FILE_LOGOS, "r", encoding="utf-8") as f: diccionario_escudos = json.load(f)
+        with open(_logos_file, "r", encoding="utf-8") as f: diccionario_escudos = json.load(f)
     except Exception: diccionario_escudos = {}
 
     def get_escudo(eq_name):
@@ -760,13 +762,14 @@ def generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, match_id, equipo_loca
     with open(ruta_final, "w", encoding="utf-8") as f: f.write(html)
     return ruta_final
 
-def generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, match_id, equipo_local, equipo_visit, fecha_partido):
+def generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, match_id, equipo_local, equipo_visit, fecha_partido, comp_paths: dict = None):
     df_box = pd.read_csv(ruta_box_clean)
     df_pbp = pd.read_csv(ruta_pbp_clean)
-    cargar_roles_m12()
+    cargar_roles_m12(comp_paths=comp_paths)
 
+    _logos_file = comp_paths["logos"] if comp_paths else FILE_LOGOS
     try:
-        with open(FILE_LOGOS, "r", encoding="utf-8") as f: diccionario_escudos = json.load(f)
+        with open(_logos_file, "r", encoding="utf-8") as f: diccionario_escudos = json.load(f)
     except Exception: diccionario_escudos = {}
 
     def get_escudo(eq_name):
@@ -844,14 +847,16 @@ def generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, match_id, equipo_local
             pid = str(safe_get(row,['Player_ID'],""))
             if pid.endswith('.0'): pid = pid[:-2]
             role  = map_role_id.get(pid, map_role_name.get(remove_accents(player_raw.strip().lower()),"N/A"))
-            pos   = map_pos_id.get(pid,  map_pos_name.get(remove_accents(player_raw.strip().lower()),"N/A"))
+            pos   = map_pos_id.get(pid,  map_pos_name.get(remove_accents(player_raw.strip().lower()),""))
+            if pos in ('N/A', 'nan', 'None'): pos = ''
             foto  = safe_get(row,['Logo_URL'])
             if pd.isna(foto) or str(foto).strip() in ["","nan","None"]: foto = "https://via.placeholder.com/40/cbd5e0/ffffff?text=+"
             s_val = str(safe_get(row,['Starter'],"")).strip().lower()
             s_str = "S" if s_val in ['1','true','yes','*'] else ""
+            pos_badge = f"<span style='font-size:10px;color:#fff;background:#718096;padding:2px 5px;border-radius:3px;font-weight:bold;text-transform:uppercase;white-space:nowrap;'>{pos}</span>" if pos else ""
             mins, secs = divmod(int(p['min_sec']), 60)
             if p['min_sec'] == 0:
-                html_tables += f"<tr><td class='td-info'><img src='{foto}' class='player-photo'></td><td class='td-info player-name'>{player}</td><td class='td-info font-bold text-blue' style='font-size:11px;'>{role}</td><td class='td-info'><span style='font-size:10px;color:#fff;background:#718096;padding:2px 5px;border-radius:3px;font-weight:bold;text-transform:uppercase;white-space:nowrap;'>{pos}</span></td><td class='td-info font-bold' style='color:#2b6cb0;'>{s_str}</td><td class='td-info'><b>00:00</b></td><td colspan='36' class='td-trad text-center'>Did Not Play</td></tr>"
+                html_tables += f"<tr><td class='td-info'><img src='{foto}' class='player-photo'></td><td class='td-info player-name'>{player}</td><td class='td-info font-bold text-blue' style='font-size:11px;'>{role}</td><td class='td-info'>{pos_badge}</td><td class='td-info font-bold' style='color:#2b6cb0;'>{s_str}</td><td class='td-info'><b>00:00</b></td><td colspan='36' class='td-trad text-center'>Did Not Play</td></tr>"
                 continue
             pm_str  = f"+{p['pm']}" if p['pm']>0 else str(p['pm'])
             pm_class = "text-green" if p['pm']>0 else ("text-red" if p['pm']<0 else "")
@@ -876,7 +881,7 @@ def generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, match_id, equipo_local
             fg2_pct = (p['fg2m']/p['fg2a']*100) if p['fg2a']>0 else 0
             fg3_pct = (p['fg3m']/p['fg3a']*100) if p['fg3a']>0 else 0
             ft_pct  = (p['ftm']/p['fta']*100)   if p['fta']>0  else 0
-            html_tables += f"<tr><td class='td-info'><img src='{foto}' class='player-photo'></td><td class='td-info player-name'>{player}</td><td class='td-info font-bold text-blue' style='font-size:11px;'>{role}</td><td class='td-info'><span style='font-size:10px;color:#fff;background:#718096;padding:2px 5px;border-radius:3px;font-weight:bold;text-transform:uppercase;white-space:nowrap;'>{pos}</span></td><td class='td-info font-bold' style='color:#2b6cb0;'>{s_str}</td><td class='td-info'><b>{mins:02d}:{secs:02d}</b></td><td class='td-trad font-bold text-blue'>{int(p['pts'])}</td><td class='td-trad font-bold {pir_class}'>{int(p['pir'])}</td><td class='td-trad'>{int(p['orb'])}</td><td class='td-trad'>{int(p['drb'])}</td><td class='td-trad font-bold'>{int(p['trb'])}</td><td class='td-trad'>{int(p['ast'])}</td><td class='td-trad text-green'>{int(p['stl'])}</td><td class='td-trad text-red'>{int(p['tov'])}</td><td class='td-trad'>{int(p['blk'])}</td><td class='td-trad text-gray'>{int(p['pfd'])}</td><td class='td-trad text-gray'>{int(p['pf'])}</td><td class='td-trad font-bold {pm_class}'>{pm_str}</td><td class='td-shoot font-bold'>{int(p['fg2m'])}</td><td class='td-shoot text-gray'>{int(p['fg2a'])}</td><td class='td-shoot'>{fg2_pct:.0f}%</td><td class='td-shoot font-bold'>{int(p['fg3m'])}</td><td class='td-shoot text-gray'>{int(p['fg3a'])}</td><td class='td-shoot'>{fg3_pct:.0f}%</td><td class='td-shoot font-bold'>{int(p['ftm'])}</td><td class='td-shoot text-gray'>{int(p['fta'])}</td><td class='td-shoot'>{ft_pct:.0f}%</td><td class='td-adv font-bold'>{gmsc:.1f}</td><td class='td-adv'>{ts_pct:.1f}%</td><td class='td-adv'>{efg_pct:.1f}%</td><td class='td-adv text-gray'>{par3:.1f}%</td><td class='td-adv text-gray'>{ftr:.1f}%</td><td class='td-adv font-bold text-blue'>{usg_pct:.1f}%</td><td class='td-adv'>{orb_pct:.1f}%</td><td class='td-adv'>{drb_pct:.1f}%</td><td class='td-adv text-gray'>{trb_pct:.1f}%</td><td class='td-adv'>{ast_pct:.1f}%</td><td class='td-adv'>{stl_pct:.1f}%</td><td class='td-adv'>{blk_pct:.1f}%</td><td class='td-adv'>{tov_pct:.1f}%</td><td class='td-adv font-bold'>{ppp:.2f}</td><td class='td-adv font-bold'>{pps:.2f}</td></tr>"
+            html_tables += f"<tr><td class='td-info'><img src='{foto}' class='player-photo'></td><td class='td-info player-name'>{player}</td><td class='td-info font-bold text-blue' style='font-size:11px;'>{role}</td><td class='td-info'>{pos_badge}</td><td class='td-info font-bold' style='color:#2b6cb0;'>{s_str}</td><td class='td-info'><b>{mins:02d}:{secs:02d}</b></td><td class='td-trad font-bold text-blue'>{int(p['pts'])}</td><td class='td-trad font-bold {pir_class}'>{int(p['pir'])}</td><td class='td-trad'>{int(p['orb'])}</td><td class='td-trad'>{int(p['drb'])}</td><td class='td-trad font-bold'>{int(p['trb'])}</td><td class='td-trad'>{int(p['ast'])}</td><td class='td-trad text-green'>{int(p['stl'])}</td><td class='td-trad text-red'>{int(p['tov'])}</td><td class='td-trad'>{int(p['blk'])}</td><td class='td-trad text-gray'>{int(p['pfd'])}</td><td class='td-trad text-gray'>{int(p['pf'])}</td><td class='td-trad font-bold {pm_class}'>{pm_str}</td><td class='td-shoot font-bold'>{int(p['fg2m'])}</td><td class='td-shoot text-gray'>{int(p['fg2a'])}</td><td class='td-shoot'>{fg2_pct:.0f}%</td><td class='td-shoot font-bold'>{int(p['fg3m'])}</td><td class='td-shoot text-gray'>{int(p['fg3a'])}</td><td class='td-shoot'>{fg3_pct:.0f}%</td><td class='td-shoot font-bold'>{int(p['ftm'])}</td><td class='td-shoot text-gray'>{int(p['fta'])}</td><td class='td-shoot'>{ft_pct:.0f}%</td><td class='td-adv font-bold'>{gmsc:.1f}</td><td class='td-adv'>{ts_pct:.1f}%</td><td class='td-adv'>{efg_pct:.1f}%</td><td class='td-adv text-gray'>{par3:.1f}%</td><td class='td-adv text-gray'>{ftr:.1f}%</td><td class='td-adv font-bold text-blue'>{usg_pct:.1f}%</td><td class='td-adv'>{orb_pct:.1f}%</td><td class='td-adv'>{drb_pct:.1f}%</td><td class='td-adv text-gray'>{trb_pct:.1f}%</td><td class='td-adv'>{ast_pct:.1f}%</td><td class='td-adv'>{stl_pct:.1f}%</td><td class='td-adv'>{blk_pct:.1f}%</td><td class='td-adv'>{tov_pct:.1f}%</td><td class='td-adv font-bold'>{ppp:.2f}</td><td class='td-adv font-bold'>{pps:.2f}</td></tr>"
 
         tm_mins,tm_secs = divmod(int(tm_MIN_sec/5),60)
         tm_ts_denom = 2*(tm_FGA+0.44*t_tot['FTA'])
@@ -1686,9 +1691,9 @@ def generar_scouting(jornada: int = 22, equipo: str = "MOVISTAR ESTUDIANTES", ti
         partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], jornada
     )
     if tipo_reporte.lower() == "quintetos":
-        ruta_final = generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], partido['fecha'])
+        ruta_final = generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], partido['fecha'], comp_paths=cp)
     else:
-        ruta_final = generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], partido['fecha'])
+        ruta_final = generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], partido['fecha'], comp_paths=cp)
     with open(ruta_final, "r", encoding="utf-8") as f: html_content = f.read()
     set_html_cache(_cache_key, html_content)
     return HTMLResponse(content=html_content, status_code=200)
