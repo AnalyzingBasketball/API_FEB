@@ -1651,6 +1651,44 @@ def health():
         "pbp_cache": pbp_status,
     }, status_code=200)
 
+# === HELPER: INFO DE JORNADAS POR COMPETICIÓN ===
+def _get_jornadas_info(comp_paths: dict) -> dict:
+    """Devuelve jornada_actual y total_jornadas leyendo BOXSCORE y CALENDAR."""
+    total_jornadas = 34  # fallback
+    jornada_actual = 22  # fallback
+    try:
+        df_cal = pd.read_csv(comp_paths["calendar"])
+        if 'ROUND' in df_cal.columns:
+            total_jornadas = int(df_cal['ROUND'].max())
+    except Exception:
+        pass
+    try:
+        df_box = read_table(comp_paths["db_boxscore"], comp_paths["boxscore"])
+        if not df_box.empty and 'ROUND' in df_box.columns:
+            jornada_actual = int(df_box['ROUND'].max())
+    except Exception:
+        pass
+    return {"jornada_actual": jornada_actual, "total_jornadas": total_jornadas}
+
+# === ENDPOINT: INFO DE LIGA (jornadas, equipos) ===
+@app.get("/info_liga")
+def info_liga_api(competicion: str = Query(default="primerafeb")):
+    """Devuelve info de la competición: jornada actual, total jornadas, equipos."""
+    cp = get_comp_paths(competicion)
+    info = _get_jornadas_info(cp)
+    df = read_table(cp["db_boxscore"], cp["boxscore"])
+    equipos = []
+    if not df.empty:
+        df['TEAM'] = df['TEAM'].replace(TEAM_FIXES_GLOBAL)
+        equipos = sorted(df['TEAM'].dropna().unique().tolist())
+    return JSONResponse(content={
+        "competicion": competicion,
+        "nombre": COMPETITIONS.get(competicion, {}).get("name", competicion),
+        "jornada_actual": info["jornada_actual"],
+        "total_jornadas": info["total_jornadas"],
+        "equipos": equipos,
+    })
+
 # === ENDPOINT: EQUIPOS POR COMPETICIÓN ===
 @app.get("/equipos")
 def equipos_api(competicion: str = Query(default="primerafeb")):
@@ -1674,8 +1712,10 @@ def competiciones_api():
 
 # === MÓDULO 12 ===
 @app.get("/generar", response_class=HTMLResponse)
-def generar_scouting(jornada: int = 22, equipo: str = "MOVISTAR ESTUDIANTES", tipo_reporte: str = "quintetos", competicion: str = Query(default="primerafeb")):
+def generar_scouting(jornada: int = None, equipo: str = "MOVISTAR ESTUDIANTES", tipo_reporte: str = "quintetos", competicion: str = Query(default="primerafeb")):
     cp = get_comp_paths(competicion)
+    if jornada is None:
+        jornada = _get_jornadas_info(cp)["jornada_actual"]
     cargar_roles_m12(comp_paths=cp)
     if not os.path.exists(cp["logos"]): extraer_diccionario_logos(cal_url=cp["cal_url"], logos_path=cp["logos"])
 
@@ -1707,8 +1747,10 @@ def generar_scouting(jornada: int = 22, equipo: str = "MOVISTAR ESTUDIANTES", ti
 
 # === MÓDULO 13 ===
 @app.get("/splits", response_class=HTMLResponse)
-def splits_api(s_rnd: int = 1, e_rnd: int = 22, eq: str = "MOVISTAR ESTUDIANTES", m_filt: int = 10, competicion: str = Query(default="primerafeb")):
+def splits_api(s_rnd: int = 1, e_rnd: int = None, eq: str = "MOVISTAR ESTUDIANTES", m_filt: int = 10, competicion: str = Query(default="primerafeb")):
     cp = get_comp_paths(competicion)
+    if e_rnd is None:
+        e_rnd = _get_jornadas_info(cp)["jornada_actual"]
     if s_rnd > e_rnd: raise HTTPException(status_code=400, detail="La jornada de inicio no puede ser posterior a la jornada final.")
     ruta_final = generar_html_splits(s_rnd, e_rnd, eq, m_filt, comp_paths=cp)
     with open(ruta_final, "r", encoding="utf-8") as f: html_content = f.read()
