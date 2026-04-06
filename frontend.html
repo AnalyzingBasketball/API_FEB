@@ -1,0 +1,394 @@
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  .ml-container * { box-sizing: border-box; }
+  .ml-container { font-family: 'Ubuntu', sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; }
+  .ml-league-bar { background: linear-gradient(135deg, #0047ff 0%, #0033cc 100%); padding: 24px 30px; border-radius: 8px; margin-bottom: 28px; box-shadow: 0 4px 15px rgba(0,71,255,0.25); }
+  .ml-league-bar label { display: block; color: #ffffff; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+  .ml-league-select { width: 100%; height: 55px; padding: 10px 15px; border: 2px solid rgba(255,255,255,0.3); border-radius: 6px; background: #ffffff; font-family: 'Ubuntu', sans-serif; font-size: 18px; font-weight: 700; color: #0047ff; cursor: pointer; appearance: auto; }
+  .ml-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) { .ml-grid { grid-template-columns: 1fr; } }
+  .ml-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .ml-card h3 { color: #0047ff; margin: 0 0 8px 0; text-align: center; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ml-card p.ml-desc { font-size: 14px; color: #555; text-align: justify; margin-bottom: 12px; line-height: 1.5; }
+  .ml-card label { display: block; font-size: 14px; font-weight: 700; color: #333; text-transform: uppercase; margin-bottom: 4px; }
+  .ml-card select, .ml-card input[type="number"] { width: 100%; height: 48px; padding: 8px 12px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 0; background: #fff; font-family: 'Ubuntu', sans-serif; font-size: 16px; color: #333; }
+  .ml-card .ml-row { display: flex; gap: 10px; }
+  .ml-card .ml-row > div { flex: 1; }
+  .ml-card .ml-row select, .ml-card .ml-row input[type="number"] { margin-bottom: 16px; }
+  .ml-btn { width: 100%; font-family: 'Ubuntu', sans-serif; background-color: #0047ff; color: #fff; padding: 16px; border: none; border-radius: 4px; font-size: 16px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: background-color 0.3s; }
+  .ml-btn:hover { background-color: #0033cc; }
+</style>
+
+<div class="ml-container">
+
+  <div class="ml-league-bar">
+    <label for="league_selector_ml">Selecciona la competicion</label>
+    <select id="league_selector_ml" class="ml-league-select" onchange="changeLeagueML()">
+      <option value="lfendesa">LF Endesa</option>
+      <option value="primerafeb" selected>Primera FEB</option>
+      <option value="lfchallenge">LF Challenge</option>
+      <option value="segundafeb">Segunda FEB</option>
+      <option value="lf2">LF2</option>
+      <option value="tercerafeb">Tercera FEB</option>
+      <option value="ligau">Liga U</option>
+    </select>
+  </div>
+
+  <div class="ml-grid">
+
+    <div class="ml-card">
+      <h3>Scouting de Partido</h3>
+      <p class="ml-desc">Informe avanzado de un partido: boxscore con metricas avanzadas o analisis de quintetos en tiempo real.</p>
+      <form id="scoutingForm_ml" onsubmit="procesarScouting_ml(event);">
+        <label for="equipo_scouting_ml">Equipo</label>
+        <select name="equipo" id="equipo_scouting_ml"></select>
+
+        <div class="ml-row">
+          <div>
+            <label for="jornada_scouting_ml">Jornada</label>
+            <select name="jornada" id="jornada_scouting_ml"></select>
+          </div>
+          <div>
+            <label for="formato_scouting_ml">Formato</label>
+            <select name="tipo_reporte" id="formato_scouting_ml">
+              <option value="quintetos">Quintetos</option>
+              <option value="boxscore" selected>Boxscore Avz.</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" id="btnScouting_ml" class="ml-btn">Generar Informe de Partido</button>
+      </form>
+      <div id="resultado_scouting_ml"></div>
+    </div>
+
+    <div class="ml-card">
+      <h3>Splits Tacticos</h3>
+      <p class="ml-desc">Analisis tactico por arquetipos de quintetos: agrupa combinaciones por rol y muestra eficiencia por rango de jornadas.</p>
+      <form id="splitsForm_ml" onsubmit="procesarSplits_ml(event);">
+        <label for="equipo_splits_ml">Equipo</label>
+        <select name="eq" id="equipo_splits_ml"></select>
+
+        <div class="ml-row">
+          <div>
+            <label for="s_rnd_ml">Desde Jornada</label>
+            <select name="s_rnd" id="s_rnd_ml"></select>
+          </div>
+          <div>
+            <label for="e_rnd_ml">Hasta Jornada</label>
+            <select name="e_rnd" id="e_rnd_ml"></select>
+          </div>
+          <div>
+            <label for="m_filt_splits_ml">Min. Min.</label>
+            <input type="number" name="m_filt" id="m_filt_splits_ml" value="10" min="1" max="200">
+          </div>
+        </div>
+
+        <button type="submit" id="btnSplits_ml" class="ml-btn">Generar Splits Tacticos</button>
+      </form>
+      <div id="resultado_splits_ml"></div>
+    </div>
+
+    <div class="ml-card">
+      <h3>Scouting Contextual</h3>
+      <p class="ml-desc">Informe contextual: analiza los ultimos N partidos filtrando por local/visitante, boxscore o quintetos.</p>
+      <form id="contextualForm_ml" onsubmit="procesarContextual_ml(event);">
+        <label for="equipo_ctx_ml">Equipo</label>
+        <select name="eq" id="equipo_ctx_ml"></select>
+
+        <div class="ml-row">
+          <div>
+            <label for="n_games_ml">Ultimos N</label>
+            <select name="n_games" id="n_games_ml">
+              <option value="3" selected>3 partidos</option>
+              <option value="5">5 partidos</option>
+              <option value="10">10 partidos</option>
+              <option value="99">Toda la temp.</option>
+            </select>
+          </div>
+          <div>
+            <label for="venue_ml">Venue</label>
+            <select name="venue" id="venue_ml">
+              <option value="ALL" selected>Todos</option>
+              <option value="HOME">Local</option>
+              <option value="AWAY">Visitante</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="ml-row">
+          <div>
+            <label for="formato_ctx_ml">Formato</label>
+            <select name="tipo_reporte" id="formato_ctx_ml">
+              <option value="quintetos">Quintetos</option>
+              <option value="boxscore" selected>Boxscore Avz.</option>
+            </select>
+          </div>
+          <div>
+            <label for="m_filt_ctx_ml">Min. Min.</label>
+            <input type="number" name="m_filt" id="m_filt_ctx_ml" value="10" min="1" max="200">
+          </div>
+        </div>
+
+        <button type="submit" id="btnContextual_ml" class="ml-btn">Generar Scouting Contextual</button>
+      </form>
+      <div id="resultado_ctx_ml"></div>
+    </div>
+
+    <div class="ml-card">
+      <h3>Liga Lineups</h3>
+      <p class="ml-desc">Mega-informe de todos los quintetos de la liga: los 3 mejores y 3 peores por NET Rating de cada equipo.</p>
+      <form id="ligaLineupsForm_ml" onsubmit="procesarLigaLineups_ml(event);">
+        <label for="m_filt_liga_ml">Minutos Minimos</label>
+        <select name="m_filt" id="m_filt_liga_ml">
+          <option value="5">5 min (All lineups)</option>
+          <option value="10">10 min (Low rotation)</option>
+          <option value="15" selected>15 min (Regular rotation)</option>
+          <option value="25">25 min (Core lineups)</option>
+          <option value="40">40 min (High usage)</option>
+          <option value="60">60 min (Starters only)</option>
+          <option value="100">100 min (Top lineups)</option>
+        </select>
+
+        <button type="submit" id="btnLigaLineups_ml" class="ml-btn">Generar Informe Liga Completa</button>
+      </form>
+      <div id="resultado_liga_ml"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+
+  var API_BASE = "https://api-feb.onrender.com";
+  var currentLeague_ml = "primerafeb";
+
+  /* Cache de info_liga para no repetir peticiones */
+  var leagueInfoCache = {};
+
+  var teamSelects_ml = [
+    { id: "equipo_scouting_ml", todos: false },
+    { id: "equipo_splits_ml",   todos: true  },
+    { id: "equipo_ctx_ml",      todos: false }
+  ];
+
+  /* ── Poblar un <select> de jornadas de 1..total, seleccionando defaultVal ── */
+  function populateJornadaSelect(selectId, total, defaultVal) {
+    var sel = document.getElementById(selectId);
+    if (!sel) return;
+    sel.innerHTML = "";
+    for (var j = 1; j <= total; j++) {
+      var opt = document.createElement("option");
+      opt.value = j;
+      opt.textContent = "Jornada " + j;
+      if (j === defaultVal) opt.selected = true;
+      sel.appendChild(opt);
+    }
+  }
+
+  /* ── Poblar los selects de equipos ── */
+  function populateTeams(equipos) {
+    for (var i = 0; i < teamSelects_ml.length; i++) {
+      var sel = document.getElementById(teamSelects_ml[i].id);
+      if (!sel) continue;
+      sel.innerHTML = "";
+      if (teamSelects_ml[i].todos) {
+        var optT = document.createElement("option");
+        optT.value = "TODOS";
+        optT.textContent = "-- Todos los equipos --";
+        sel.appendChild(optT);
+      }
+      for (var j = 0; j < equipos.length; j++) {
+        var opt = document.createElement("option");
+        opt.value = equipos[j];
+        opt.textContent = equipos[j];
+        sel.appendChild(opt);
+      }
+    }
+  }
+
+  /* ── Cargar info de la liga desde /info_liga y actualizar todo ── */
+  function loadLeagueInfo(slug) {
+    /* Si ya tenemos cache, usar directamente */
+    if (leagueInfoCache[slug]) {
+      applyLeagueInfo(leagueInfoCache[slug]);
+      return;
+    }
+
+    fetch(API_BASE + "/info_liga?competicion=" + encodeURIComponent(slug))
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        leagueInfoCache[slug] = data;
+        applyLeagueInfo(data);
+      })
+      .catch(function() {
+        /* Fallback si la API no responde */
+        applyLeagueInfo({
+          jornada_actual: 22,
+          total_jornadas: 34,
+          equipos: []
+        });
+      });
+  }
+
+  function applyLeagueInfo(data) {
+    var actual = data.jornada_actual || 22;
+    var total  = data.total_jornadas || 34;
+
+    /* Scouting de Partido: selector de jornada, default = actual */
+    populateJornadaSelect("jornada_scouting_ml", total, actual);
+
+    /* Splits: desde jornada (default 1) y hasta jornada (default actual) */
+    populateJornadaSelect("s_rnd_ml", total, 1);
+    populateJornadaSelect("e_rnd_ml", total, actual);
+
+    /* Equipos */
+    if (data.equipos && data.equipos.length > 0) {
+      populateTeams(data.equipos);
+    }
+  }
+
+  /* ── Cambio de liga ── */
+  window.changeLeagueML = function() {
+    var sel = document.getElementById("league_selector_ml");
+    currentLeague_ml = sel.value;
+
+    /* Limpiar resultados */
+    var ids = ["resultado_scouting_ml", "resultado_splits_ml", "resultado_ctx_ml", "resultado_liga_ml"];
+    for (var k = 0; k < ids.length; k++) {
+      var el = document.getElementById(ids[k]);
+      if (el) el.innerHTML = "";
+    }
+
+    /* Cargar info dinámica de la nueva liga */
+    loadLeagueInfo(currentLeague_ml);
+  };
+
+  function getLeagueUrl_ml(endpoint) {
+    return API_BASE + "/" + endpoint + "?competicion=" + encodeURIComponent(currentLeague_ml);
+  }
+
+  function resetBtn_ml(btn, label) {
+    btn.innerHTML = label;
+    btn.style.backgroundColor = "#0047ff";
+    btn.style.cursor = "pointer";
+    btn.disabled = false;
+  }
+
+  function setLoading_ml(btn, msg) {
+    btn.innerHTML = msg;
+    btn.style.backgroundColor = "#666666";
+    btn.style.cursor = "wait";
+    btn.disabled = true;
+  }
+
+  function showError_ml(div, msg) {
+    div.innerHTML = '<p style="color:#e53e3e;text-align:center;margin-top:15px;font-size:16px;font-weight:700;">Error: ' + msg + '</p>';
+  }
+
+  function showLink_ml(div, blobUrl, text) {
+    div.innerHTML = '<a href="' + blobUrl + '" target="_blank" style="display:block;text-align:center;margin-top:18px;padding:14px;background-color:#0047ff;color:#fff;text-decoration:none;font-weight:700;border-radius:4px;font-size:16px;text-transform:uppercase;">' + text + '</a>';
+  }
+
+  // ===== 1. SCOUTING DE PARTIDO =====
+  window.procesarScouting_ml = async function(event) {
+    event.preventDefault();
+    var btn = document.getElementById("btnScouting_ml");
+    var res = document.getElementById("resultado_scouting_ml");
+    var form = document.getElementById("scoutingForm_ml");
+    var tipo = document.getElementById("formato_scouting_ml").value;
+    setLoading_ml(btn, "Generando informe...");
+    res.innerHTML = "";
+    var params = new URLSearchParams(new FormData(form)).toString();
+    var url = getLeagueUrl_ml("generar") + "&" + params;
+    try {
+      var response = await fetch(url);
+      if (!response.ok) throw new Error("No se encontraron datos para ese partido o la jornada aun no se ha disputado.");
+      var blob = await response.blob();
+      var blobUrl = URL.createObjectURL(blob);
+      resetBtn_ml(btn, "Generar Informe de Partido");
+      var linkText = tipo === "quintetos" ? "Ver Analisis de Quintetos" : "Ver Boxscore Avanzado";
+      showLink_ml(res, blobUrl, linkText);
+    } catch (error) {
+      resetBtn_ml(btn, "Generar Informe de Partido");
+      showError_ml(res, error.message);
+    }
+  };
+
+  // ===== 2. SPLITS TACTICOS =====
+  window.procesarSplits_ml = async function(event) {
+    event.preventDefault();
+    var btn = document.getElementById("btnSplits_ml");
+    var res = document.getElementById("resultado_splits_ml");
+    var form = document.getElementById("splitsForm_ml");
+    setLoading_ml(btn, "Generando splits...");
+    res.innerHTML = "";
+    var params = new URLSearchParams(new FormData(form)).toString();
+    var url = getLeagueUrl_ml("splits") + "&" + params;
+    try {
+      var response = await fetch(url);
+      if (!response.ok) throw new Error("No se encontraron datos para esos parametros.");
+      var blob = await response.blob();
+      var blobUrl = URL.createObjectURL(blob);
+      resetBtn_ml(btn, "Generar Splits Tacticos");
+      showLink_ml(res, blobUrl, "Ver Splits Tacticos");
+    } catch (error) {
+      resetBtn_ml(btn, "Generar Splits Tacticos");
+      showError_ml(res, error.message);
+    }
+  };
+
+  // ===== 3. SCOUTING CONTEXTUAL =====
+  window.procesarContextual_ml = async function(event) {
+    event.preventDefault();
+    var btn = document.getElementById("btnContextual_ml");
+    var res = document.getElementById("resultado_ctx_ml");
+    var form = document.getElementById("contextualForm_ml");
+    var tipo = document.getElementById("formato_ctx_ml").value;
+    setLoading_ml(btn, "Generando informe...");
+    res.innerHTML = "";
+    var params = new URLSearchParams(new FormData(form)).toString();
+    var url = getLeagueUrl_ml("contextual") + "&" + params;
+    try {
+      var response = await fetch(url);
+      if (!response.ok) throw new Error("No se encontraron datos para esos parametros.");
+      var blob = await response.blob();
+      var blobUrl = URL.createObjectURL(blob);
+      resetBtn_ml(btn, "Generar Scouting Contextual");
+      var linkText = tipo === "quintetos" ? "Ver Quintetos Contextuales" : "Ver Boxscore Contextual";
+      showLink_ml(res, blobUrl, linkText);
+    } catch (error) {
+      resetBtn_ml(btn, "Generar Scouting Contextual");
+      showError_ml(res, error.message);
+    }
+  };
+
+  // ===== 4. LIGA LINEUPS =====
+  window.procesarLigaLineups_ml = async function(event) {
+    event.preventDefault();
+    var btn = document.getElementById("btnLigaLineups_ml");
+    var res = document.getElementById("resultado_liga_ml");
+    var form = document.getElementById("ligaLineupsForm_ml");
+    setLoading_ml(btn, "Generando informe de liga...");
+    res.innerHTML = "";
+    var params = new URLSearchParams(new FormData(form)).toString();
+    var url = getLeagueUrl_ml("liga_lineups") + "&" + params;
+    try {
+      var response = await fetch(url);
+      if (!response.ok) throw new Error("No se encontraron datos.");
+      var blob = await response.blob();
+      var blobUrl = URL.createObjectURL(blob);
+      resetBtn_ml(btn, "Generar Informe Liga Completa");
+      showLink_ml(res, blobUrl, "Ver Informe Liga Completa");
+    } catch (error) {
+      resetBtn_ml(btn, "Generar Informe Liga Completa");
+      showError_ml(res, error.message);
+    }
+  };
+
+  /* ── Inicialización: cargar info de la liga por defecto ── */
+  loadLeagueInfo(currentLeague_ml);
+
+})();
+</script>

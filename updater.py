@@ -879,45 +879,62 @@ def scrape_posiciones_feb(paths: dict) -> dict:
             pass
 
     result = dict(cached)
-    pending = [(r['TEAM_ID'], r['PLAYER_ID']) for _, r in players.iterrows()
-               if r['PLAYER_ID'] not in result]
 
-    if not pending:
+    # Agrupar todos los team_ids por player_id (para probar con cada equipo)
+    player_teams = {}
+    for _, r in players.iterrows():
+        pid = r['PLAYER_ID']
+        tid = r['TEAM_ID']
+        if pid not in player_teams:
+            player_teams[pid] = []
+        if tid not in player_teams[pid]:
+            player_teams[pid].append(tid)
+
+    pending_pids = [pid for pid in player_teams if pid not in result]
+
+    if not pending_pids:
         print(f"📋 Posiciones: {len(result)} jugadores (todos en caché)")
         return result
 
-    print(f"📋 Scrapeando posiciones de {len(pending)} jugadores desde feb.es...")
+    print(f"📋 Scrapeando posiciones de {len(pending_pids)} jugadores desde feb.es...")
     session = requests.Session()
     session.headers.update(HEADERS_WEB)
     scraped = 0
     errors = 0
     no_puesto = 0
 
-    for i, (tid, pid) in enumerate(pending):
-        try:
-            url = f"https://www.feb.es/competiciones/jugador/{tid}/{pid}"
-            r = session.get(url, timeout=10)
-            soup = BeautifulSoup(r.text, 'html.parser')
-            found = False
-            for nodo in soup.find_all('div', class_='nodo'):
-                label = nodo.find('span', class_='label')
-                value = nodo.find('span', class_='string')
-                if label and 'Puesto' in label.text and value:
-                    puesto_raw = value.text.strip().lower().replace('á', 'a').replace('í', 'i')
-                    pos = PUESTO_MAP.get(puesto_raw, '')
-                    if pos:
-                        result[pid] = pos
-                        scraped += 1
-                    else:
-                        no_puesto += 1
-                    found = True
-                    break
-            if not found:
-                no_puesto += 1
-        except Exception:
+    def _scrape_pos(session, pid, tids):
+        """Intenta obtener posición probando con todos los team_ids del jugador."""
+        for tid in tids:
+            try:
+                url = f"https://www.feb.es/competiciones/jugador/{tid}/{pid}"
+                r = session.get(url, timeout=10)
+                soup = BeautifulSoup(r.text, 'html.parser')
+                for nodo in soup.find_all('div', class_='nodo'):
+                    label = nodo.find('span', class_='label')
+                    value = nodo.find('span', class_='string')
+                    if label and 'Puesto' in label.text and value:
+                        puesto_raw = value.text.strip().lower().replace('á', 'a').replace('í', 'i')
+                        pos = PUESTO_MAP.get(puesto_raw, '')
+                        if pos:
+                            return pos  # encontrado
+                        return ''  # página cargada pero sin posición válida
+            except Exception:
+                continue
+        return None  # error en todas las URLs
+
+    for i, pid in enumerate(pending_pids):
+        tids = player_teams[pid]
+        pos = _scrape_pos(session, pid, tids)
+        if pos:
+            result[pid] = pos
+            scraped += 1
+        elif pos is None:
             errors += 1
+        else:
+            no_puesto += 1
         if (i + 1) % 100 == 0:
-            print(f"   ... {i + 1}/{len(pending)} procesados ({scraped} OK, {no_puesto} sin puesto, {errors} errores)")
+            print(f"   ... {i + 1}/{len(pending_pids)} procesados ({scraped} OK, {no_puesto} sin puesto, {errors} errores)")
 
     # Guardar caché
     try:
@@ -991,10 +1008,10 @@ def generar_roles_kmeans(paths: dict):
             STL=('STL', 'sum'), BLK=('BLK', 'sum'),
         ).reset_index()
 
-        # Filtrar jugadores con mínimo de participación (≥5 partidos, ≥5 min/partido)
+        # Filtrar jugadores con mínimo de participación (≥2 partidos, ≥2 min/partido)
         agg['MIN_PG'] = (agg['MIN_TOTAL'] / agg['GP'].replace(0, np.nan)).fillna(0)
-        agg = agg[agg['GP'] >= 5].copy()
-        agg = agg[agg['MIN_PG'] >= 5].copy()
+        agg = agg[agg['GP'] >= 2].copy()
+        agg = agg[agg['MIN_PG'] >= 2].copy()
 
         if agg.empty:
             print(f"⚠️ No hay suficientes jugadores con minutos mínimos. Saltando K-Means.")
