@@ -77,6 +77,7 @@ def get_comp_paths(slug: str) -> dict:
         "db_pbp":      f"pbp_{slug}",
         "db_teamstats":f"teamstats_{slug}",
         "db_roster":   f"roster_{slug}",
+        "logo_liga":   os.path.join(BASE_DIR, "images", f"{slug}.png"),
     }
 
 _last_read_source = {}  # {tabla: "supabase" | "csv" | "empty"}
@@ -724,7 +725,8 @@ def generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, match_id, equipo_loca
             filas += f"<tr><td class='lineups-cell'><div class='players-flex'>{faces_html}</div></td><td style='font-weight:bold;'>{l['tiempo']}</td><td class='{pm_class}' style='font-size:17px;'>{l['pm']}</td><td style='font-weight:bold;color:#2b6cb0;'>{l['pts']}</td><td style='font-weight:bold;color:#e53e3e;'>{l['pa']}</td><td>{l['dreb']}</td><td style='color:#48bb78;font-weight:bold;'>{l['oreb']}</td><td style='color:#e53e3e;font-weight:bold;'>{l['opp_oreb']}</td><td>{l['ast']}</td><td style='color:#e53e3e;font-weight:bold;'>{l['tov']}</td><td style='font-weight:bold;'>{l['ortg']}</td><td style='font-weight:bold;'>{l['drtg']}</td><td>{l['efg_pct']}</td><td>{l['ts_pct']}</td><td>{l['orb_pct']}</td><td>{l['drb_pct']}</td><td>{l['ast_to']}</td><td style='font-weight:bold;color:#4a5568;'>{l['pace']}</td></tr>"
         return filas
 
-    logo_empresa_b64, logo_feb_b64, logo_liga_b64 = get_image_base64(LOGO_EMPRESA), get_image_base64(LOGO_FEB), get_image_base64(LOGO_LIGA)
+    _logo_liga_path = comp_paths["logo_liga"] if comp_paths and os.path.exists(comp_paths.get("logo_liga", "")) else LOGO_LIGA
+    logo_empresa_b64, logo_feb_b64, logo_liga_b64 = get_image_base64(LOGO_EMPRESA), get_image_base64(LOGO_FEB), get_image_base64(_logo_liga_path)
     html = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>Lineups - {equipo_local} vs {equipo_visit}</title>
     <style>
         body{{font-family:'Segoe UI',sans-serif;background:#f4f6f9;color:#333;margin:0;padding:20px;padding-bottom:80px;}}
@@ -755,7 +757,7 @@ def generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, match_id, equipo_loca
     <h2 class="team-section-title">{equipo_local}</h2><div class="table-container"><table><thead><tr><th class="lineups-col">LINEUPS</th><th>MIN</th><th>+/-</th><th>PTS</th><th>PA</th><th>DREB</th><th>OREB</th><th>OPP OREB</th><th>AST</th><th>TO</th><th>ORTG</th><th>DRTG</th><th>eFG%</th><th>TS%</th><th>ORB%</th><th>DRB%</th><th>AST/TO</th><th>PACE</th></tr></thead><tbody>{gen_filas(lineups_local)}</tbody></table></div>
     <h2 class="team-section-title">{equipo_visit}</h2><div class="table-container"><table><thead><tr><th class="lineups-col">LINEUPS</th><th>MIN</th><th>+/-</th><th>PTS</th><th>PA</th><th>DREB</th><th>OREB</th><th>OPP OREB</th><th>AST</th><th>TO</th><th>ORTG</th><th>DRTG</th><th>eFG%</th><th>TS%</th><th>ORB%</th><th>DRB%</th><th>AST/TO</th><th>PACE</th></tr></thead><tbody>{gen_filas(lineups_visitante)}</tbody></table></div>
     <div class="legend-grid"><div class="legend-item"><b>MIN:</b> Minutes played together.<br><b>+/-:</b> Plus/Minus point differential.<br><b>PTS / PA:</b> Points Scored / Allowed.<br><b>DREB / OREB:</b> Defensive / Offensive Rebounds.<br><b>OPP_OREB:</b> Opponent Offensive Rebounds.</div><div class="legend-item"><b>AST:</b> Assists.<br><b>TO:</b> Turnovers.<br><b>AST/TO:</b> Assist to Turnover Ratio.<br><b>ORTG:</b> Offensive Rating.<br><b>DRTG:</b> Defensive Rating.</div><div class="legend-item"><b>eFG%:</b> Effective Field Goal %.<br><b>TS%:</b> True Shooting %.<br><b>ORB%:</b> Offensive Rebound %.<br><b>DRB%:</b> Defensive Rebound %.<br><b>PACE:</b> Possessions per 40 min.</div></div>
-    <div class="footer">© 2026 Analizing Basketball | <a href='https://www.analizingbasketball.com' target='_blank'>www.analizingbasketball.com</a></div>
+    <div class="footer">© 2026 Analyzing Basketball | <a href='https://www.analyzingbasketball.com' target='_blank'>www.analyzingbasketball.com</a></div>
     </body></html>"""
 
     ruta_final = os.path.join(REPORTS_DIR, f"Lineup_Report_{match_id}_{limpiar_texto_archivo(equipo_local)}_vs_{limpiar_texto_archivo(equipo_visit)}.html")
@@ -887,7 +889,8 @@ def generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, match_id, equipo_local
         tm_ts_denom = 2*(tm_FGA+0.44*t_tot['FTA'])
         html_tables += f"<tr class='total-row'><td colspan='5' class='td-info' style='text-align:right;padding-right:15px;'><b>TEAM TOTALS</b></td><td class='td-info'><b>{tm_mins:02d}:{tm_secs:02d}</b></td><td class='td-trad font-bold text-blue'>{int(t_tot['PTS'])}</td><td class='td-trad font-bold'>{int(t_tot['PIR'])}</td><td class='td-trad'>{int(t_tot['ORB'])}</td><td class='td-trad'>{int(t_tot['DRB'])}</td><td class='td-trad font-bold'>{int(t_tot['TRB'])}</td><td class='td-trad'>{int(t_tot['AST'])}</td><td class='td-trad text-green'>{int(t_tot['STL'])}</td><td class='td-trad text-red'>{int(t_tot['TOV'])}</td><td class='td-trad'>{int(t_tot['BLK'])}</td><td class='td-trad text-gray'>{int(t_tot['PFD'])}</td><td class='td-trad text-gray'>{int(t_tot['PF'])}</td><td class='td-trad'></td><td class='td-shoot font-bold'>{int(t_tot['FGM2'])}</td><td class='td-shoot text-gray'>{int(t_tot['FGA2'])}</td><td class='td-shoot'>{(t_tot['FGM2']/t_tot['FGA2']*100) if t_tot['FGA2']>0 else 0:.0f}%</td><td class='td-shoot font-bold'>{int(t_tot['FGM3'])}</td><td class='td-shoot text-gray'>{int(t_tot['FGA3'])}</td><td class='td-shoot'>{(t_tot['FGM3']/t_tot['FGA3']*100) if t_tot['FGA3']>0 else 0:.0f}%</td><td class='td-shoot font-bold'>{int(t_tot['FTM'])}</td><td class='td-shoot text-gray'>{int(t_tot['FTA'])}</td><td class='td-shoot'>{(t_tot['FTM']/t_tot['FTA']*100) if t_tot['FTA']>0 else 0:.0f}%</td><td class='td-adv font-bold'>{tot_gmsc:.1f}</td><td class='td-adv'>{(t_tot['PTS']/tm_ts_denom*100) if tm_ts_denom>0 else 0:.1f}%</td><td class='td-adv'>{((tm_FGM+0.5*t_tot['FGM3'])/tm_FGA*100) if tm_FGA>0 else 0:.1f}%</td><td class='td-adv text-gray'>{(t_tot['FGA3']/tm_FGA*100) if tm_FGA>0 else 0:.1f}%</td><td class='td-adv text-gray'>{(t_tot['FTA']/tm_FGA*100) if tm_FGA>0 else 0:.1f}%</td><td class='td-adv font-bold text-blue'>100.0%</td><td class='td-adv'>{(100*t_tot['ORB']/(t_tot['ORB']+opp_tot['DRB'])) if (t_tot['ORB']+opp_tot['DRB'])>0 else 0:.1f}%</td><td class='td-adv'>{(100*t_tot['DRB']/(t_tot['DRB']+opp_tot['ORB'])) if (t_tot['DRB']+opp_tot['ORB'])>0 else 0:.1f}%</td><td class='td-adv text-gray'>{(100*t_tot['TRB']/(t_tot['TRB']+opp_tot['TRB'])) if (t_tot['TRB']+opp_tot['TRB'])>0 else 0:.1f}%</td><td class='td-adv'>{(100*t_tot['AST']/tm_FGM) if tm_FGM>0 else 0:.1f}%</td><td class='td-adv'>{(100*t_tot['STL']/opp_Poss) if opp_Poss>0 else 0:.1f}%</td><td class='td-adv'>{(100*t_tot['BLK']/opp_tot['FGA2']) if opp_tot['FGA2']>0 else 0:.1f}%</td><td class='td-adv'>{(100*t_tot['TOV']/(tm_FGA+0.44*t_tot['FTA']+t_tot['TOV'])) if (tm_FGA+0.44*t_tot['FTA']+t_tot['TOV'])>0 else 0:.1f}%</td><td class='td-adv font-bold'>{(t_tot['PTS']/(tm_FGA+0.44*t_tot['FTA']+t_tot['TOV'])) if (tm_FGA+0.44*t_tot['FTA']+t_tot['TOV'])>0 else 0:.2f}</td><td class='td-adv font-bold'>{(t_tot['PTS']/tm_FGA) if tm_FGA>0 else 0:.2f}</td></tr></tbody></table></div>"
 
-    logo_empresa_b64, logo_feb_b64, logo_liga_b64 = get_image_base64(LOGO_EMPRESA), get_image_base64(LOGO_FEB), get_image_base64(LOGO_LIGA)
+    _logo_liga_path = comp_paths["logo_liga"] if comp_paths and os.path.exists(comp_paths.get("logo_liga", "")) else LOGO_LIGA
+    logo_empresa_b64, logo_feb_b64, logo_liga_b64 = get_image_base64(LOGO_EMPRESA), get_image_base64(LOGO_FEB), get_image_base64(_logo_liga_path)
     html = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>Advanced Boxscore - {equipo_local} vs {equipo_visit}</title>
     <style>
         body{{font-family:'Segoe UI',sans-serif;background:#f4f6f9;color:#1a202c;margin:0;padding:20px;padding-bottom:80px;}}
@@ -916,7 +919,7 @@ def generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, match_id, equipo_local
     <div class="scores">{' | '.join(q_scores)}<br><span style="font-weight:normal;font-size:13px;color:#a0aec0;">Match Date: {fecha_partido}</span></div></div></div>
     {html_tables}
     <div class="legend-grid"><div class="legend-item"><b>PIC/PLAYER:</b> Player Info.<br><b>S:</b> Starter.<br><b>MIN:</b> Minutes.<br><b>PTS:</b> Points.<br><b>PIR:</b> Performance Index Rating.<br><b>+/-:</b> Plus/Minus.</div><div class="legend-item"><b>ORB:</b> Off. Rebounds.<br><b>DRB:</b> Def. Rebounds.<br><b>TRB:</b> Total Rebounds.<br><b>AST:</b> Assists.<br><b>STL:</b> Steals.<br><b>TOV:</b> Turnovers.</div><div class="legend-item"><b>BLK:</b> Blocks.<br><b>PFD:</b> Fouls Drawn.<br><b>PF:</b> Fouls Committed.<br><b>2PM/A:</b> 2PT Made/Att.<br><b>3PM/A:</b> 3PT Made/Att.<br><b>FTM/A:</b> FT Made/Att.</div><div class="legend-item"><b>GmSc:</b> Game Score.<br><b>TS%:</b> True Shooting %.<br><b>eFG%:</b> Eff. Field Goal %.<br><b>3PAr:</b> 3PT Attempt Rate.<br><b>FTr:</b> FT Rate.<br><b>USG%:</b> Usage %.</div><div class="legend-item"><b>ORB%/DRB%/TRB%:</b> Rebound %.<br><b>AST%:</b> Assist %.<br><b>STL%/BLK%:</b> Steal/Block %.<br><b>TOV%:</b> Turnover %.<br><b>PPP:</b> Points Per Possession.<br><b>PPS:</b> Points Per Shot.</div></div>
-    <div class="footer">© 2026 Analizing Basketball | <a href='https://www.analizingbasketball.com' target='_blank'>www.analizingbasketball.com</a></div>
+    <div class="footer">© 2026 Analyzing Basketball | <a href='https://www.analyzingbasketball.com' target='_blank'>www.analyzingbasketball.com</a></div>
     </body></html>"""
 
     ruta_final = os.path.join(REPORTS_DIR, f"Boxscore_{match_id}_{limpiar_texto_archivo(equipo_local)}_vs_{limpiar_texto_archivo(equipo_visit)}.html")
@@ -1120,9 +1123,10 @@ def generar_html_splits(s_rnd, e_rnd, eq, m_filt, comp_paths: dict = None):
     efficiency['NET_RATING'] = (efficiency['PTS_40'] - efficiency['PA_40']).round(1)
     for col in ['PTS_40','PA_40']: efficiency[col] = efficiency[col].round(1)
 
+    _logo_liga_path = comp_paths["logo_liga"] if comp_paths and os.path.exists(comp_paths.get("logo_liga", "")) else LOGO_LIGA
     logo_empresa_b64 = get_image_base64(LOGO_EMPRESA)
     logo_feb_b64     = get_image_base64(LOGO_FEB)
-    logo_liga_b64    = get_image_base64(LOGO_LIGA)
+    logo_liga_b64    = get_image_base64(_logo_liga_path)
     eq_name_display  = eq if eq != "TODOS" else "League Wide"
     round_title      = f"Rounds {s_rnd} to {e_rnd}"
 
@@ -1182,7 +1186,7 @@ def generar_html_splits(s_rnd, e_rnd, eq, m_filt, comp_paths: dict = None):
         if not bottom3.empty: html_content += f"<div class='table-title title-bot'>Least Efficient Lineups ({round_title})</div>{render_table_m13(bottom3)}"
         html_content += "</div>"
 
-    html_content += '<div class="footer">© 2026 Analizing Basketball | <a href="https://www.analizingbasketball.com" target="_blank">www.analizingbasketball.com</a></div></body></html>'
+    html_content += '<div class="footer">© 2026 Analyzing Basketball | <a href="https://www.analyzingbasketball.com" target="_blank">www.analyzingbasketball.com</a></div></body></html>'
 
     eq_f       = eq.replace(" ","_") if eq != "TODOS" else "ALL_TEAMS"
     ruta_final = os.path.join(REPORTS_DIR, f"SPLIT_J{s_rnd}_J{e_rnd}_{eq_f}.html")
@@ -1219,7 +1223,7 @@ def _render_table_lineups_m14(df_subset):
                                 map_efg_m14, map_ts_m14, map_tov_m14, map_orb_m14, map_ftr_m14, map_usg_m14,
                                 order_fn=get_classic_order_m14)
 
-def HTML_LINEUPS_AGREGADOS_M14(efficiency, eq, context_str, m_filt):
+def HTML_LINEUPS_AGREGADOS_M14(efficiency, eq, context_str, m_filt, comp_paths: dict = None):
     df_equipo = efficiency.sort_values(by='NET_RATING', ascending=False)
     top3    = df_equipo.head(3)
     bottom3 = df_equipo.loc[~df_equipo.index.isin(top3.index)].tail(3) if len(df_equipo) > 3 else pd.DataFrame()
@@ -1227,9 +1231,10 @@ def HTML_LINEUPS_AGREGADOS_M14(efficiency, eq, context_str, m_filt):
     logo_url = "https://via.placeholder.com/60"
     for k, v in dicc_logos_m14.items():
         if clear_string(k).replace(" ","") == eq_clean or eq_clean in clear_string(k).replace(" ",""): logo_url = v; break
+    _logo_liga_path = comp_paths["logo_liga"] if comp_paths and os.path.exists(comp_paths.get("logo_liga", "")) else LOGO_LIGA
     logo_empresa_b64 = get_image_base64(LOGO_EMPRESA)
     logo_feb_b64     = get_image_base64(LOGO_FEB)
-    logo_liga_b64    = get_image_base64(LOGO_LIGA)
+    logo_liga_b64    = get_image_base64(_logo_liga_path)
 
     html_content = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>Contextual Scouting Lineups</title>
     <style>
@@ -1269,17 +1274,18 @@ def HTML_LINEUPS_AGREGADOS_M14(efficiency, eq, context_str, m_filt):
     <div class="team-section"><div class="team-title-block"><img src="{logo_url}" class="team-shield"><h2>{eq}</h2></div>
     <div class="table-title title-top">Most Efficient Lineups</div>{_render_table_lineups_m14(top3)}"""
     if not bottom3.empty: html_content += f"<div class='table-title title-bot'>Least Efficient Lineups</div>{_render_table_lineups_m14(bottom3)}"
-    html_content += "</div><div class='footer'>© 2026 Analizing Basketball | <a href='https://www.analizingbasketball.com' target='_blank'>www.analizingbasketball.com</a></div></body></html>"
+    html_content += "</div><div class='footer'>© 2026 Analyzing Basketball | <a href='https://www.analyzingbasketball.com' target='_blank'>www.analyzingbasketball.com</a></div></body></html>"
     return html_content
 
-def HTML_BOXSCORE_AGREGADO_M14(df_all_box, eq_objetivo, context_str, team_games_count):
+def HTML_BOXSCORE_AGREGADO_M14(df_all_box, eq_objetivo, context_str, team_games_count, comp_paths: dict = None):
     eq_clean = clear_string(eq_objetivo).replace(" ","")
     logo_url = "https://via.placeholder.com/60"
     for k, v in dicc_logos_m14.items():
         if clear_string(k).replace(" ","") == eq_clean or eq_clean in clear_string(k).replace(" ",""): logo_url = v; break
+    _logo_liga_path = comp_paths["logo_liga"] if comp_paths and os.path.exists(comp_paths.get("logo_liga", "")) else LOGO_LIGA
     logo_empresa_b64 = get_image_base64(LOGO_EMPRESA)
     logo_feb_b64     = get_image_base64(LOGO_FEB)
-    logo_liga_b64    = get_image_base64(LOGO_LIGA)
+    logo_liga_b64    = get_image_base64(_logo_liga_path)
 
     html_tables = ""
     teams_data  = {}
@@ -1490,7 +1496,7 @@ def HTML_BOXSCORE_AGREGADO_M14(df_all_box, eq_objetivo, context_str, team_games_
     <div class="scores">AGGREGATED BOXSCORE (PER GAME)<br><span style="font-weight:600;font-size:17px;color:#718096;">{context_str}</span></div></div></div>
     {html_tables}
     <div class="legend-grid"><div class="legend-item"><b>PIC/PLAYER:</b> Player Info.<br><b>GP:</b> Games Played.<br><b>GS:</b> Games Started.<br><b>MIN:</b> Minutes.<br><b>PTS:</b> Points.<br><b>PIR:</b> Performance Index Rating.<br><b>+/-:</b> Plus/Minus.</div><div class="legend-item"><b>ORB:</b> Off. Rebounds.<br><b>DRB:</b> Def. Rebounds.<br><b>TRB:</b> Total Rebounds.<br><b>AST:</b> Assists.<br><b>STL:</b> Steals.<br><b>TOV:</b> Turnovers.</div><div class="legend-item"><b>BLK:</b> Blocks.<br><b>PFD:</b> Fouls Drawn.<br><b>PF:</b> Fouls Committed.<br><b>2PM/A:</b> 2PT Made/Att.<br><b>3PM/A:</b> 3PT Made/Att.<br><b>FTM/A:</b> FT Made/Att.</div><div class="legend-item"><b>GmSc:</b> Game Score.<br><b>TS%:</b> True Shooting %.<br><b>eFG%:</b> Eff. Field Goal %.<br><b>3PAr:</b> 3PT Attempt Rate.<br><b>FTr:</b> FT Rate.<br><b>USG%:</b> Usage %.</div><div class="legend-item"><b>ORB%/DRB%/TRB%:</b> Rebound %.<br><b>AST%:</b> Assist %.<br><b>STL%/BLK%:</b> Steal/Block %.<br><b>TOV%:</b> Turnover %.<br><b>PPP:</b> Points Per Possession.<br><b>PPS:</b> Points Per Shot.</div></div>
-    <div class="footer">© 2026 Analizing Basketball | <a href='https://www.analizingbasketball.com' target='_blank'>www.analizingbasketball.com</a></div>
+    <div class="footer">© 2026 Analyzing Basketball | <a href='https://www.analyzingbasketball.com' target='_blank'>www.analyzingbasketball.com</a></div>
     </body></html>"""
     return html
 
@@ -1520,9 +1526,10 @@ def generar_html_liga_lineups(m_filt: int = 15, comp_paths: dict = None, competi
     if df_valid.empty:
         raise HTTPException(status_code=404, detail="No hay datos de quintetos válidos en el archivo LINEUPS.")
 
+    _logo_liga_path = comp_paths["logo_liga"] if comp_paths and os.path.exists(comp_paths.get("logo_liga", "")) else LOGO_LIGA
     logo_empresa_b64 = get_image_base64(LOGO_EMPRESA)
     logo_feb_b64     = get_image_base64(LOGO_FEB)
-    logo_liga_b64    = get_image_base64(LOGO_LIGA)
+    logo_liga_b64    = get_image_base64(_logo_liga_path)
 
     def render_table_m16(df_subset):
         return _render_lineup_table(df_subset, custom_photos_m13, map_name_m13, map_pos_m13, map_role_m13,
@@ -1607,7 +1614,7 @@ def generar_html_liga_lineups(m_filt: int = 15, comp_paths: dict = None, competi
 
     html_content += f"""<div class="footer">
         <img src="data:image/png;base64,{logo_empresa_b64}" style="height:18px;vertical-align:middle;margin-right:10px;" onerror="this.style.display='none'">
-        © 2026 Analizing Basketball | <a href="https://www.analizingbasketball.com" target="_blank">www.analizingbasketball.com</a>
+        © 2026 Analyzing Basketball | <a href="https://www.analyzingbasketball.com" target="_blank">www.analyzingbasketball.com</a>
     </div></body></html>"""
 
     set_html_cache(f"{competicion}_liga_lineups_m{m_filt}", html_content)
@@ -1770,7 +1777,7 @@ def generar_contextual(eq: str = "MOVISTAR ESTUDIANTES", venue: str = "ALL", n_g
         efficiency['NET_RATING'] = (efficiency['PTS_40'] - efficiency['PA_40']).round(1)
         for col in ['PTS_40','PA_40']: efficiency[col] = efficiency[col].round(1)
 
-        html_content = HTML_LINEUPS_AGREGADOS_M14(efficiency, eq, context_str, m_filt)
+        html_content = HTML_LINEUPS_AGREGADOS_M14(efficiency, eq, context_str, m_filt, comp_paths=cp)
         eq_f       = eq.replace(" ","_")
         ruta_final = os.path.join(REPORTS_DIR, f"CONTEXT_LINEUPS_{eq_f}_{jornadas_count}_{venue}.html")
         with open(ruta_final, "w", encoding="utf-8") as f: f.write(html_content)
@@ -1798,7 +1805,7 @@ def generar_contextual(eq: str = "MOVISTAR ESTUDIANTES", venue: str = "ALL", n_g
         is_target  = df_b_clean['Team'] == eq
         df_b_clean.loc[~is_target, 'Team'] = "OPPONENTS"
 
-        html_content = HTML_BOXSCORE_AGREGADO_M14(df_b_clean, eq, context_str, jornadas_count)
+        html_content = HTML_BOXSCORE_AGREGADO_M14(df_b_clean, eq, context_str, jornadas_count, comp_paths=cp)
         eq_f       = eq.replace(" ","_")
         ruta_final = os.path.join(REPORTS_DIR, f"CONTEXT_BOXSCORE_{eq_f}_{jornadas_count}_{venue}.html")
         with open(ruta_final, "w", encoding="utf-8") as f: f.write(html_content)
