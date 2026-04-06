@@ -947,6 +947,169 @@ def scrape_posiciones_feb(paths: dict) -> dict:
     return result
 
 
+# Mapa slug → label para las 7 competiciones
+_SLUG_TO_LABEL = {
+    'primerafeb': 'PRIMERAFEB', 'lfendesa': 'LFENDESA',
+    'lfchallenge': 'LFCHALLENGE', 'segundafeb': 'SEGUNDAFEB',
+    'lf2': 'LF2', 'tercerafeb': 'TERCERAFEB', 'ligau': 'LIGAU',
+}
+_ALL_SLUGS = list(_SLUG_TO_LABEL.keys())
+
+
+def inferir_posiciones_faltantes(pos_map: dict, agg: pd.DataFrame, current_slug: str) -> dict:
+    """
+    Enriquece pos_map con posiciones inferidas en dos etapas:
+    1. Búsqueda cruzada entre los cachés de todas las ligas (mismo PLAYER_ID → posición exacta)
+    2. Clasificador Random Forest entrenado con jugadores etiquetados de todas las ligas
+    Devuelve pos_map ampliado. Las posiciones inferidas se marcan como fuente secundaria
+    pero tienen el mismo formato (PG/SG/SF/PF/C).
+    """
+    VALID_POS = {'PG', 'SG', 'SF', 'PF', 'C'}
+    FEATURES   = ['eFG%', 'TS%', 'TOV%', 'ORB%', 'FTr', 'USG%', 'AST%',
+                  'STL%', 'BLK%', '2PT%', '3PT%', 'FT%', 'DRB%', '3PAr']
+
+    enhanced = dict(pos_map)
+
+    # Jugadores del dataframe actual sin posición todavía
+    all_pids    = set(agg['PLAYER_ID'].astype(str).str.replace('.0', '', regex=False).str.strip().tolist())
+    missing_pids = all_pids - set(enhanced.keys())
+
+    if not missing_pids:
+        print("   ℹ️ Todos los jugadores ya tienen posición — no se requiere inferencia.")
+        return enhanced
+
+    print(f"\n🔍 Inferencia de posiciones para {len(missing_pids)} jugadores sin dato en feb.es...")
+
+    # ── ETAPA 1: Búsqueda cruzada entre cachés de otras ligas ────────────────
+    cross_cache = {}
+    for slug in _ALL_SLUGS:
+        if slug == current_slug:
+            continue
+        cache_file = os.path.join(DATA_DIR, f"positions_cache_{slug}.json")
+        if not os.path.exists(cache_file):
+            continue
+        try:
+            with open(cache_file) as f:
+                cache = json.load(f)
+            for pid, pos in cache.items():
+                if pos in VALID_POS and pid not in cross_cache:
+                    cross_cache[pid] = pos
+        except Exception:
+            pass
+
+    recovered_cross = 0
+    still_missing   = set()
+    for pid in missing_pids:
+        if pid in cross_cache:
+            enhanced[pid] = cross_cache[pid]
+            recovered_cross += 1
+        else:
+            still_missing.add(pid)
+
+    print(f"   ✅ Etapa 1 (cruce de ligas):  {recovered_cross:3d} posiciones recuperadas exactas")
+
+    if not still_missing:
+        return enhanced
+
+    # ── ETAPA 2: Clasificador estadístico (RF con fallback KNN manual) ────────
+    # Recopilar ejemplos etiquetados de todos los CSVs existentes
+    train_rows = []
+    for slug, csv_label in _SLUG_TO_LABEL.items():
+        roles_file = os.path.join(DATA_DIR, f"PLAYER_ROLES_FINAL_2526_{csv_label}.csv")
+        if not os.path.exists(roles_file):
+            continue
+        try:
+            df = pd.read_csv(roles_file)
+            df['PLAYER_ID'] = df['PLAYER_ID'].astype(str).str.replace('.0', '', regex=False).str.strip()
+            df = df[df['POSITION'].isin(VALID_POS)].copy()
+            for feat in FEATURES:
+                if feat in df.columns:
+                    df[feat] = pd.to_numeric(df[feat], errors='coerce').fillna(0)
+                else:
+                    df[feat] = 0.0
+            train_rows.append(df[['PLAYER_ID', 'POSITION'] + FEATURES])
+        except Exception:
+            pass
+
+    if not train_rows:
+        print(f"   ⚠️ Sin datos de entrenamiento — no se puede aplicar clasificador.")
+        return enhanced
+
+    df_train = pd.concat(train_rows, ignore_index=True).drop_duplicates(subset=FEATURES + ['POSITION'])
+    avail    = [f for f in FEATURES if f in df_train.columns]
+
+    X_train = df_train[avail].fillna(0).values.astype(float)
+    y_train = df_train['POSITION'].values
+
+    # Subset de agg que necesita predicción
+    agg_cp = agg.copy()
+    agg_cp['PLAYER_ID'] = agg_cp['PLAYER_ID'].astype(str).str.replace('.0', '', regex=False).str.strip()
+    agg_miss = agg_cp[agg_cp['PLAYER_ID'].isin(still_missing)].copy()
+    for feat in avail:
+        if feat not in agg_miss.columns:
+            agg_miss[feat] = 0.0
+        agg_miss[feat] = pd.to_numeric(agg_miss[feat], errors='coerce').fillna(0)
+
+    X_test   = agg_miss[avail].fillna(0).values.astype(float)
+    test_pids = agg_miss['PLAYER_ID'].tolist()
+
+    if len(X_test) == 0:
+        return enhanced
+
+    recovered_clf = 0
+    try:
+        from sklearn.ensemble import RandomForestClassifier
+        from sklearn.preprocessing import StandardScaler
+
+        scaler      = StandardScaler()
+        X_train_sc  = scaler.fit_transform(X_train)
+        X_test_sc   = scaler.transform(X_test)
+
+        clf = RandomForestClassifier(n_estimators=200, random_state=42,
+                                     class_weight='balanced', n_jobs=-1)
+        clf.fit(X_train_sc, y_train)
+
+        preds = clf.predict(X_test_sc)
+        probs = clf.predict_proba(X_test_sc).max(axis=1)
+
+        for pid, pred, prob in zip(test_pids, preds, probs):
+            if prob >= 0.45:
+                enhanced[pid] = pred
+                recovered_clf += 1
+
+        print(f"   ✅ Etapa 2 (Random Forest):   {recovered_clf:3d}/{len(test_pids)} inferidas (umbral ≥45%)")
+        undecided = len(test_pids) - recovered_clf
+        if undecided:
+            print(f"   ℹ️ {undecided} jugadores sin suficiente confianza — quedan sin posición")
+
+    except ImportError:
+        # Fallback: KNN manual con z-score (sin sklearn)
+        norm_mean = X_train.mean(axis=0)
+        norm_std  = X_train.std(axis=0)
+        norm_std[norm_std == 0] = 1.0
+
+        X_train_n = (X_train - norm_mean) / norm_std
+        X_test_n  = (X_test  - norm_mean) / norm_std
+
+        K = 7
+        for pid, x in zip(test_pids, X_test_n):
+            dists      = np.sqrt(((X_train_n - x) ** 2).sum(axis=1))
+            knn_labels = y_train[np.argsort(dists)[:K]]
+            unique, counts = np.unique(knn_labels, return_counts=True)
+            best_pos       = unique[np.argmax(counts)]
+            if counts.max() / K >= 0.43:        # mínimo 3/7 votos
+                enhanced[pid] = best_pos
+                recovered_clf += 1
+
+        print(f"   ✅ Etapa 2 (KNN manual k={K}): {recovered_clf:3d}/{len(test_pids)} inferidas (umbral ≥3/7)")
+
+    total_new = recovered_cross + recovered_clf
+    still_unknown = len(missing_pids) - total_new
+    print(f"   📊 Total inferidas: {total_new} nuevas | {still_unknown} quedan sin posición\n")
+
+    return enhanced
+
+
 def generar_roles_kmeans(paths: dict):
     """
     Asigna roles a jugadores usando centroides de referencia (Primera FEB K-Means).
@@ -1060,6 +1223,8 @@ def generar_roles_kmeans(paths: dict):
 
         # ── Posición clásica desde scraping FEB (Puesto) ──────────────────────
         pos_map = scrape_posiciones_feb(paths)
+        # Enriquecer: cruce de ligas + clasificador estadístico para los que faltan
+        pos_map = inferir_posiciones_faltantes(pos_map, agg, paths['slug'])
         agg['POSITION'] = agg['PLAYER_ID'].map(pos_map).fillna('')
         _pos_order = {'PG': 1, 'SG': 2, 'SF': 3, 'PF': 4, 'C': 5}
         agg['POS_ORDER'] = agg['POSITION'].map(_pos_order).fillna(6).astype(int)
