@@ -99,14 +99,14 @@
   },
   "2256492": {
     "PLAYER_NAME": "M. Ibáñez Granero",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2256492",
     "TEAM": "BASKET ALMEDA"
   },
   "2353429": {
     "PLAYER_NAME": "J. Neyhart Mora",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2353429",
     "TEAM": "BASKET ALMEDA"
@@ -127,7 +127,7 @@
   },
   "2104880": {
     "PLAYER_NAME": "M. Llodra Jaen",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2104880",
     "TEAM": "BASKET ALMEDA"
@@ -302,7 +302,7 @@
   },
   "2087980": {
     "PLAYER_NAME": "A. Romero De Vicente",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2087980",
     "TEAM": "CB CLARET BENIMACLET"
@@ -442,7 +442,7 @@
   },
   "2185253": {
     "PLAYER_NAME": "P. Álvarez Honorato",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2185253",
     "TEAM": "CESUR DISTRITO OLIMPICO"
@@ -659,7 +659,7 @@
   },
   "2527859": {
     "PLAYER_NAME": "A. Jimenez Vizcaino",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2527859",
     "TEAM": "DPES CB CIUDAD DE MOSTOLES"
@@ -883,7 +883,7 @@
   },
   "2407584": {
     "PLAYER_NAME": "D. Seguí García",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2407584",
     "TEAM": "ELSAMEX CB ANDRATX"
@@ -1072,7 +1072,7 @@
   },
   "2191036": {
     "PLAYER_NAME": "R. Calvet Sandez",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2191036",
     "TEAM": "GEIEG PACISA"
@@ -1247,7 +1247,7 @@
   },
   "1373989": {
     "PLAYER_NAME": "N. Bermúdez Martín",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1373989",
     "TEAM": "MAGEC TÍAS LANZAROTE CONTRA LA VIOLENCIA DE GÉNERO"
@@ -1366,7 +1366,7 @@
   },
   "2448425": {
     "PLAYER_NAME": "N. Cordón Elizarán",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2448425",
     "TEAM": "SEGLE XXI"
@@ -1492,14 +1492,14 @@
   },
   "2340892": {
     "PLAYER_NAME": "M. Redondo De Santa Ana",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340892",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2340893": {
     "PLAYER_NAME": "S. Redondo De Santa Ana",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340893",
     "TEAM": "SPAR GRAN CANARIA"

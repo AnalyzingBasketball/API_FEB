@@ -85,21 +85,21 @@
   },
   "2597073": {
     "PLAYER_NAME": "E. Miguel Perez Del Notario",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2597073",
     "TEAM": "BASKONIA"
   },
   "2737570": {
     "PLAYER_NAME": "N. Zhekel",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2737570",
     "TEAM": "BASKONIA"
   },
   "2787459": {
     "PLAYER_NAME": "T. Alves De Souza Silva",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2787459",
     "TEAM": "BASKONIA"
@@ -232,7 +232,7 @@
   },
   "2106443": {
     "PLAYER_NAME": "V. Ovando Torretta",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2106443",
     "TEAM": "BLENDIO"
@@ -344,21 +344,21 @@
   },
   "2379637": {
     "PLAYER_NAME": "A. Gomez Ramos",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2379637",
     "TEAM": "CAJA RURAL DE ZAMORA CBCV BOECILLO"
   },
   "2186414": {
     "PLAYER_NAME": "H. Ramallo Soto",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2186414",
     "TEAM": "CAJA RURAL DE ZAMORA CBCV BOECILLO"
   },
   "2177974": {
     "PLAYER_NAME": "A. Del Val Ibañez",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2177974",
     "TEAM": "CAJA RURAL DE ZAMORA CBCV BOECILLO"
@@ -372,7 +372,7 @@
   },
   "2347322": {
     "PLAYER_NAME": "R. Hernansanz Herrero",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2347322",
     "TEAM": "CAJA RURAL DE ZAMORA CBCV BOECILLO"
@@ -456,21 +456,21 @@
   },
   "2173515": {
     "PLAYER_NAME": "D. Fernandez Marcilla",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2173515",
     "TEAM": "CONSTRUCCIONES GONZALO CRESPO PAS PIÉLAGOS"
   },
   "1710114": {
     "PLAYER_NAME": "E. Reinares Martin",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1710114",
     "TEAM": "CONSTRUCCIONES GONZALO CRESPO PAS PIÉLAGOS"
   },
   "2095974": {
     "PLAYER_NAME": "J. Riascos Perea",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2095974",
     "TEAM": "CONSTRUCCIONES GONZALO CRESPO PAS PIÉLAGOS"
@@ -568,14 +568,14 @@
   },
   "2342110": {
     "PLAYER_NAME": "C. Ursu Pusca",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2342110",
     "TEAM": "DE MORRO FINO CANTBASKET04"
   },
   "1999322": {
     "PLAYER_NAME": "D. Ruiz Ruiz",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1999322",
     "TEAM": "DE MORRO FINO CANTBASKET04"
@@ -673,35 +673,35 @@
   },
   "1322110": {
     "PLAYER_NAME": "F. Rodriguez Herron",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1322110",
     "TEAM": "GRUPO INMAPA FILIPENSES"
   },
   "1711348": {
     "PLAYER_NAME": "I. Herrero Peral",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1711348",
     "TEAM": "GRUPO INMAPA FILIPENSES"
   },
   "1986691": {
     "PLAYER_NAME": "J. San Jose Gonzalez",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1986691",
     "TEAM": "GRUPO INMAPA FILIPENSES"
   },
   "2186457": {
     "PLAYER_NAME": "I. Pombar Garcia",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2186457",
     "TEAM": "GRUPO INMAPA FILIPENSES"
   },
   "2796695": {
     "PLAYER_NAME": "F. Kone Fezing",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2796695",
     "TEAM": "GRUPO INMAPA FILIPENSES"
@@ -806,14 +806,14 @@
   },
   "1847326": {
     "PLAYER_NAME": "G. Chia Sanchez",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1847326",
     "TEAM": "HOTEL 4POSTES - ÁVILA AUTÉNTICA - EL BULEVAR"
   },
   "1772237": {
     "PLAYER_NAME": "A. Fernandez Crespo",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1772237",
     "TEAM": "HOTEL 4POSTES - ÁVILA AUTÉNTICA - EL BULEVAR"
@@ -827,7 +827,7 @@
   },
   "2557839": {
     "PLAYER_NAME": "J. Callenbach",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2557839",
     "TEAM": "HOTEL 4POSTES - ÁVILA AUTÉNTICA - EL BULEVAR"
@@ -1485,7 +1485,7 @@
   },
   "2390292": {
     "PLAYER_NAME": "L. Diez Tidala",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2390292",
     "TEAM": "UNIVERSIDAD DEUSTO LOIOLA INDAUTXU"

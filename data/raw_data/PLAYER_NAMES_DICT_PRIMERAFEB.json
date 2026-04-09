@@ -169,7 +169,7 @@
   },
   "1440545": {
     "PLAYER_NAME": "A. Bouzan Cumplido",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1440545",
     "TEAM": "CAJA RURAL CB ZAMORA"
@@ -470,7 +470,7 @@
   },
   "2446631": {
     "PLAYER_NAME": "P. Ali",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2446631",
     "TEAM": "FLEXICAR FUENLABRADA"
@@ -484,21 +484,21 @@
   },
   "2736363": {
     "PLAYER_NAME": "D. Stolbetskiy",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2736363",
     "TEAM": "FLEXICAR FUENLABRADA"
   },
   "1992879": {
     "PLAYER_NAME": "P. Rodriguez Pascual",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1992879",
     "TEAM": "FLEXICAR FUENLABRADA"
   },
   "2559072": {
     "PLAYER_NAME": "P. Suárez Custodio",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2559072",
     "TEAM": "FLEXICAR FUENLABRADA"
@@ -512,7 +512,7 @@
   },
   "2222612": {
     "PLAYER_NAME": "A. Gomez Fraile",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2222612",
     "TEAM": "FLEXICAR FUENLABRADA"
@@ -1422,7 +1422,7 @@
   },
   "2869128": {
     "PLAYER_NAME": "N. Mc Mullen",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2869128",
     "TEAM": "MELILLA CIUDAD DEL DEPORTE"
@@ -1660,21 +1660,21 @@
   },
   "2451497": {
     "PLAYER_NAME": "C. Barton",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2451497",
     "TEAM": "MOVISTAR ESTUDIANTES"
   },
   "2284278": {
     "PLAYER_NAME": "A. Amon Bystrova",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2284278",
     "TEAM": "MOVISTAR ESTUDIANTES"
   },
   "2161529": {
     "PLAYER_NAME": "M. Sola Idrisu",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2161529",
     "TEAM": "MOVISTAR ESTUDIANTES"
@@ -1793,14 +1793,14 @@
   },
   "2093770": {
     "PLAYER_NAME": "D. Agbelese",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2093770",
     "TEAM": "PALMER BASKET MALLORCA PALMA"
   },
   "1909300": {
     "PLAYER_NAME": "A. Almenta Macias",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1909300",
     "TEAM": "PALMER BASKET MALLORCA PALMA"
@@ -1912,7 +1912,7 @@
   },
   "2866321": {
     "PLAYER_NAME": "G. Levy",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2866321",
     "TEAM": "SÚPER AGROPAL PALENCIA"

@@ -106,7 +106,7 @@
   },
   "2087878": {
     "PLAYER_NAME": "D. Saez Gil",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2087878",
     "TEAM": "AMICS CASTELLÓ"
@@ -309,7 +309,7 @@
   },
   "1515390": {
     "PLAYER_NAME": "C. Martos Infantes",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1515390",
     "TEAM": "C.B. GETAFE"
@@ -533,14 +533,14 @@
   },
   "1895175": {
     "PLAYER_NAME": "A. López Martinez",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1895175",
     "TEAM": "CIUDAD MOLINA BASKET"
   },
   "2414699": {
     "PLAYER_NAME": "T. Boundi",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2414699",
     "TEAM": "CIUDAD MOLINA BASKET"
@@ -736,7 +736,7 @@
   },
   "2164761": {
     "PLAYER_NAME": "P. Navarro Maldonado",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2164761",
     "TEAM": "CLUB ESPORTIU BÀSQUET LLÍRIA"
@@ -953,7 +953,7 @@
   },
   "2275700": {
     "PLAYER_NAME": "I. Terreros Rivas",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2275700",
     "TEAM": "LOBE HUESCA LA MAGIA"
@@ -1058,7 +1058,7 @@
   },
   "1512091": {
     "PLAYER_NAME": "N. Rakocevic",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1512091",
     "TEAM": "MADERAS SORLI BENICARLO"
@@ -1261,7 +1261,7 @@
   },
   "2261243": {
     "PLAYER_NAME": "J. Barber Terrades",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2261243",
     "TEAM": "PROINBENI UPB GANDIA"
@@ -1387,14 +1387,14 @@
   },
   "2233052": {
     "PLAYER_NAME": "D. Efambe",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2233052",
     "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
   },
   "2614810": {
     "PLAYER_NAME": "L. Dimitrovic",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2614810",
     "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
