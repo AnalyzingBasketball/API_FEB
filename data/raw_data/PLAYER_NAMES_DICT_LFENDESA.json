@@ -76,18 +76,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2736824",
     "TEAM": "BAXI FERROL"
   },
+  "2285448": {
+    "PLAYER_NAME": "E. Baldonedo Vila",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2285448",
+    "TEAM": "BAXI FERROL"
+  },
   "2231427": {
     "PLAYER_NAME": "I. Somorrostro Fornos",
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2231427",
-    "TEAM": "BAXI FERROL"
-  },
-  "2285448": {
-    "PLAYER_NAME": "E. Baldonedo Vila",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2285448",
     "TEAM": "BAXI FERROL"
   },
   "2812647": {
@@ -184,7 +184,7 @@
   "2829993": {
     "PLAYER_NAME": "G. Aiello",
     "POSITION": "C",
-    "POS_ORDER": 6,
+    "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2829993",
     "TEAM": "CADI LA SEU"
   },
@@ -237,18 +237,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1572741",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
-  "2432613": {
-    "PLAYER_NAME": "N. Fingall",
-    "POSITION": "PF",
-    "POS_ORDER": 4,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2432613",
-    "TEAM": "CASADEMONT ZARAGOZA"
-  },
   "2631378": {
     "PLAYER_NAME": "M. Hempe",
     "POSITION": "PF",
     "POS_ORDER": 4,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2631378",
+    "TEAM": "CASADEMONT ZARAGOZA"
+  },
+  "2432613": {
+    "PLAYER_NAME": "N. Fingall",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2432613",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
   "2642682": {
@@ -277,6 +277,13 @@
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1937427",
+    "TEAM": "CLUB JOVENTUT BADALONA"
+  },
+  "2739915": {
+    "PLAYER_NAME": "B. Mununga",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2739915",
     "TEAM": "CLUB JOVENTUT BADALONA"
   },
   "1952614": {
@@ -363,13 +370,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2813034",
     "TEAM": "CLUB JOVENTUT BADALONA"
   },
-  "2739915": {
-    "PLAYER_NAME": "B. Mununga",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2739915",
-    "TEAM": "CLUB JOVENTUT BADALONA"
-  },
   "2819795": {
     "PLAYER_NAME": "A. Orsili",
     "POSITION": "PG",
@@ -443,7 +443,7 @@
   "2293287": {
     "PLAYER_NAME": "N. López Tallón",
     "POSITION": "C",
-    "POS_ORDER": 6,
+    "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2293287",
     "TEAM": "DURÁN MAQUINARIA ENSINO"
   },
@@ -480,6 +480,13 @@
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2054484",
+    "TEAM": "HOZONO GLOBAL JAIRIS"
+  },
+  "2863044": {
+    "PLAYER_NAME": "K. Lewis",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2863044",
     "TEAM": "HOZONO GLOBAL JAIRIS"
   },
   "2861332": {
@@ -545,16 +552,9 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2527152",
     "TEAM": "HOZONO GLOBAL JAIRIS"
   },
-  "2863044": {
-    "PLAYER_NAME": "K. Lewis",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2863044",
-    "TEAM": "HOZONO GLOBAL JAIRIS"
-  },
   "2121103": {
     "PLAYER_NAME": "T. Lopez Vicente",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2121103",
     "TEAM": "HOZONO GLOBAL JAIRIS"
@@ -615,6 +615,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2814867",
     "TEAM": "IDK EUSKOTREN"
   },
+  "2851680": {
+    "PLAYER_NAME": "H. Tulonen",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2851680",
+    "TEAM": "IDK EUSKOTREN"
+  },
   "2643313": {
     "PLAYER_NAME": "V. Remenárová",
     "POSITION": "PF",
@@ -648,13 +655,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082788",
-    "TEAM": "IDK EUSKOTREN"
-  },
-  "2851680": {
-    "PLAYER_NAME": "H. Tulonen",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2851680",
     "TEAM": "IDK EUSKOTREN"
   },
   "2100039": {
@@ -699,6 +699,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1898932",
     "TEAM": "INGENIERÍA AMBIENTAL CAB ESTEPONA"
   },
+  "2867905": {
+    "PLAYER_NAME": "M. Lekovic",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2867905",
+    "TEAM": "INGENIERÍA AMBIENTAL CAB ESTEPONA"
+  },
   "2825497": {
     "PLAYER_NAME": "M. Garrick",
     "POSITION": "SF",
@@ -741,11 +748,11 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2237207",
     "TEAM": "INGENIERÍA AMBIENTAL CAB ESTEPONA"
   },
-  "2867905": {
-    "PLAYER_NAME": "M. Lekovic",
-    "POSITION": "SG",
+  "2205793": {
+    "PLAYER_NAME": "A. Ruiz Rodriguez",
+    "POSITION": "",
     "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2867905",
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2205793",
     "TEAM": "INGENIERÍA AMBIENTAL CAB ESTEPONA"
   },
   "1459397": {
@@ -998,6 +1005,13 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2841290",
+    "TEAM": "LOINTEK GERNIKA BIZKAIA"
+  },
+  "2303428": {
+    "PLAYER_NAME": "N. Zubiaga Rojo",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2303428",
     "TEAM": "LOINTEK GERNIKA BIZKAIA"
   },
   "2556690": {
@@ -1308,6 +1322,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2828146",
     "TEAM": "SPAR GRAN CANARIA"
   },
+  "1320072": {
+    "PLAYER_NAME": "P. Estebas Armas",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1320072",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
   "2823525": {
     "PLAYER_NAME": "C. Heriaud",
     "POSITION": "PG",
@@ -1320,13 +1341,6 @@
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2371576",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "1320072": {
-    "PLAYER_NAME": "P. Estebas Armas",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1320072",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2352279": {
@@ -1350,6 +1364,27 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2647608",
     "TEAM": "SPAR GRAN CANARIA"
   },
+  "2203305": {
+    "PLAYER_NAME": "L. Perez Castro",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2203305",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2251955": {
+    "PLAYER_NAME": "M. Ocurto Mendes",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2251955",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2288451": {
+    "PLAYER_NAME": "A. Hernandez Martinez",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2288451",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
   "2451428": {
     "PLAYER_NAME": "A. George",
     "POSITION": "PF",
@@ -1362,6 +1397,13 @@
     "POSITION": "PF",
     "POS_ORDER": 4,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2800405",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2292843": {
+    "PLAYER_NAME": "M. Rodríguez Sánchez",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2292843",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2787896": {
@@ -1385,11 +1427,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2857450",
     "TEAM": "SPAR GRAN CANARIA"
   },
-  "2203305": {
-    "PLAYER_NAME": "L. Perez Castro",
-    "POSITION": "SF",
+  "2340752": {
+    "PLAYER_NAME": "N. Prado Plumed",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340752",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2352282": {
+    "PLAYER_NAME": "G. Ezeanatogu Ezeonu",
+    "POSITION": "",
     "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2203305",
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2352282",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2494285": {
@@ -1399,25 +1448,11 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2494285",
     "TEAM": "SPAR GRAN CANARIA"
   },
-  "2292843": {
-    "PLAYER_NAME": "M. Rodríguez Sánchez",
-    "POSITION": "PF",
+  "2340888": {
+    "PLAYER_NAME": "P. Diaz Martin",
+    "POSITION": "",
     "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2292843",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2251955": {
-    "PLAYER_NAME": "M. Ocurto Mendes",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2251955",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2288451": {
-    "PLAYER_NAME": "A. Hernandez Martinez",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2288451",
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340888",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "1597595": {
@@ -1434,11 +1469,11 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2233043",
     "TEAM": "SPAR GRAN CANARIA"
   },
-  "2340752": {
-    "PLAYER_NAME": "N. Prado Plumed",
-    "POSITION": "C",
+  "2340892": {
+    "PLAYER_NAME": "M. Redondo De Santa Ana",
+    "POSITION": "",
     "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340752",
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340892",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2343754": {
@@ -1446,6 +1481,13 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2343754",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2383224": {
+    "PLAYER_NAME": "M. Rasines Rodriguez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383224",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2621781": {
@@ -1532,6 +1574,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1481483",
     "TEAM": "VALENCIA B.C."
   },
+  "2867688": {
+    "PLAYER_NAME": "K. Hillsman",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2867688",
+    "TEAM": "VALENCIA B.C."
+  },
   "2246808": {
     "PLAYER_NAME": "A. Fam Thiam",
     "POSITION": "C",
@@ -1553,16 +1602,9 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2740906",
     "TEAM": "VALENCIA B.C."
   },
-  "2867688": {
-    "PLAYER_NAME": "K. Hillsman",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2867688",
-    "TEAM": "VALENCIA B.C."
-  },
   "2173687": {
     "PLAYER_NAME": "M. Llompart Perello",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2173687",
     "TEAM": "VALENCIA B.C."

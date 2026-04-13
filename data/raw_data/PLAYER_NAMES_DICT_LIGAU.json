@@ -34,6 +34,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2218824",
     "TEAM": "BARÇA ATLÈTIC"
   },
+  "2458688": {
+    "PLAYER_NAME": "E. Montaner García",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2458688",
+    "TEAM": "BARÇA ATLÈTIC"
+  },
   "2561463": {
     "PLAYER_NAME": "D. Ferreras Camarero",
     "POSITION": "SF",
@@ -95,13 +102,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2320857",
-    "TEAM": "BARÇA ATLÈTIC"
-  },
-  "2458688": {
-    "PLAYER_NAME": "E. Montaner García",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2458688",
     "TEAM": "BARÇA ATLÈTIC"
   },
   "2077155": {
@@ -286,11 +286,25 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2790234",
     "TEAM": "BURGOS GRUPO DE SANTIAGO"
   },
+  "2228400": {
+    "PLAYER_NAME": "M. Perez Gundin",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2228400",
+    "TEAM": "BURGOS GRUPO DE SANTIAGO"
+  },
   "2045029": {
     "PLAYER_NAME": "D. Rodriguez Ramos",
     "POSITION": "PF",
     "POS_ORDER": 4,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2045029",
+    "TEAM": "BURGOS GRUPO DE SANTIAGO"
+  },
+  "2300932": {
+    "PLAYER_NAME": "S. Martin Diez",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2300932",
     "TEAM": "BURGOS GRUPO DE SANTIAGO"
   },
   "2436134": {
@@ -305,20 +319,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2210291",
-    "TEAM": "BURGOS GRUPO DE SANTIAGO"
-  },
-  "2300932": {
-    "PLAYER_NAME": "S. Martin Diez",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2300932",
-    "TEAM": "BURGOS GRUPO DE SANTIAGO"
-  },
-  "2228400": {
-    "PLAYER_NAME": "M. Perez Gundin",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2228400",
     "TEAM": "BURGOS GRUPO DE SANTIAGO"
   },
   "2438847": {
@@ -363,6 +363,20 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2073295",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
+  "2084765": {
+    "PLAYER_NAME": "C. Iglesias Gracia",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2084765",
+    "TEAM": "CASADEMONT ZARAGOZA"
+  },
+  "2199699": {
+    "PLAYER_NAME": "H. Valle Paramio",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2199699",
+    "TEAM": "CASADEMONT ZARAGOZA"
+  },
   "2125634": {
     "PLAYER_NAME": "J. Garcia Sanchez",
     "POSITION": "PF",
@@ -405,24 +419,10 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2704549",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
-  "2084765": {
-    "PLAYER_NAME": "C. Iglesias Gracia",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2084765",
-    "TEAM": "CASADEMONT ZARAGOZA"
-  },
-  "2199699": {
-    "PLAYER_NAME": "H. Valle Paramio",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2199699",
-    "TEAM": "CASADEMONT ZARAGOZA"
-  },
   "2207996": {
     "PLAYER_NAME": "M. Auciello Cubells",
     "POSITION": "C",
-    "POS_ORDER": 6,
+    "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2207996",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
@@ -482,6 +482,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2476064",
     "TEAM": "FUNDACIÓN CB CANARIAS"
   },
+  "2770289": {
+    "PLAYER_NAME": "I. Embwo Kasol",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2770289",
+    "TEAM": "FUNDACIÓN CB CANARIAS"
+  },
   "2470375": {
     "PLAYER_NAME": "M. Sangare",
     "POSITION": "C",
@@ -510,11 +517,25 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2064159",
     "TEAM": "FUNDACIÓN CB CANARIAS"
   },
-  "2770289": {
-    "PLAYER_NAME": "I. Embwo Kasol",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2770289",
+  "2129281": {
+    "PLAYER_NAME": "G. Hernández Expósito",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2129281",
+    "TEAM": "FUNDACIÓN CB CANARIAS"
+  },
+  "2229563": {
+    "PLAYER_NAME": "H. Dorta Perez",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2229563",
+    "TEAM": "FUNDACIÓN CB CANARIAS"
+  },
+  "2817776": {
+    "PLAYER_NAME": "I. Beton",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2817776",
     "TEAM": "FUNDACIÓN CB CANARIAS"
   },
   "2819094": {
@@ -524,32 +545,25 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2819094",
     "TEAM": "FUNDACIÓN CB CANARIAS"
   },
-  "2129281": {
-    "PLAYER_NAME": "G. Hernández Expósito",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2129281",
-    "TEAM": "FUNDACIÓN CB CANARIAS"
-  },
-  "2229563": {
-    "PLAYER_NAME": "H. Dorta Perez",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2229563",
-    "TEAM": "FUNDACIÓN CB CANARIAS"
-  },
-  "2817776": {
-    "PLAYER_NAME": "I. Beton",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2817776",
-    "TEAM": "FUNDACIÓN CB CANARIAS"
-  },
   "2827856": {
     "PLAYER_NAME": "B. González Ramírez",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2827856",
+    "TEAM": "GRAN CANARIA"
+  },
+  "2651641": {
+    "PLAYER_NAME": "A. Panasiuk",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2651641",
+    "TEAM": "GRAN CANARIA"
+  },
+  "2173751": {
+    "PLAYER_NAME": "J. Castro Estévez",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2173751",
     "TEAM": "GRAN CANARIA"
   },
   "2452090": {
@@ -608,6 +622,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2279529",
     "TEAM": "GRAN CANARIA"
   },
+  "2129323": {
+    "PLAYER_NAME": "J. Yánez García",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2129323",
+    "TEAM": "GRAN CANARIA"
+  },
   "2834161": {
     "PLAYER_NAME": "W. Tsafack",
     "POSITION": "PF",
@@ -634,27 +655,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2563387",
-    "TEAM": "GRAN CANARIA"
-  },
-  "2651641": {
-    "PLAYER_NAME": "A. Panasiuk",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2651641",
-    "TEAM": "GRAN CANARIA"
-  },
-  "2129323": {
-    "PLAYER_NAME": "J. Yánez García",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2129323",
-    "TEAM": "GRAN CANARIA"
-  },
-  "2173751": {
-    "PLAYER_NAME": "J. Castro Estévez",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2173751",
     "TEAM": "GRAN CANARIA"
   },
   "2231047": {
@@ -764,7 +764,7 @@
   },
   "2082385": {
     "PLAYER_NAME": "H. Tamayo Mengual",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082385",
     "TEAM": "JOVENTUT BADALONA"
@@ -832,6 +832,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2735491",
     "TEAM": "REAL MADRID"
   },
+  "2739845": {
+    "PLAYER_NAME": "R. Robinson",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2739845",
+    "TEAM": "REAL MADRID"
+  },
   "2029762": {
     "PLAYER_NAME": "D. Krohnert Moto",
     "POSITION": "SF",
@@ -886,13 +893,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2286044",
-    "TEAM": "REAL MADRID"
-  },
-  "2739845": {
-    "PLAYER_NAME": "R. Robinson",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2739845",
     "TEAM": "REAL MADRID"
   },
   "2386746": {

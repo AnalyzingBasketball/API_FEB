@@ -48,6 +48,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1817496",
     "TEAM": "AMICS CASTELLÓ"
   },
+  "2087878": {
+    "PLAYER_NAME": "D. Saez Gil",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2087878",
+    "TEAM": "AMICS CASTELLÓ"
+  },
   "1535344": {
     "PLAYER_NAME": "I. Rosa Pompido",
     "POSITION": "PF",
@@ -103,13 +110,6 @@
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2816661",
     "TEAM": "CIUDAD MOLINA BASKET"
-  },
-  "2087878": {
-    "PLAYER_NAME": "D. Saez Gil",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2087878",
-    "TEAM": "AMICS CASTELLÓ"
   },
   "2264756": {
     "PLAYER_NAME": "L. Garcia Jimenez",
@@ -265,6 +265,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1587611",
     "TEAM": "C.B. GETAFE"
   },
+  "1515390": {
+    "PLAYER_NAME": "C. Martos Infantes",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1515390",
+    "TEAM": "C.B. GETAFE"
+  },
   "2815898": {
     "PLAYER_NAME": "C. Henderson",
     "POSITION": "PF",
@@ -305,13 +312,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2816389",
-    "TEAM": "C.B. GETAFE"
-  },
-  "1515390": {
-    "PLAYER_NAME": "C. Martos Infantes",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1515390",
     "TEAM": "C.B. GETAFE"
   },
   "1876667": {
@@ -489,6 +489,20 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1767254",
     "TEAM": "CIUDAD MOLINA BASKET"
   },
+  "2414699": {
+    "PLAYER_NAME": "T. Boundi",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2414699",
+    "TEAM": "CIUDAD MOLINA BASKET"
+  },
+  "1895175": {
+    "PLAYER_NAME": "A. López Martinez",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1895175",
+    "TEAM": "CIUDAD MOLINA BASKET"
+  },
   "1439463": {
     "PLAYER_NAME": "C. Toledo Zamora",
     "POSITION": "PF",
@@ -529,20 +543,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2816662",
-    "TEAM": "CIUDAD MOLINA BASKET"
-  },
-  "1895175": {
-    "PLAYER_NAME": "A. López Martinez",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1895175",
-    "TEAM": "CIUDAD MOLINA BASKET"
-  },
-  "2414699": {
-    "PLAYER_NAME": "T. Boundi",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2414699",
     "TEAM": "CIUDAD MOLINA BASKET"
   },
   "2133764": {
@@ -645,7 +645,7 @@
   },
   "2818065": {
     "PLAYER_NAME": "M. Issouf",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2818065",
     "TEAM": "CLASS BASQUET SANT ANTONI"
@@ -706,6 +706,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2222436",
     "TEAM": "CLUB ESPORTIU BÀSQUET LLÍRIA"
   },
+  "2164761": {
+    "PLAYER_NAME": "P. Navarro Maldonado",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2164761",
+    "TEAM": "CLUB ESPORTIU BÀSQUET LLÍRIA"
+  },
   "2281145": {
     "PLAYER_NAME": "A. Rivas Palmer",
     "POSITION": "PF",
@@ -732,13 +739,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2665346",
-    "TEAM": "CLUB ESPORTIU BÀSQUET LLÍRIA"
-  },
-  "2164761": {
-    "PLAYER_NAME": "P. Navarro Maldonado",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2164761",
     "TEAM": "CLUB ESPORTIU BÀSQUET LLÍRIA"
   },
   "1914611": {
@@ -874,6 +874,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2061400",
     "TEAM": "LOBE HUESCA LA MAGIA"
   },
+  "2275700": {
+    "PLAYER_NAME": "I. Terreros Rivas",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2275700",
+    "TEAM": "LOBE HUESCA LA MAGIA"
+  },
   "1756469": {
     "PLAYER_NAME": "H. Figueroa Álvarez",
     "POSITION": "SG",
@@ -951,13 +958,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2151562",
     "TEAM": "LOBE HUESCA LA MAGIA"
   },
-  "2275700": {
-    "PLAYER_NAME": "I. Terreros Rivas",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2275700",
-    "TEAM": "LOBE HUESCA LA MAGIA"
-  },
   "1895950": {
     "PLAYER_NAME": "P. Gallego Broto",
     "POSITION": "",
@@ -984,6 +984,13 @@
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1485040",
+    "TEAM": "MADERAS SORLI BENICARLO"
+  },
+  "1512091": {
+    "PLAYER_NAME": "N. Rakocevic",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1512091",
     "TEAM": "MADERAS SORLI BENICARLO"
   },
   "2864230": {
@@ -1056,16 +1063,9 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2703145",
     "TEAM": "MADERAS SORLI BENICARLO"
   },
-  "1512091": {
-    "PLAYER_NAME": "N. Rakocevic",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1512091",
-    "TEAM": "MADERAS SORLI BENICARLO"
-  },
   "2279239": {
     "PLAYER_NAME": "G. Folla-Cisneros Gimeno",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2279239",
     "TEAM": "MADERAS SORLI BENICARLO"
@@ -1210,6 +1210,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1851026",
     "TEAM": "PROINBENI UPB GANDIA"
   },
+  "2261243": {
+    "PLAYER_NAME": "J. Barber Terrades",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2261243",
+    "TEAM": "PROINBENI UPB GANDIA"
+  },
   "1824880": {
     "PLAYER_NAME": "G. Perez Ramirez",
     "POSITION": "SF",
@@ -1231,18 +1238,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2378347",
     "TEAM": "PROINBENI UPB GANDIA"
   },
-  "2868534": {
-    "PLAYER_NAME": "C. Osaikhwuwuomwan",
-    "POSITION": "PF",
-    "POS_ORDER": 4,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2868534",
-    "TEAM": "PROINBENI UPB GANDIA"
-  },
   "1857448": {
     "PLAYER_NAME": "J. Santana Luchoro",
     "POSITION": "PF",
     "POS_ORDER": 4,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1857448",
+    "TEAM": "PROINBENI UPB GANDIA"
+  },
+  "2868534": {
+    "PLAYER_NAME": "C. Osaikhwuwuomwan",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2868534",
     "TEAM": "PROINBENI UPB GANDIA"
   },
   "2335802": {
@@ -1257,13 +1264,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2711878",
-    "TEAM": "PROINBENI UPB GANDIA"
-  },
-  "2261243": {
-    "PLAYER_NAME": "J. Barber Terrades",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2261243",
     "TEAM": "PROINBENI UPB GANDIA"
   },
   "2034816": {
@@ -1378,6 +1378,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2117260",
     "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
   },
+  "2233052": {
+    "PLAYER_NAME": "D. Efambe",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2233052",
+    "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
+  },
   "2815176": {
     "PLAYER_NAME": "S. Kane",
     "POSITION": "C",
@@ -1385,17 +1392,10 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815176",
     "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
   },
-  "2233052": {
-    "PLAYER_NAME": "D. Efambe",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2233052",
-    "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
-  },
   "2614810": {
     "PLAYER_NAME": "L. Dimitrovic",
     "POSITION": "C",
-    "POS_ORDER": 6,
+    "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2614810",
     "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
   },
@@ -1492,7 +1492,7 @@
   },
   "2203181": {
     "PLAYER_NAME": "J. Ortega Mora",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2203181",
     "TEAM": "SPANISH BASKETBALL ACADEMY"
