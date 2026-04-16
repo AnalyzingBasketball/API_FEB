@@ -496,18 +496,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2819302",
     "TEAM": "FLEXICAR FUENLABRADA"
   },
+  "1583271": {
+    "PLAYER_NAME": "A. Lima Brito",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1583271",
+    "TEAM": "FLEXICAR FUENLABRADA"
+  },
   "2222612": {
     "PLAYER_NAME": "A. Gomez Fraile",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2222612",
-    "TEAM": "FLEXICAR FUENLABRADA"
-  },
-  "1583271": {
-    "PLAYER_NAME": "A. Lima Brito",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1583271",
     "TEAM": "FLEXICAR FUENLABRADA"
   },
   "2178977": {
@@ -543,6 +543,13 @@
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2334516",
+    "TEAM": "GRUPO ALEGA CANTABRIA"
+  },
+  "2869662": {
+    "PLAYER_NAME": "D. Love",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2869662",
     "TEAM": "GRUPO ALEGA CANTABRIA"
   },
   "2867402": {
@@ -641,13 +648,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2173109",
-    "TEAM": "GRUPO ALEGA CANTABRIA"
-  },
-  "2869662": {
-    "PLAYER_NAME": "D. Love",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2869662",
     "TEAM": "GRUPO ALEGA CANTABRIA"
   },
   "2862296": {
@@ -1289,7 +1289,7 @@
   },
   "2869453": {
     "PLAYER_NAME": "S. Micovic",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2869453",
     "TEAM": "LEYMA CORUÑA"
@@ -1714,6 +1714,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1197937",
     "TEAM": "PALMER BASKET MALLORCA PALMA"
   },
+  "2070535": {
+    "PLAYER_NAME": "R. Vicente Simo",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2070535",
+    "TEAM": "PALMER BASKET MALLORCA PALMA"
+  },
   "2863891": {
     "PLAYER_NAME": "P. Scrubb",
     "POSITION": "SG",
@@ -1817,13 +1824,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1909300",
-    "TEAM": "PALMER BASKET MALLORCA PALMA"
-  },
-  "2070535": {
-    "PLAYER_NAME": "R. Vicente Simo",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2070535",
     "TEAM": "PALMER BASKET MALLORCA PALMA"
   },
   "2533871": {

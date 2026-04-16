@@ -377,6 +377,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1676283",
     "TEAM": "CESUR DISTRITO OLIMPICO"
   },
+  "2283143": {
+    "PLAYER_NAME": "E. Moratinos Molino",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2283143",
+    "TEAM": "CESUR DISTRITO OLIMPICO"
+  },
   "2286837": {
     "PLAYER_NAME": "B. Arranz Albero",
     "POSITION": "SG",
@@ -447,6 +454,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2185253",
     "TEAM": "CESUR DISTRITO OLIMPICO"
   },
+  "2371275": {
+    "PLAYER_NAME": "V. Serrano Gutierrez",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2371275",
+    "TEAM": "CESUR DISTRITO OLIMPICO"
+  },
   "2340037": {
     "PLAYER_NAME": "C. Garcia Estirado",
     "POSITION": "",
@@ -466,20 +480,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2649723",
-    "TEAM": "CESUR DISTRITO OLIMPICO"
-  },
-  "2283143": {
-    "PLAYER_NAME": "E. Moratinos Molino",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2283143",
-    "TEAM": "CESUR DISTRITO OLIMPICO"
-  },
-  "2371275": {
-    "PLAYER_NAME": "V. Serrano Gutierrez",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2371275",
     "TEAM": "CESUR DISTRITO OLIMPICO"
   },
   "1727776": {
@@ -1252,6 +1252,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1995747",
     "TEAM": "MAGEC TÍAS LANZAROTE CONTRA LA VIOLENCIA DE GÉNERO"
   },
+  "2381629": {
+    "PLAYER_NAME": "S. Muñoz Lahora",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2381629",
+    "TEAM": "MAGEC TÍAS LANZAROTE CONTRA LA VIOLENCIA DE GÉNERO"
+  },
   "2178381": {
     "PLAYER_NAME": "E. Lozano Sosa",
     "POSITION": "SF",
@@ -1299,13 +1306,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2347898",
-    "TEAM": "MAGEC TÍAS LANZAROTE CONTRA LA VIOLENCIA DE GÉNERO"
-  },
-  "2381629": {
-    "PLAYER_NAME": "S. Muñoz Lahora",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2381629",
     "TEAM": "MAGEC TÍAS LANZAROTE CONTRA LA VIOLENCIA DE GÉNERO"
   },
   "2444469": {
@@ -1399,6 +1399,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2528757",
     "TEAM": "SEGLE XXI"
   },
+  "2357204": {
+    "PLAYER_NAME": "B. Ajisebutu Casas",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2357204",
+    "TEAM": "SEGLE XXI"
+  },
   "2448425": {
     "PLAYER_NAME": "N. Cordón Elizarán",
     "POSITION": "C",
@@ -1406,25 +1413,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2448425",
     "TEAM": "SEGLE XXI"
   },
+  "2235818": {
+    "PLAYER_NAME": "L. Niño San Miguel",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2235818",
+    "TEAM": "SEGLE XXI"
+  },
   "2494280": {
     "PLAYER_NAME": "N. Salgado Gorostiaga",
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2494280",
-    "TEAM": "SEGLE XXI"
-  },
-  "2357204": {
-    "PLAYER_NAME": "B. Ajisebutu Casas",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2357204",
-    "TEAM": "SEGLE XXI"
-  },
-  "2235818": {
-    "PLAYER_NAME": "L. Niño San Miguel",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2235818",
     "TEAM": "SEGLE XXI"
   },
   "2461676": {
@@ -1497,6 +1497,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2643570",
     "TEAM": "SPAR GRAN CANARIA"
   },
+  "2383238": {
+    "PLAYER_NAME": "E. Ezeanatogu Ezeonu",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383238",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
   "2352279": {
     "PLAYER_NAME": "T. Ezeanatogu Ezeonu",
     "POSITION": "C",
@@ -1530,13 +1537,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340893",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2383238": {
-    "PLAYER_NAME": "E. Ezeanatogu Ezeonu",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383238",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "1879260": {

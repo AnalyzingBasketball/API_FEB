@@ -741,6 +741,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2845979",
     "TEAM": "JOVENTUT BADALONA"
   },
+  "2082385": {
+    "PLAYER_NAME": "H. Tamayo Mengual",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082385",
+    "TEAM": "JOVENTUT BADALONA"
+  },
   "2156562": {
     "PLAYER_NAME": "R. Torras Ferrer",
     "POSITION": "PF",
@@ -760,13 +767,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2641899",
-    "TEAM": "JOVENTUT BADALONA"
-  },
-  "2082385": {
-    "PLAYER_NAME": "H. Tamayo Mengual",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082385",
     "TEAM": "JOVENTUT BADALONA"
   },
   "2154246": {

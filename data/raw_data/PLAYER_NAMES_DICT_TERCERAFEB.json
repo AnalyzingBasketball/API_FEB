@@ -195,6 +195,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2089096",
     "TEAM": "BLENDIO"
   },
+  "2858502": {
+    "PLAYER_NAME": "N. Kiameso",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2858502",
+    "TEAM": "BLENDIO"
+  },
   "2813065": {
     "PLAYER_NAME": "C. Rivera Mota",
     "POSITION": "PF",
@@ -228,13 +235,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2106443",
-    "TEAM": "BLENDIO"
-  },
-  "2858502": {
-    "PLAYER_NAME": "N. Kiameso",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2858502",
     "TEAM": "BLENDIO"
   },
   "1898699": {
@@ -1350,6 +1350,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1815584",
     "TEAM": "ULACIA ZKE"
   },
+  "2405445": {
+    "PLAYER_NAME": "X. Ostolaza Ostolaza",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2405445",
+    "TEAM": "ULACIA ZKE"
+  },
   "2092573": {
     "PLAYER_NAME": "E. Juarros Castaño",
     "POSITION": "SF",
@@ -1397,13 +1404,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1232367",
-    "TEAM": "ULACIA ZKE"
-  },
-  "2405445": {
-    "PLAYER_NAME": "X. Ostolaza Ostolaza",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2405445",
     "TEAM": "ULACIA ZKE"
   },
   "2188482": {

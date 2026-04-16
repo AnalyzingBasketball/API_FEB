@@ -510,6 +510,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2867523",
     "TEAM": "HOZONO GLOBAL JAIRIS"
   },
+  "2121103": {
+    "PLAYER_NAME": "T. Lopez Vicente",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2121103",
+    "TEAM": "HOZONO GLOBAL JAIRIS"
+  },
   "2746447": {
     "PLAYER_NAME": "M. Bertsch",
     "POSITION": "PF",
@@ -550,13 +557,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2527152",
-    "TEAM": "HOZONO GLOBAL JAIRIS"
-  },
-  "2121103": {
-    "PLAYER_NAME": "T. Lopez Vicente",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2121103",
     "TEAM": "HOZONO GLOBAL JAIRIS"
   },
   "2182121": {
@@ -1303,7 +1303,7 @@
   },
   "2821270": {
     "PLAYER_NAME": "A. Badosa Soler",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2821270",
     "TEAM": "SPAR GIRONA"
@@ -1605,7 +1605,7 @@
   "2173687": {
     "PLAYER_NAME": "M. Llompart Perello",
     "POSITION": "C",
-    "POS_ORDER": 6,
+    "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2173687",
     "TEAM": "VALENCIA B.C."
   }

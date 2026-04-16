@@ -629,6 +629,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1397157",
     "TEAM": "CLASS BASQUET SANT ANTONI"
   },
+  "2818065": {
+    "PLAYER_NAME": "M. Issouf",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2818065",
+    "TEAM": "CLASS BASQUET SANT ANTONI"
+  },
   "2462416": {
     "PLAYER_NAME": "E. Stoilov",
     "POSITION": "C",
@@ -641,13 +648,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2128433",
-    "TEAM": "CLASS BASQUET SANT ANTONI"
-  },
-  "2818065": {
-    "PLAYER_NAME": "M. Issouf",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2818065",
     "TEAM": "CLASS BASQUET SANT ANTONI"
   },
   "1560358": {
@@ -1066,7 +1066,7 @@
   "2279239": {
     "PLAYER_NAME": "G. Folla-Cisneros Gimeno",
     "POSITION": "C",
-    "POS_ORDER": 6,
+    "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2279239",
     "TEAM": "MADERAS SORLI BENICARLO"
   },
@@ -1455,6 +1455,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2643320",
     "TEAM": "SPANISH BASKETBALL ACADEMY"
   },
+  "2203181": {
+    "PLAYER_NAME": "J. Ortega Mora",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2203181",
+    "TEAM": "SPANISH BASKETBALL ACADEMY"
+  },
   "2481590": {
     "PLAYER_NAME": "A. Butko",
     "POSITION": "SF",
@@ -1488,13 +1495,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2312124",
-    "TEAM": "SPANISH BASKETBALL ACADEMY"
-  },
-  "2203181": {
-    "PLAYER_NAME": "J. Ortega Mora",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2203181",
     "TEAM": "SPANISH BASKETBALL ACADEMY"
   },
   "2596649": {
