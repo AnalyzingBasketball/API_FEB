@@ -1245,6 +1245,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1491674",
     "TEAM": "LEYMA CORUÑA"
   },
+  "2869453": {
+    "PLAYER_NAME": "S. Micovic",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2869453",
+    "TEAM": "LEYMA CORUÑA"
+  },
   "2814190": {
     "PLAYER_NAME": "D. Brnovic",
     "POSITION": "SF",
@@ -1285,13 +1292,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815798",
-    "TEAM": "LEYMA CORUÑA"
-  },
-  "2869453": {
-    "PLAYER_NAME": "S. Micovic",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2869453",
     "TEAM": "LEYMA CORUÑA"
   },
   "2039654": {
@@ -1546,6 +1546,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082696",
     "TEAM": "MONBUS OBRADOIRO"
   },
+  "2870053": {
+    "PLAYER_NAME": "A. Holder",
+    "POSITION": "SG",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2870053",
+    "TEAM": "MONBUS OBRADOIRO"
+  },
   "2108616": {
     "PLAYER_NAME": "D. Maseda Soilan",
     "POSITION": "",
@@ -1558,13 +1565,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2128178",
-    "TEAM": "MONBUS OBRADOIRO"
-  },
-  "2870053": {
-    "PLAYER_NAME": "A. Holder",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2870053",
     "TEAM": "MONBUS OBRADOIRO"
   },
   "2734234": {
@@ -1672,6 +1672,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2746502",
     "TEAM": "MOVISTAR ESTUDIANTES"
   },
+  "2865685": {
+    "PLAYER_NAME": "M. Niang",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2865685",
+    "TEAM": "MOVISTAR ESTUDIANTES"
+  },
   "2032354": {
     "PLAYER_NAME": "H. Lopez Barrantes",
     "POSITION": "C",
@@ -1684,13 +1691,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2284278",
-    "TEAM": "MOVISTAR ESTUDIANTES"
-  },
-  "2865685": {
-    "PLAYER_NAME": "M. Niang",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2865685",
     "TEAM": "MOVISTAR ESTUDIANTES"
   },
   "2166715": {

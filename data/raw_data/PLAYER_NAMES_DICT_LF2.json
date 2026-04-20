@@ -20,18 +20,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1893303",
     "TEAM": "BASKET ALMEDA"
   },
-  "1398197": {
-    "PLAYER_NAME": "C. Tapia Palacio",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1398197",
-    "TEAM": "BASKET ALMEDA"
-  },
   "1929994": {
     "PLAYER_NAME": "M. Garcia Menéndez",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1929994",
+    "TEAM": "BASKET ALMEDA"
+  },
+  "1398197": {
+    "PLAYER_NAME": "C. Tapia Palacio",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1398197",
     "TEAM": "BASKET ALMEDA"
   },
   "2157230": {
@@ -314,6 +314,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1984467",
     "TEAM": "HIERROS DÍAZ EXTREMADURA MIRALVALLE"
   },
+  "2309785": {
+    "PLAYER_NAME": "M. Bordes Caselles",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2309785",
+    "TEAM": "CB CLARET BENIMACLET"
+  },
   "2163612": {
     "PLAYER_NAME": "N. Garcia Herrera",
     "POSITION": "",
@@ -370,18 +377,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1677519",
     "TEAM": "CESUR DISTRITO OLIMPICO"
   },
-  "1676283": {
-    "PLAYER_NAME": "B. Sanchez Campillo",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1676283",
-    "TEAM": "CESUR DISTRITO OLIMPICO"
-  },
   "2283143": {
     "PLAYER_NAME": "E. Moratinos Molino",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2283143",
+    "TEAM": "CESUR DISTRITO OLIMPICO"
+  },
+  "1676283": {
+    "PLAYER_NAME": "B. Sanchez Campillo",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1676283",
     "TEAM": "CESUR DISTRITO OLIMPICO"
   },
   "2286837": {
@@ -440,6 +447,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2226680",
     "TEAM": "CESUR DISTRITO OLIMPICO"
   },
+  "2371275": {
+    "PLAYER_NAME": "V. Serrano Gutierrez",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2371275",
+    "TEAM": "CESUR DISTRITO OLIMPICO"
+  },
   "2800814": {
     "PLAYER_NAME": "A. Emusi Adeniran",
     "POSITION": "C",
@@ -452,13 +466,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2185253",
-    "TEAM": "CESUR DISTRITO OLIMPICO"
-  },
-  "2371275": {
-    "PLAYER_NAME": "V. Serrano Gutierrez",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2371275",
     "TEAM": "CESUR DISTRITO OLIMPICO"
   },
   "2340037": {
@@ -727,18 +734,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2370953",
     "TEAM": "DPES CB CIUDAD DE MOSTOLES"
   },
-  "1111828": {
-    "PLAYER_NAME": "L. Fernandez Fiel",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1111828",
-    "TEAM": "EL PLANTEL GMASB"
-  },
   "1974272": {
     "PLAYER_NAME": "R. Revueltas Pareja",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1974272",
+    "TEAM": "EL PLANTEL GMASB"
+  },
+  "1111828": {
+    "PLAYER_NAME": "L. Fernandez Fiel",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1111828",
     "TEAM": "EL PLANTEL GMASB"
   },
   "1080472": {
@@ -937,6 +944,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2113013",
     "TEAM": "ELSAMEX CB ANDRATX"
   },
+  "2068433": {
+    "PLAYER_NAME": "A. Comas Casasnovas",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2068433",
+    "TEAM": "ELSAMEX CB ANDRATX"
+  },
   "2128123": {
     "PLAYER_NAME": "N. Ipo Seriche-Dougan",
     "POSITION": "PG",
@@ -1021,6 +1035,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2819126",
     "TEAM": "ESCO GRUPO FEMENINO ALCORCON"
   },
+  "2226045": {
+    "PLAYER_NAME": "P. Borreguero Molinero",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2226045",
+    "TEAM": "ESCO GRUPO FEMENINO ALCORCON"
+  },
   "2498418": {
     "PLAYER_NAME": "S. Hinestrosa Envo",
     "POSITION": "",
@@ -1070,18 +1091,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2059054",
     "TEAM": "GEIEG PACISA"
   },
-  "2239082": {
-    "PLAYER_NAME": "N. Mitjanas Costa",
-    "POSITION": "PF",
-    "POS_ORDER": 4,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2239082",
-    "TEAM": "GEIEG PACISA"
-  },
   "1968963": {
     "PLAYER_NAME": "A. Talasimov",
     "POSITION": "PF",
     "POS_ORDER": 4,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1968963",
+    "TEAM": "GEIEG PACISA"
+  },
+  "2239082": {
+    "PLAYER_NAME": "N. Mitjanas Costa",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2239082",
     "TEAM": "GEIEG PACISA"
   },
   "1949920": {
@@ -1112,18 +1133,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2191036",
     "TEAM": "GEIEG PACISA"
   },
+  "2151755": {
+    "PLAYER_NAME": "A. Martinez Rus",
+    "POSITION": "C",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2151755",
+    "TEAM": "GEIEG PACISA"
+  },
   "2055732": {
     "PLAYER_NAME": "C. Vila Matamala",
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2055732",
-    "TEAM": "GEIEG PACISA"
-  },
-  "2151755": {
-    "PLAYER_NAME": "A. Martinez Rus",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2151755",
     "TEAM": "GEIEG PACISA"
   },
   "2191037": {
@@ -1133,18 +1154,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2191037",
     "TEAM": "GEIEG PACISA"
   },
-  "1707378": {
-    "PLAYER_NAME": "M. Pérez Castro",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1707378",
-    "TEAM": "HIERROS DÍAZ EXTREMADURA MIRALVALLE"
-  },
   "1724925": {
     "PLAYER_NAME": "M. Romero Garrido",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1724925",
+    "TEAM": "HIERROS DÍAZ EXTREMADURA MIRALVALLE"
+  },
+  "1707378": {
+    "PLAYER_NAME": "M. Pérez Castro",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1707378",
     "TEAM": "HIERROS DÍAZ EXTREMADURA MIRALVALLE"
   },
   "2566363": {
@@ -1191,7 +1212,7 @@
   },
   "2323074": {
     "PLAYER_NAME": "A. Zurita Garcia",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2323074",
     "TEAM": "HIERROS DÍAZ EXTREMADURA MIRALVALLE"
@@ -1546,11 +1567,25 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1879260",
     "TEAM": "SPAR GRAN CANARIA"
   },
+  "2340888": {
+    "PLAYER_NAME": "P. Diaz Martin",
+    "POSITION": "PF",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340888",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
   "2383224": {
     "PLAYER_NAME": "M. Rasines Rodriguez",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383224",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2343754": {
+    "PLAYER_NAME": "O. Boniface Peters",
+    "POSITION": "C",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2343754",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2303928": {
@@ -1567,20 +1602,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2415137",
     "TEAM": "SPAR GRAN CANARIA"
   },
-  "2340888": {
-    "PLAYER_NAME": "P. Diaz Martin",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340888",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2343754": {
-    "PLAYER_NAME": "O. Boniface Peters",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2343754",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
   "2383225": {
     "PLAYER_NAME": "M. Sa Ajona",
     "POSITION": "",
@@ -1590,7 +1611,7 @@
   },
   "2234762": {
     "PLAYER_NAME": "V. Hernandez Spaccesi",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2234762",
     "TEAM": "SPAR GRAN CANARIA"

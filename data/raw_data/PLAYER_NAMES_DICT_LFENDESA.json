@@ -657,6 +657,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082788",
     "TEAM": "IDK EUSKOTREN"
   },
+  "2452459": {
+    "PLAYER_NAME": "N. Rubio Dominguez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2452459",
+    "TEAM": "IDK EUSKOTREN"
+  },
   "2100039": {
     "PLAYER_NAME": "C. Contell Sanchis",
     "POSITION": "PG",
@@ -1140,18 +1147,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2080254",
     "TEAM": "PERFUMERIAS AVENIDA"
   },
-  "2814599": {
-    "PLAYER_NAME": "S. Zellous",
-    "POSITION": "SG",
-    "POS_ORDER": 2,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2814599",
-    "TEAM": "PERFUMERIAS AVENIDA"
-  },
   "2813571": {
     "PLAYER_NAME": "A. Meyers",
     "POSITION": "SG",
     "POS_ORDER": 2,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2813571",
+    "TEAM": "PERFUMERIAS AVENIDA"
+  },
+  "2814599": {
+    "PLAYER_NAME": "S. Zellous",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2814599",
     "TEAM": "PERFUMERIAS AVENIDA"
   },
   "1074107": {
@@ -1210,6 +1217,20 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2864031",
     "TEAM": "PERFUMERIAS AVENIDA"
   },
+  "1590109": {
+    "PLAYER_NAME": "M. Hermida Herraez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1590109",
+    "TEAM": "PERFUMERIAS AVENIDA"
+  },
+  "2738128": {
+    "PLAYER_NAME": "E. Benito Díez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2738128",
+    "TEAM": "PERFUMERIAS AVENIDA"
+  },
   "2819695": {
     "PLAYER_NAME": "K. Holm",
     "POSITION": "PG",
@@ -1266,6 +1287,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1956551",
     "TEAM": "SPAR GIRONA"
   },
+  "2821270": {
+    "PLAYER_NAME": "A. Badosa Soler",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2821270",
+    "TEAM": "SPAR GIRONA"
+  },
   "2739270": {
     "PLAYER_NAME": "C. Bibby",
     "POSITION": "PF",
@@ -1299,13 +1327,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2039601",
-    "TEAM": "SPAR GIRONA"
-  },
-  "2821270": {
-    "PLAYER_NAME": "A. Badosa Soler",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2821270",
     "TEAM": "SPAR GIRONA"
   },
   "2452647": {
@@ -1406,18 +1427,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2292843",
     "TEAM": "SPAR GRAN CANARIA"
   },
-  "2787896": {
-    "PLAYER_NAME": "R. Sherrill",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2787896",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
   "2643570": {
     "PLAYER_NAME": "L. Toure",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2643570",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2787896": {
+    "PLAYER_NAME": "R. Sherrill",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2787896",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2857450": {

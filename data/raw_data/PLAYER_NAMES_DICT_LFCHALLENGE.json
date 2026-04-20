@@ -125,6 +125,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2235368",
     "TEAM": "ALTER ENERSUN AL-QÁZERES EXTREMADURA"
   },
+  "2323830": {
+    "PLAYER_NAME": "M. Asprella Chacón",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2323830",
+    "TEAM": "ALTER ENERSUN AL-QÁZERES EXTREMADURA"
+  },
   "975683": {
     "PLAYER_NAME": "A. Torrens Salom",
     "POSITION": "PG",
@@ -456,7 +463,7 @@
   },
   "2241297": {
     "PLAYER_NAME": "P. Garcia Sanchez",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2241297",
     "TEAM": "C.B. SANTFELIUENC"
@@ -615,6 +622,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2848574",
     "TEAM": "CAJASOL BALONCESTO SEVILLA FEMENINO"
   },
+  "2416810": {
+    "PLAYER_NAME": "J. Picon Ruiz",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2416810",
+    "TEAM": "CAJASOL BALONCESTO SEVILLA FEMENINO"
+  },
   "2826087": {
     "PLAYER_NAME": "O. Cochran",
     "POSITION": "",
@@ -699,18 +713,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2276545",
     "TEAM": "CELTA  FEMXA ZORKA"
   },
+  "2179703": {
+    "PLAYER_NAME": "N. Martínez Quintana",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2179703",
+    "TEAM": "CELTA  FEMXA ZORKA"
+  },
   "2743289": {
     "PLAYER_NAME": "D. Cabrera Baccon",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2743289",
-    "TEAM": "CELTA  FEMXA ZORKA"
-  },
-  "2179703": {
-    "PLAYER_NAME": "N. Martínez Quintana",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2179703",
     "TEAM": "CELTA  FEMXA ZORKA"
   },
   "2286825": {
@@ -853,18 +867,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1680760",
     "TEAM": "FUSTECMA NBF CASTELLÓ"
   },
-  "1618451": {
-    "PLAYER_NAME": "L. Campos De Bengoa",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1618451",
-    "TEAM": "FUSTECMA NBF CASTELLÓ"
-  },
   "2131367": {
     "PLAYER_NAME": "S. Basaez Narvaez",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2131367",
+    "TEAM": "FUSTECMA NBF CASTELLÓ"
+  },
+  "1618451": {
+    "PLAYER_NAME": "L. Campos De Bengoa",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1618451",
     "TEAM": "FUSTECMA NBF CASTELLÓ"
   },
   "2815082": {
@@ -951,18 +965,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2071471",
     "TEAM": "LA CORDÁ DE PATERNA NB"
   },
-  "2024557": {
-    "PLAYER_NAME": "M. Bleda Ortega",
-    "POSITION": "SG",
-    "POS_ORDER": 2,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2024557",
-    "TEAM": "LA CORDÁ DE PATERNA NB"
-  },
   "2561096": {
     "PLAYER_NAME": "A. Prim Giro",
     "POSITION": "SG",
     "POS_ORDER": 2,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2561096",
+    "TEAM": "LA CORDÁ DE PATERNA NB"
+  },
+  "2024557": {
+    "PLAYER_NAME": "M. Bleda Ortega",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2024557",
     "TEAM": "LA CORDÁ DE PATERNA NB"
   },
   "1508657": {
@@ -1231,6 +1245,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1454479",
     "TEAM": "MELILLA CIUDAD DEL DEPORTE LA SALLE"
   },
+  "2204396": {
+    "PLAYER_NAME": "L. Gonzalez Moreno",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2204396",
+    "TEAM": "MELILLA CIUDAD DEL DEPORTE LA SALLE"
+  },
   "1587316": {
     "PLAYER_NAME": "C. Caceres Ayala",
     "POSITION": "SG",
@@ -1292,13 +1313,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2104399",
-    "TEAM": "MELILLA CIUDAD DEL DEPORTE LA SALLE"
-  },
-  "2204396": {
-    "PLAYER_NAME": "L. Gonzalez Moreno",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2204396",
     "TEAM": "MELILLA CIUDAD DEL DEPORTE LA SALLE"
   },
   "1588922": {

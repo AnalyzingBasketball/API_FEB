@@ -6,18 +6,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2818901",
     "TEAM": "AMICS CASTELLÓ"
   },
-  "273780": {
-    "PLAYER_NAME": "J. Faner Catala",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=273780",
-    "TEAM": "AMICS CASTELLÓ"
-  },
   "2149001": {
     "PLAYER_NAME": "R. Fabrega Urpina",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2149001",
+    "TEAM": "AMICS CASTELLÓ"
+  },
+  "273780": {
+    "PLAYER_NAME": "J. Faner Catala",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=273780",
     "TEAM": "AMICS CASTELLÓ"
   },
   "1769425": {
@@ -547,7 +547,7 @@
   },
   "2133764": {
     "PLAYER_NAME": "P. Parra Gomez",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2133764",
     "TEAM": "CIUDAD MOLINA BASKET"
@@ -790,18 +790,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1591966",
     "TEAM": "HOMS U.E.MATARÓ"
   },
-  "2534044": {
-    "PLAYER_NAME": "J. Tomaic Tomaic",
-    "POSITION": "PF",
-    "POS_ORDER": 4,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2534044",
-    "TEAM": "HOMS U.E.MATARÓ"
-  },
   "2319991": {
     "PLAYER_NAME": "S. Niang Beye",
     "POSITION": "PF",
     "POS_ORDER": 4,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2319991",
+    "TEAM": "HOMS U.E.MATARÓ"
+  },
+  "2534044": {
+    "PLAYER_NAME": "J. Tomaic Tomaic",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2534044",
     "TEAM": "HOMS U.E.MATARÓ"
   },
   "2813591": {
@@ -818,18 +818,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2162105",
     "TEAM": "HOMS U.E.MATARÓ"
   },
-  "2813635": {
-    "PLAYER_NAME": "E. Kalu",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2813635",
-    "TEAM": "HOMS U.E.MATARÓ"
-  },
   "2451498": {
     "PLAYER_NAME": "A. Roker",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2451498",
+    "TEAM": "HOMS U.E.MATARÓ"
+  },
+  "2813635": {
+    "PLAYER_NAME": "E. Kalu",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2813635",
     "TEAM": "HOMS U.E.MATARÓ"
   },
   "2834418": {
@@ -909,18 +909,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2054954",
     "TEAM": "LOBE HUESCA LA MAGIA"
   },
-  "2559072": {
-    "PLAYER_NAME": "P. Suárez Custodio",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2559072",
-    "TEAM": "LOBE HUESCA LA MAGIA"
-  },
   "2815923": {
     "PLAYER_NAME": "M. Carreira Kreps",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815923",
+    "TEAM": "LOBE HUESCA LA MAGIA"
+  },
+  "2559072": {
+    "PLAYER_NAME": "P. Suárez Custodio",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2559072",
     "TEAM": "LOBE HUESCA LA MAGIA"
   },
   "2823388": {
@@ -1378,18 +1378,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2117260",
     "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
   },
-  "2233052": {
-    "PLAYER_NAME": "D. Efambe",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2233052",
-    "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
-  },
   "2815176": {
     "PLAYER_NAME": "S. Kane",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815176",
+    "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
+  },
+  "2233052": {
+    "PLAYER_NAME": "D. Efambe",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2233052",
     "TEAM": "SOL GIRONÈS BISBAL BÀSQUET"
   },
   "2614810": {

@@ -111,18 +111,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2077155",
     "TEAM": "BAXI MANRESA"
   },
-  "2145902": {
-    "PLAYER_NAME": "F. Torreblanca Catalan",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2145902",
-    "TEAM": "BAXI MANRESA"
-  },
   "2334297": {
     "PLAYER_NAME": "L. Sanchez Fernandez",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2334297",
+    "TEAM": "BAXI MANRESA"
+  },
+  "2145902": {
+    "PLAYER_NAME": "F. Torreblanca Catalan",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2145902",
     "TEAM": "BAXI MANRESA"
   },
   "2080004": {
@@ -328,18 +328,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2438847",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
-  "2646355": {
-    "PLAYER_NAME": "M. Lukic",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2646355",
-    "TEAM": "CASADEMONT ZARAGOZA"
-  },
   "2008960": {
     "PLAYER_NAME": "A. Moreno Valero",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2008960",
+    "TEAM": "CASADEMONT ZARAGOZA"
+  },
+  "2646355": {
+    "PLAYER_NAME": "M. Lukic",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2646355",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
   "2382632": {
@@ -354,6 +354,13 @@
     "POSITION": "SG",
     "POS_ORDER": 2,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1975428",
+    "TEAM": "CASADEMONT ZARAGOZA"
+  },
+  "2016757": {
+    "PLAYER_NAME": "P. Campo Teruel",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2016757",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
   "2073295": {
@@ -727,13 +734,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082268",
     "TEAM": "JOVENTUT BADALONA"
   },
-  "2535717": {
-    "PLAYER_NAME": "K. Macías Book",
-    "POSITION": "PF",
-    "POS_ORDER": 4,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2535717",
-    "TEAM": "JOVENTUT BADALONA"
-  },
   "2845979": {
     "PLAYER_NAME": "M. Buben",
     "POSITION": "PF",
@@ -741,11 +741,11 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2845979",
     "TEAM": "JOVENTUT BADALONA"
   },
-  "2082385": {
-    "PLAYER_NAME": "H. Tamayo Mengual",
+  "2535717": {
+    "PLAYER_NAME": "K. Macías Book",
     "POSITION": "PF",
     "POS_ORDER": 4,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082385",
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2535717",
     "TEAM": "JOVENTUT BADALONA"
   },
   "2156562": {
@@ -753,6 +753,13 @@
     "POSITION": "PF",
     "POS_ORDER": 4,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2156562",
+    "TEAM": "JOVENTUT BADALONA"
+  },
+  "2082385": {
+    "PLAYER_NAME": "H. Tamayo Mengual",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082385",
     "TEAM": "JOVENTUT BADALONA"
   },
   "2243143": {
@@ -783,18 +790,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2198044",
     "TEAM": "JOVENTUT BADALONA"
   },
-  "2645392": {
-    "PLAYER_NAME": "O. Kutluay",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2645392",
-    "TEAM": "REAL MADRID"
-  },
   "2735493": {
     "PLAYER_NAME": "F. Kayser",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2735493",
+    "TEAM": "REAL MADRID"
+  },
+  "2645392": {
+    "PLAYER_NAME": "O. Kutluay",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2645392",
     "TEAM": "REAL MADRID"
   },
   "2094410": {
@@ -874,18 +881,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2679004",
     "TEAM": "REAL MADRID"
   },
-  "2043083": {
-    "PLAYER_NAME": "R. Rioja Achiaga",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2043083",
-    "TEAM": "REAL MADRID"
-  },
   "2370180": {
     "PLAYER_NAME": "O. Hadi Adegbite",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2370180",
+    "TEAM": "REAL MADRID"
+  },
+  "2043083": {
+    "PLAYER_NAME": "R. Rioja Achiaga",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2043083",
     "TEAM": "REAL MADRID"
   },
   "2286044": {

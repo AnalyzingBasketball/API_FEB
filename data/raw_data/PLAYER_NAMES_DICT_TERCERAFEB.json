@@ -293,18 +293,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2108861",
     "TEAM": "CAJA RURAL DE ZAMORA CBCV BOECILLO"
   },
-  "2176074": {
-    "PLAYER_NAME": "R. Sanchez Sanchez",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2176074",
-    "TEAM": "CAJA RURAL DE ZAMORA CBCV BOECILLO"
-  },
   "2379637": {
     "PLAYER_NAME": "A. Gomez Ramos",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2379637",
+    "TEAM": "CAJA RURAL DE ZAMORA CBCV BOECILLO"
+  },
+  "2176074": {
+    "PLAYER_NAME": "R. Sanchez Sanchez",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2176074",
     "TEAM": "CAJA RURAL DE ZAMORA CBCV BOECILLO"
   },
   "2186414": {
@@ -594,18 +594,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2249190",
     "TEAM": "DE MORRO FINO CANTBASKET04"
   },
-  "2535385": {
-    "PLAYER_NAME": "I. Jimenez El Merzoug",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2535385",
-    "TEAM": "GRUPO INMAPA FILIPENSES"
-  },
   "1794266": {
     "PLAYER_NAME": "M. Herrero Crespo",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1794266",
+    "TEAM": "GRUPO INMAPA FILIPENSES"
+  },
+  "2535385": {
+    "PLAYER_NAME": "I. Jimenez El Merzoug",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2535385",
     "TEAM": "GRUPO INMAPA FILIPENSES"
   },
   "2175063": {
@@ -643,18 +643,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1536510",
     "TEAM": "GRUPO INMAPA FILIPENSES"
   },
-  "1711348": {
-    "PLAYER_NAME": "I. Herrero Peral",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1711348",
-    "TEAM": "GRUPO INMAPA FILIPENSES"
-  },
   "1452974": {
     "PLAYER_NAME": "R. Gonzalez Ruiz",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1452974",
+    "TEAM": "GRUPO INMAPA FILIPENSES"
+  },
+  "1711348": {
+    "PLAYER_NAME": "I. Herrero Peral",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1711348",
     "TEAM": "GRUPO INMAPA FILIPENSES"
   },
   "2096000": {
@@ -834,7 +834,7 @@
   },
   "2227134": {
     "PLAYER_NAME": "J. Horcajo García",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2227134",
     "TEAM": "HOTEL 4POSTES - ÁVILA AUTÉNTICA - EL BULEVAR"
@@ -1492,7 +1492,7 @@
   },
   "2361656": {
     "PLAYER_NAME": "U. Calvo Arruza",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2361656",
     "TEAM": "UNIVERSIDAD DEUSTO LOIOLA INDAUTXU"
