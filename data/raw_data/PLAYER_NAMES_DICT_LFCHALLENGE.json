@@ -377,6 +377,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2821134",
     "TEAM": "C.B. SANTFELIUENC"
   },
+  "2241297": {
+    "PLAYER_NAME": "P. Garcia Sanchez",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2241297",
+    "TEAM": "C.B. SANTFELIUENC"
+  },
   "2816669": {
     "PLAYER_NAME": "A. Marotte",
     "POSITION": "SF",
@@ -461,13 +468,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082005",
     "TEAM": "C.B. SANTFELIUENC"
   },
-  "2241297": {
-    "PLAYER_NAME": "P. Garcia Sanchez",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2241297",
-    "TEAM": "C.B. SANTFELIUENC"
-  },
   "2454400": {
     "PLAYER_NAME": "J. Fernandez Colomer",
     "POSITION": "",
@@ -498,7 +498,7 @@
   },
   "2452845": {
     "PLAYER_NAME": "A. Garcia Vilà",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2452845",
     "TEAM": "C.B. SANTFELIUENC"
@@ -925,7 +925,7 @@
   },
   "2264676": {
     "PLAYER_NAME": "A. Garcia Haro",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2264676",
     "TEAM": "FUSTECMA NBF CASTELLÓ"

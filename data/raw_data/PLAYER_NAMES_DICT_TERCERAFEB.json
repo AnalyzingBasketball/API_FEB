@@ -762,6 +762,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2167753",
     "TEAM": "HOTEL 4POSTES - ÁVILA AUTÉNTICA - EL BULEVAR"
   },
+  "2227134": {
+    "PLAYER_NAME": "J. Horcajo García",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2227134",
+    "TEAM": "HOTEL 4POSTES - ÁVILA AUTÉNTICA - EL BULEVAR"
+  },
   "1847326": {
     "PLAYER_NAME": "G. Chia Sanchez",
     "POSITION": "SF",
@@ -830,13 +837,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2557839",
-    "TEAM": "HOTEL 4POSTES - ÁVILA AUTÉNTICA - EL BULEVAR"
-  },
-  "2227134": {
-    "PLAYER_NAME": "J. Horcajo García",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2227134",
     "TEAM": "HOTEL 4POSTES - ÁVILA AUTÉNTICA - EL BULEVAR"
   },
   "2257749": {
@@ -1441,6 +1441,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2390292",
     "TEAM": "UNIVERSIDAD DEUSTO LOIOLA INDAUTXU"
   },
+  "2361656": {
+    "PLAYER_NAME": "U. Calvo Arruza",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2361656",
+    "TEAM": "UNIVERSIDAD DEUSTO LOIOLA INDAUTXU"
+  },
   "2005260": {
     "PLAYER_NAME": "A. Gutiez Salgado",
     "POSITION": "SF",
@@ -1488,13 +1495,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1829765",
-    "TEAM": "UNIVERSIDAD DEUSTO LOIOLA INDAUTXU"
-  },
-  "2361656": {
-    "PLAYER_NAME": "U. Calvo Arruza",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2361656",
     "TEAM": "UNIVERSIDAD DEUSTO LOIOLA INDAUTXU"
   }
 }

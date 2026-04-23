@@ -1136,7 +1136,7 @@
   "2151755": {
     "PLAYER_NAME": "A. Martinez Rus",
     "POSITION": "C",
-    "POS_ORDER": 6,
+    "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2151755",
     "TEAM": "GEIEG PACISA"
   },
@@ -1213,7 +1213,7 @@
   "2323074": {
     "PLAYER_NAME": "A. Zurita Garcia",
     "POSITION": "C",
-    "POS_ORDER": 6,
+    "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2323074",
     "TEAM": "HIERROS DÍAZ EXTREMADURA MIRALVALLE"
   },
@@ -1317,7 +1317,7 @@
   },
   "1450205": {
     "PLAYER_NAME": "A. Rodriguez Guerra",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1450205",
     "TEAM": "MAGEC TÍAS LANZAROTE CONTRA LA VIOLENCIA DE GÉNERO"
@@ -1483,11 +1483,25 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2230179",
     "TEAM": "SPAR GRAN CANARIA"
   },
+  "2234762": {
+    "PLAYER_NAME": "V. Hernandez Spaccesi",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2234762",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
   "2647608": {
     "PLAYER_NAME": "M. Doumbia",
     "POSITION": "SG",
     "POS_ORDER": 2,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2647608",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2383224": {
+    "PLAYER_NAME": "M. Rasines Rodriguez",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383224",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2203305": {
@@ -1502,6 +1516,13 @@
     "POSITION": "PF",
     "POS_ORDER": 4,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2494285",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2340888": {
+    "PLAYER_NAME": "P. Diaz Martin",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340888",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2340752": {
@@ -1530,6 +1551,13 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2352279",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2343754": {
+    "PLAYER_NAME": "O. Boniface Peters",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2343754",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2340892": {
@@ -1567,27 +1595,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1879260",
     "TEAM": "SPAR GRAN CANARIA"
   },
-  "2340888": {
-    "PLAYER_NAME": "P. Diaz Martin",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340888",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2383224": {
-    "PLAYER_NAME": "M. Rasines Rodriguez",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383224",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2343754": {
-    "PLAYER_NAME": "O. Boniface Peters",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2343754",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
   "2303928": {
     "PLAYER_NAME": "M. Estalella Illan",
     "POSITION": "",
@@ -1607,13 +1614,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383225",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2234762": {
-    "PLAYER_NAME": "V. Hernandez Spaccesi",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2234762",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "1597595": {
