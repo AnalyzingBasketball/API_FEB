@@ -363,11 +363,11 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2316215",
     "TEAM": "C.B. SANTFELIUENC"
   },
-  "2458281": {
-    "PLAYER_NAME": "B. Martinez Valcarce",
+  "2452845": {
+    "PLAYER_NAME": "A. Garcia Vilà",
     "POSITION": "PG",
     "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2458281",
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2452845",
     "TEAM": "C.B. SANTFELIUENC"
   },
   "2821134": {
@@ -375,6 +375,13 @@
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2821134",
+    "TEAM": "C.B. SANTFELIUENC"
+  },
+  "2458281": {
+    "PLAYER_NAME": "B. Martinez Valcarce",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2458281",
     "TEAM": "C.B. SANTFELIUENC"
   },
   "2241297": {
@@ -475,6 +482,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2454400",
     "TEAM": "C.B. SANTFELIUENC"
   },
+  "2197476": {
+    "PLAYER_NAME": "J. Simon Montejo",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2197476",
+    "TEAM": "C.B. SANTFELIUENC"
+  },
   "2825277": {
     "PLAYER_NAME": "J. Loizzo",
     "POSITION": "",
@@ -494,13 +508,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2643014",
-    "TEAM": "C.B. SANTFELIUENC"
-  },
-  "2452845": {
-    "PLAYER_NAME": "A. Garcia Vilà",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2452845",
     "TEAM": "C.B. SANTFELIUENC"
   },
   "2082062": {
@@ -627,6 +634,13 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2416810",
+    "TEAM": "CAJASOL BALONCESTO SEVILLA FEMENINO"
+  },
+  "2326646": {
+    "PLAYER_NAME": "C. Herrera Quinta",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2326646",
     "TEAM": "CAJASOL BALONCESTO SEVILLA FEMENINO"
   },
   "2826087": {
@@ -881,6 +895,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1618451",
     "TEAM": "FUSTECMA NBF CASTELLÓ"
   },
+  "2264676": {
+    "PLAYER_NAME": "A. Garcia Haro",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2264676",
+    "TEAM": "FUSTECMA NBF CASTELLÓ"
+  },
   "2815082": {
     "PLAYER_NAME": "M. Agyei",
     "POSITION": "PF",
@@ -921,13 +942,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2144678",
-    "TEAM": "FUSTECMA NBF CASTELLÓ"
-  },
-  "2264676": {
-    "PLAYER_NAME": "A. Garcia Haro",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2264676",
     "TEAM": "FUSTECMA NBF CASTELLÓ"
   },
   "1896656": {
@@ -1049,6 +1063,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2864802",
     "TEAM": "LA CORDÁ DE PATERNA NB"
   },
+  "2179102": {
+    "PLAYER_NAME": "Y. Tortajada Amoukrane",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2179102",
+    "TEAM": "LA CORDÁ DE PATERNA NB"
+  },
   "1884959": {
     "PLAYER_NAME": "M. Luque Caballero",
     "POSITION": "PG",
@@ -1077,18 +1098,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2246211",
     "TEAM": "LA LAGUNA TOYOTA  ADAREVA"
   },
-  "1613926": {
-    "PLAYER_NAME": "M. Gomez Fernandez",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1613926",
-    "TEAM": "VEGA LAGUNERA TOYOTA  ADAREVA TENERIFE"
-  },
   "2735173": {
     "PLAYER_NAME": "M. Forsyth",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2735173",
+    "TEAM": "VEGA LAGUNERA TOYOTA  ADAREVA TENERIFE"
+  },
+  "1613926": {
+    "PLAYER_NAME": "M. Gomez Fernandez",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1613926",
     "TEAM": "VEGA LAGUNERA TOYOTA  ADAREVA TENERIFE"
   },
   "2432295": {
@@ -1301,18 +1322,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1713801",
     "TEAM": "MELILLA CIUDAD DEL DEPORTE LA SALLE"
   },
-  "2432929": {
-    "PLAYER_NAME": "M. Davydova",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2432929",
-    "TEAM": "MELILLA CIUDAD DEL DEPORTE LA SALLE"
-  },
   "2104399": {
     "PLAYER_NAME": "C. Garcia Muñoz",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2104399",
+    "TEAM": "MELILLA CIUDAD DEL DEPORTE LA SALLE"
+  },
+  "2432929": {
+    "PLAYER_NAME": "M. Davydova",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2432929",
     "TEAM": "MELILLA CIUDAD DEL DEPORTE LA SALLE"
   },
   "1588922": {
@@ -1614,6 +1635,13 @@
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2034380",
+    "TEAM": "SERNOVA RENOVABLES REAL CANOE"
+  },
+  "2094827": {
+    "PLAYER_NAME": "N. Figueroa Alvarez",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2094827",
     "TEAM": "SERNOVA RENOVABLES REAL CANOE"
   },
   "2866005": {
