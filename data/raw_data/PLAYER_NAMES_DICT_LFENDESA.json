@@ -76,18 +76,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2736824",
     "TEAM": "BAXI FERROL"
   },
+  "2231427": {
+    "PLAYER_NAME": "I. Somorrostro Fornos",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2231427",
+    "TEAM": "BAXI FERROL"
+  },
   "2285448": {
     "PLAYER_NAME": "E. Baldonedo Vila",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2285448",
-    "TEAM": "BAXI FERROL"
-  },
-  "2231427": {
-    "PLAYER_NAME": "I. Somorrostro Fornos",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2231427",
     "TEAM": "BAXI FERROL"
   },
   "2812647": {
@@ -1182,6 +1182,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2080254",
     "TEAM": "PERFUMERIAS AVENIDA"
   },
+  "1590109": {
+    "PLAYER_NAME": "M. Hermida Herraez",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1590109",
+    "TEAM": "PERFUMERIAS AVENIDA"
+  },
   "2814599": {
     "PLAYER_NAME": "S. Zellous",
     "POSITION": "SG",
@@ -1252,13 +1259,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2864031",
     "TEAM": "PERFUMERIAS AVENIDA"
   },
-  "1590109": {
-    "PLAYER_NAME": "M. Hermida Herraez",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1590109",
-    "TEAM": "PERFUMERIAS AVENIDA"
-  },
   "2738128": {
     "PLAYER_NAME": "E. Benito Díez",
     "POSITION": "",
@@ -1278,6 +1278,13 @@
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1406582",
+    "TEAM": "SPAR GIRONA"
+  },
+  "2364457": {
+    "PLAYER_NAME": "L. Cornelius",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2364457",
     "TEAM": "SPAR GIRONA"
   },
   "2703283": {
@@ -1364,13 +1371,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2039601",
     "TEAM": "SPAR GIRONA"
   },
-  "2364457": {
-    "PLAYER_NAME": "L. Cornelius",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2364457",
-    "TEAM": "SPAR GIRONA"
-  },
   "2452647": {
     "PLAYER_NAME": "D. N'Diaye",
     "POSITION": "PG",
@@ -1434,6 +1434,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2203305",
     "TEAM": "SPAR GRAN CANARIA"
   },
+  "2340888": {
+    "PLAYER_NAME": "P. Diaz Martin",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340888",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
   "2251955": {
     "PLAYER_NAME": "M. Ocurto Mendes",
     "POSITION": "SF",
@@ -1469,6 +1476,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2292843",
     "TEAM": "SPAR GRAN CANARIA"
   },
+  "2343754": {
+    "PLAYER_NAME": "O. Boniface Peters",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2343754",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
   "2643570": {
     "PLAYER_NAME": "L. Toure",
     "POSITION": "C",
@@ -1497,11 +1511,25 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2857450",
     "TEAM": "SPAR GRAN CANARIA"
   },
+  "1597595": {
+    "PLAYER_NAME": "M. Mbulito Upolo",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1597595",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
   "2340752": {
     "PLAYER_NAME": "N. Prado Plumed",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340752",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
+  "2383224": {
+    "PLAYER_NAME": "M. Rasines Rodriguez",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383224",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2352282": {
@@ -1511,32 +1539,11 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2352282",
     "TEAM": "SPAR GRAN CANARIA"
   },
-  "2340888": {
-    "PLAYER_NAME": "P. Diaz Martin",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340888",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
   "2340892": {
     "PLAYER_NAME": "M. Redondo De Santa Ana",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340892",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2343754": {
-    "PLAYER_NAME": "O. Boniface Peters",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2343754",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "1597595": {
-    "PLAYER_NAME": "M. Mbulito Upolo",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1597595",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2233043": {
@@ -1551,13 +1558,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2234762",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2383224": {
-    "PLAYER_NAME": "M. Rasines Rodriguez",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383224",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2621781": {
