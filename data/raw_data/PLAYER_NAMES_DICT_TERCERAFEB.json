@@ -57,7 +57,7 @@
   },
   "2252180": {
     "PLAYER_NAME": "M. Smith",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2252180",
     "TEAM": "ALFINDÉN CB"
@@ -78,7 +78,7 @@
   },
   "1863375": {
     "PLAYER_NAME": "A. Nuñez Navarro",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1863375",
     "TEAM": "ALFINDÉN CB"
@@ -370,6 +370,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1393813",
     "TEAM": "C.B.ROSER"
   },
+  "1965981": {
+    "PLAYER_NAME": "P. Santiago Paz",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1965981",
+    "TEAM": "C.B.ROSER"
+  },
   "1954514": {
     "PLAYER_NAME": "M. Puig De Gracia",
     "POSITION": "SG",
@@ -431,13 +438,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1246173",
-    "TEAM": "C.B.ROSER"
-  },
-  "1965981": {
-    "PLAYER_NAME": "P. Santiago Paz",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1965981",
     "TEAM": "C.B.ROSER"
   },
   "2194530": {
@@ -1128,7 +1128,7 @@
   },
   "1827358": {
     "PLAYER_NAME": "J. Bradley Mayol",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1827358",
     "TEAM": "FLANIGAN CALVIÀ"
@@ -1392,6 +1392,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2557839",
     "TEAM": "HOTEL 4POSTES - ÁVILA AUTÉNTICA - EL BULEVAR"
   },
+  "1970786": {
+    "PLAYER_NAME": "I. Fernandez Masip",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1970786",
+    "TEAM": "IBERSOL CB TARRAGONA"
+  },
   "2060201": {
     "PLAYER_NAME": "J. Campeny Lloveras",
     "POSITION": "PG",
@@ -1476,13 +1483,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1685661",
     "TEAM": "IBERSOL CB TARRAGONA"
   },
-  "1970786": {
-    "PLAYER_NAME": "I. Fernandez Masip",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1970786",
-    "TEAM": "IBERSOL CB TARRAGONA"
-  },
   "2815825": {
     "PLAYER_NAME": "S. Bachiochi",
     "POSITION": "",
@@ -1492,7 +1492,7 @@
   },
   "2153717": {
     "PLAYER_NAME": "A. Blázquez Farriol",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2153717",
     "TEAM": "IBERSOL CB TARRAGONA"
@@ -1553,6 +1553,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2296935",
     "TEAM": "IMMO SA MARINA CIUTAT D’INCA BASQUET"
   },
+  "1599681": {
+    "PLAYER_NAME": "M. Aguilo Rodriguez",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1599681",
+    "TEAM": "IMMO SA MARINA CIUTAT D’INCA BASQUET"
+  },
   "2171775": {
     "PLAYER_NAME": "M. Ochogavia Cifre",
     "POSITION": "PF",
@@ -1572,13 +1579,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2036186",
-    "TEAM": "IMMO SA MARINA CIUTAT D’INCA BASQUET"
-  },
-  "1599681": {
-    "PLAYER_NAME": "M. Aguilo Rodriguez",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1599681",
     "TEAM": "IMMO SA MARINA CIUTAT D’INCA BASQUET"
   },
   "814664": {
@@ -2080,7 +2080,7 @@
   },
   "2734269": {
     "PLAYER_NAME": "C. Dickerson",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2734269",
     "TEAM": "PUJOL MOLLERUSSA"
@@ -2351,6 +2351,20 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2276328",
     "TEAM": "SA REAL INSTALACIONES AREVALO IBIZA"
   },
+  "2171347": {
+    "PLAYER_NAME": "A. Piqueras Carbonell",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2171347",
+    "TEAM": "SA REAL INSTALACIONES AREVALO IBIZA"
+  },
+  "1049503": {
+    "PLAYER_NAME": "F. Serra De Munter",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1049503",
+    "TEAM": "SA REAL INSTALACIONES AREVALO IBIZA"
+  },
   "2559076": {
     "PLAYER_NAME": "D. Martin Vela",
     "POSITION": "SG",
@@ -2421,20 +2435,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2645454",
     "TEAM": "SA REAL INSTALACIONES AREVALO IBIZA"
   },
-  "2171347": {
-    "PLAYER_NAME": "A. Piqueras Carbonell",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2171347",
-    "TEAM": "SA REAL INSTALACIONES AREVALO IBIZA"
-  },
-  "1049503": {
-    "PLAYER_NAME": "F. Serra De Munter",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1049503",
-    "TEAM": "SA REAL INSTALACIONES AREVALO IBIZA"
-  },
   "2528592": {
     "PLAYER_NAME": "J. Bejarano Moreno",
     "POSITION": "",
@@ -2468,6 +2468,13 @@
     "POSITION": "SG",
     "POS_ORDER": 2,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1927864",
+    "TEAM": "SANDÁ C.B. L´HOSPITALET"
+  },
+  "1350769": {
+    "PLAYER_NAME": "A. Vicens Morey",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1350769",
     "TEAM": "SANDÁ C.B. L´HOSPITALET"
   },
   "1935834": {
@@ -2524,13 +2531,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1912380",
-    "TEAM": "SANDÁ C.B. L´HOSPITALET"
-  },
-  "1350769": {
-    "PLAYER_NAME": "A. Vicens Morey",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1350769",
     "TEAM": "SANDÁ C.B. L´HOSPITALET"
   },
   "2155219": {
@@ -2680,6 +2680,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1947084",
     "TEAM": "TIBU-RON CASTELLDEFELS"
   },
+  "1893854": {
+    "PLAYER_NAME": "G. Rodriguez Flaque",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1893854",
+    "TEAM": "TIBU-RON CASTELLDEFELS"
+  },
   "1065612": {
     "PLAYER_NAME": "E. Mañes Carretero",
     "POSITION": "SF",
@@ -2687,11 +2694,25 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1065612",
     "TEAM": "TIBU-RON CASTELLDEFELS"
   },
+  "2151257": {
+    "PLAYER_NAME": "G. Lozano Massanet",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2151257",
+    "TEAM": "TIBU-RON CASTELLDEFELS"
+  },
   "1961398": {
     "PLAYER_NAME": ",. Vicente Sabariego",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1961398",
+    "TEAM": "TIBU-RON CASTELLDEFELS"
+  },
+  "2256358": {
+    "PLAYER_NAME": "B. Gassama Kargbo",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2256358",
     "TEAM": "TIBU-RON CASTELLDEFELS"
   },
   "2156371": {
@@ -2729,32 +2750,11 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1910966",
     "TEAM": "TIBU-RON CASTELLDEFELS"
   },
-  "2256358": {
-    "PLAYER_NAME": "B. Gassama Kargbo",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2256358",
-    "TEAM": "TIBU-RON CASTELLDEFELS"
-  },
-  "2151257": {
-    "PLAYER_NAME": "G. Lozano Massanet",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2151257",
-    "TEAM": "TIBU-RON CASTELLDEFELS"
-  },
   "1947180": {
     "PLAYER_NAME": "P. Muñoz Alcón",
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1947180",
-    "TEAM": "TIBU-RON CASTELLDEFELS"
-  },
-  "1893854": {
-    "PLAYER_NAME": "G. Rodriguez Flaque",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1893854",
     "TEAM": "TIBU-RON CASTELLDEFELS"
   },
   "1934032": {
@@ -2776,6 +2776,13 @@
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2219112",
+    "TEAM": "UE SANT CUGAT - OCCIDENT"
+  },
+  "2193669": {
+    "PLAYER_NAME": "M. Gonzalez De Ubieta Bello",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2193669",
     "TEAM": "UE SANT CUGAT - OCCIDENT"
   },
   "2150903": {
@@ -2820,6 +2827,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2355103",
     "TEAM": "UE SANT CUGAT - OCCIDENT"
   },
+  "1909787": {
+    "PLAYER_NAME": "A. Amabilino Perez",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1909787",
+    "TEAM": "UE SANT CUGAT - OCCIDENT"
+  },
   "2244178": {
     "PLAYER_NAME": "C. Bonazebi Loussakou",
     "POSITION": "C",
@@ -2839,20 +2853,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1926102",
-    "TEAM": "UE SANT CUGAT - OCCIDENT"
-  },
-  "1909787": {
-    "PLAYER_NAME": "A. Amabilino Perez",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1909787",
-    "TEAM": "UE SANT CUGAT - OCCIDENT"
-  },
-  "2193669": {
-    "PLAYER_NAME": "M. Gonzalez De Ubieta Bello",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2193669",
     "TEAM": "UE SANT CUGAT - OCCIDENT"
   },
   "2303399": {

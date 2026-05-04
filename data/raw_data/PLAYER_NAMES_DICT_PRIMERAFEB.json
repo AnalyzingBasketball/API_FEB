@@ -181,6 +181,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2185034",
     "TEAM": "CAJA RURAL CB ZAMORA"
   },
+  "2087017": {
+    "PLAYER_NAME": "P. Montesdeoca Santana",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2087017",
+    "TEAM": "CAJA RURAL CB ZAMORA"
+  },
   "2261338": {
     "PLAYER_NAME": "C. Arranz Blanco",
     "POSITION": "",
@@ -657,18 +664,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2862296",
     "TEAM": "GRUPO CAESA SEGUROS FC CARTAGENA CB"
   },
-  "1525747": {
-    "PLAYER_NAME": "J. Lopez Santana",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1525747",
-    "TEAM": "GRUPO CAESA SEGUROS FC CARTAGENA CB"
-  },
   "2816798": {
     "PLAYER_NAME": "S. Thomas",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2816798",
+    "TEAM": "GRUPO CAESA SEGUROS FC CARTAGENA CB"
+  },
+  "1525747": {
+    "PLAYER_NAME": "J. Lopez Santana",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1525747",
     "TEAM": "GRUPO CAESA SEGUROS FC CARTAGENA CB"
   },
   "2371571": {
@@ -783,6 +790,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2325671",
     "TEAM": "GRUPO URETA TIZONA BURGOS"
   },
+  "2869253": {
+    "PLAYER_NAME": "M. Nugu",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2869253",
+    "TEAM": "GRUPO URETA TIZONA BURGOS"
+  },
   "2814904": {
     "PLAYER_NAME": "M. Jackson",
     "POSITION": "SG",
@@ -846,16 +860,9 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2814907",
     "TEAM": "GRUPO URETA TIZONA BURGOS"
   },
-  "2869253": {
-    "PLAYER_NAME": "M. Nugu",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2869253",
-    "TEAM": "GRUPO URETA TIZONA BURGOS"
-  },
   "2870010": {
     "PLAYER_NAME": "C. Czerapowicz",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2870010",
     "TEAM": "GRUPO URETA TIZONA BURGOS"
@@ -1140,18 +1147,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2862573",
     "TEAM": "INVEREADY GIPUZKOA"
   },
-  "2814207": {
-    "PLAYER_NAME": "T. Mcghie",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2814207",
-    "TEAM": "INVEREADY GIPUZKOA"
-  },
   "2082685": {
     "PLAYER_NAME": "M. Ansorregui Deba",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082685",
+    "TEAM": "INVEREADY GIPUZKOA"
+  },
+  "2814207": {
+    "PLAYER_NAME": "T. Mcghie",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2814207",
     "TEAM": "INVEREADY GIPUZKOA"
   },
   "2678649": {
@@ -1259,6 +1266,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2814190",
     "TEAM": "LEYMA CORUÑA"
   },
+  "2039654": {
+    "PLAYER_NAME": "C. Varela Romero",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2039654",
+    "TEAM": "LEYMA CORUÑA"
+  },
   "2651052": {
     "PLAYER_NAME": "Y. Mencia Hernandez",
     "POSITION": "PF",
@@ -1292,13 +1306,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815798",
-    "TEAM": "LEYMA CORUÑA"
-  },
-  "2039654": {
-    "PLAYER_NAME": "C. Varela Romero",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2039654",
     "TEAM": "LEYMA CORUÑA"
   },
   "2739841": {
@@ -1665,18 +1672,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2648543",
     "TEAM": "MOVISTAR ESTUDIANTES"
   },
-  "2746502": {
-    "PLAYER_NAME": "A. Brimah",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2746502",
-    "TEAM": "MOVISTAR ESTUDIANTES"
-  },
   "2865685": {
     "PLAYER_NAME": "M. Niang",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2865685",
+    "TEAM": "MOVISTAR ESTUDIANTES"
+  },
+  "2746502": {
+    "PLAYER_NAME": "A. Brimah",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2746502",
     "TEAM": "MOVISTAR ESTUDIANTES"
   },
   "2032354": {
@@ -1749,18 +1756,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815271",
     "TEAM": "PALMER BASKET MALLORCA PALMA"
   },
-  "2815273": {
-    "PLAYER_NAME": "N. Camacho De Sá",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815273",
-    "TEAM": "PALMER BASKET MALLORCA PALMA"
-  },
   "1593686": {
     "PLAYER_NAME": "A. Urdiain Labayen",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1593686",
+    "TEAM": "PALMER BASKET MALLORCA PALMA"
+  },
+  "2815273": {
+    "PLAYER_NAME": "N. Camacho De Sá",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815273",
     "TEAM": "PALMER BASKET MALLORCA PALMA"
   },
   "1591996": {

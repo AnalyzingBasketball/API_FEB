@@ -1441,6 +1441,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340888",
     "TEAM": "SPAR GRAN CANARIA"
   },
+  "2340892": {
+    "PLAYER_NAME": "M. Redondo De Santa Ana",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340892",
+    "TEAM": "SPAR GRAN CANARIA"
+  },
   "2251955": {
     "PLAYER_NAME": "M. Ocurto Mendes",
     "POSITION": "SF",
@@ -1537,13 +1544,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2352282",
-    "TEAM": "SPAR GRAN CANARIA"
-  },
-  "2340892": {
-    "PLAYER_NAME": "M. Redondo De Santa Ana",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340892",
     "TEAM": "SPAR GRAN CANARIA"
   },
   "2233043": {
