@@ -13,6 +13,20 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1777440",
     "TEAM": "ALFINDÉN CB"
   },
+  "2252180": {
+    "PLAYER_NAME": "M. Smith",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2252180",
+    "TEAM": "ALFINDÉN CB"
+  },
+  "1863375": {
+    "PLAYER_NAME": "A. Nuñez Navarro",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1863375",
+    "TEAM": "ALFINDÉN CB"
+  },
   "1622657": {
     "PLAYER_NAME": "D. Cortes Alejandre",
     "POSITION": "SG",
@@ -55,13 +69,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2697386",
     "TEAM": "ALFINDÉN CB"
   },
-  "2252180": {
-    "PLAYER_NAME": "M. Smith",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2252180",
-    "TEAM": "ALFINDÉN CB"
-  },
   "2117402": {
     "PLAYER_NAME": "I. Bousalem Garza",
     "POSITION": "",
@@ -74,13 +81,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1976794",
-    "TEAM": "ALFINDÉN CB"
-  },
-  "1863375": {
-    "PLAYER_NAME": "A. Nuñez Navarro",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1863375",
     "TEAM": "ALFINDÉN CB"
   },
   "1826981": {
@@ -1091,6 +1091,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1403783",
     "TEAM": "FLANIGAN CALVIÀ"
   },
+  "1827358": {
+    "PLAYER_NAME": "J. Bradley Mayol",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1827358",
+    "TEAM": "FLANIGAN CALVIÀ"
+  },
   "2225419": {
     "PLAYER_NAME": "A. Aguilera Melchor",
     "POSITION": "SF",
@@ -1124,13 +1131,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2433422",
-    "TEAM": "FLANIGAN CALVIÀ"
-  },
-  "1827358": {
-    "PLAYER_NAME": "J. Bradley Mayol",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1827358",
     "TEAM": "FLANIGAN CALVIÀ"
   },
   "2230747": {
@@ -1427,6 +1427,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2159488",
     "TEAM": "IBERSOL CB TARRAGONA"
   },
+  "2153717": {
+    "PLAYER_NAME": "A. Blázquez Farriol",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2153717",
+    "TEAM": "IBERSOL CB TARRAGONA"
+  },
   "2321430": {
     "PLAYER_NAME": "J. Roset Clavero",
     "POSITION": "SF",
@@ -1478,7 +1485,7 @@
   },
   "1685661": {
     "PLAYER_NAME": "D. Fernandez Stefanuto",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1685661",
     "TEAM": "IBERSOL CB TARRAGONA"
@@ -1488,13 +1495,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815825",
-    "TEAM": "IBERSOL CB TARRAGONA"
-  },
-  "2153717": {
-    "PLAYER_NAME": "A. Blázquez Farriol",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2153717",
     "TEAM": "IBERSOL CB TARRAGONA"
   },
   "2148935": {
@@ -1583,7 +1583,7 @@
   },
   "814664": {
     "PLAYER_NAME": "J. Riera Mestre",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=814664",
     "TEAM": "IMMO SA MARINA CIUTAT D’INCA BASQUET"
@@ -2050,6 +2050,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1399059",
     "TEAM": "PUJOL MOLLERUSSA"
   },
+  "2734269": {
+    "PLAYER_NAME": "C. Dickerson",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2734269",
+    "TEAM": "PUJOL MOLLERUSSA"
+  },
   "1950415": {
     "PLAYER_NAME": "E. Paradeda Vidal",
     "POSITION": "C",
@@ -2076,13 +2083,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2463323",
-    "TEAM": "PUJOL MOLLERUSSA"
-  },
-  "2734269": {
-    "PLAYER_NAME": "C. Dickerson",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2734269",
     "TEAM": "PUJOL MOLLERUSSA"
   },
   "1196165": {
