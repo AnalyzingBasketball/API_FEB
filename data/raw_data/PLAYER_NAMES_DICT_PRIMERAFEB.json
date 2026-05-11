@@ -461,18 +461,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2559072",
     "TEAM": "FLEXICAR FUENLABRADA"
   },
-  "2820727": {
-    "PLAYER_NAME": "J. Kasibabu Shilala",
-    "POSITION": "PF",
-    "POS_ORDER": 4,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2820727",
-    "TEAM": "FLEXICAR FUENLABRADA"
-  },
   "2446631": {
     "PLAYER_NAME": "P. Ali",
     "POSITION": "PF",
     "POS_ORDER": 4,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2446631",
+    "TEAM": "FLEXICAR FUENLABRADA"
+  },
+  "2820727": {
+    "PLAYER_NAME": "J. Kasibabu Shilala",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2820727",
     "TEAM": "FLEXICAR FUENLABRADA"
   },
   "2736363": {
@@ -776,18 +776,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2814906",
     "TEAM": "GRUPO URETA TIZONA BURGOS"
   },
-  "2138600": {
-    "PLAYER_NAME": "A. Huelves Garcia",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2138600",
-    "TEAM": "GRUPO URETA TIZONA BURGOS"
-  },
   "2325671": {
     "PLAYER_NAME": "A. Alonso Ruiz",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2325671",
+    "TEAM": "GRUPO URETA TIZONA BURGOS"
+  },
+  "2138600": {
+    "PLAYER_NAME": "A. Huelves Garcia",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2138600",
     "TEAM": "GRUPO URETA TIZONA BURGOS"
   },
   "2869253": {
