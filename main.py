@@ -345,9 +345,9 @@ def obtener_partidos_jornada(jornada_id, cal_url: str = None):
 
 
 # ── Lookup de partido desde CSV (sin scraping) ────────────────────────────────
-def buscar_partido_en_csv(equipo: str, jornada: int, comp_paths: dict = None):
+def buscar_partido_en_csv(equipo: str, jornada, comp_paths: dict = None):
     """
-    Busca el partido de un equipo en una jornada usando el BOXSCORE maestro.
+    Busca el partido de un equipo en una jornada (int o str) usando el BOXSCORE maestro.
     Retorna None si la jornada no está en el CSV (partido futuro).
     """
     _tabla = comp_paths["db_boxscore"] if comp_paths else "boxscore"
@@ -357,7 +357,12 @@ def buscar_partido_en_csv(equipo: str, jornada: int, comp_paths: dict = None):
         if df.empty:
             return None
         df['TEAM'] = df['TEAM'].replace(TEAM_FIXES_GLOBAL)
-        fila = df[(df['TEAM'] == equipo) & (df['ROUND'] == jornada)][['MATCHID','LOCATION']].drop_duplicates()
+        # Comparar ROUND como string para soportar tanto números como nombres de ronda
+        try:
+            jornada_cmp = int(jornada)
+            fila = df[(df['TEAM'] == equipo) & (pd.to_numeric(df['ROUND'], errors='coerce') == jornada_cmp)][['MATCHID','LOCATION']].drop_duplicates()
+        except (ValueError, TypeError):
+            fila = df[(df['TEAM'] == equipo) & (df['ROUND'].astype(str) == str(jornada))][['MATCHID','LOCATION']].drop_duplicates()
         if fila.empty:
             return None
         match_id = str(int(fila['MATCHID'].iloc[0]))
@@ -367,7 +372,30 @@ def buscar_partido_en_csv(equipo: str, jornada: int, comp_paths: dict = None):
         equipo_local     = local_rows.iloc[0] if not local_rows.empty else equipo
         equipo_visitante = away_rows.iloc[0]  if not away_rows.empty else "Visitante"
         return {"match_id": match_id, "equipo_local": equipo_local,
-                "equipo_visitante": equipo_visitante, "jugado": True, "fecha": f"Jornada {jornada}"}
+                "equipo_visitante": equipo_visitante, "jugado": True, "fecha": str(jornada)}
+    except Exception:
+        return None
+
+
+def buscar_partido_por_match_id(match_id: str, comp_paths: dict = None):
+    """Busca un partido directamente por su match_id en el BOXSCORE."""
+    _tabla = comp_paths["db_boxscore"] if comp_paths else "boxscore"
+    _csv   = comp_paths["boxscore"]    if comp_paths else FILE_MASTER_BOXSCORE
+    try:
+        df = read_table(_tabla, _csv)
+        if df.empty:
+            return None
+        df['TEAM'] = df['TEAM'].replace(TEAM_FIXES_GLOBAL)
+        match_teams = df[df['MATCHID'].astype(str) == str(match_id)][['TEAM','LOCATION','ROUND']].drop_duplicates()
+        if match_teams.empty:
+            return None
+        local_rows = match_teams[match_teams['LOCATION'] == 'HOME']['TEAM']
+        away_rows  = match_teams[match_teams['LOCATION'] == 'AWAY']['TEAM']
+        ronda = match_teams['ROUND'].iloc[0]
+        equipo_local     = local_rows.iloc[0] if not local_rows.empty else "Local"
+        equipo_visitante = away_rows.iloc[0]  if not away_rows.empty else "Visitante"
+        return {"match_id": match_id, "equipo_local": equipo_local,
+                "equipo_visitante": equipo_visitante, "jugado": True, "fecha": str(ronda)}
     except Exception:
         return None
 
@@ -1701,6 +1729,47 @@ def info_liga_api(competicion: str = Query(default="primerafeb")):
         "rondas_playoff": rondas_playoff,
     })
 
+# === ENDPOINT: PARTIDOS DE UN EQUIPO (con etiquetas para el selector) ===
+@app.get("/partidos_equipo")
+def partidos_equipo_api(equipo: str, competicion: str = Query(default="primerafeb")):
+    """
+    Devuelve todos los partidos de un equipo con etiquetas amigables.
+    Jornadas regulares: {label: 'Jornada 22', value: '22'}
+    Playoffs:           {label: 'Cuartos de Final - Partido 1 (93-77)', value: 'MATCHID:2513251'}
+    """
+    cp = get_comp_paths(competicion)
+    try:
+        df_cal = pd.read_csv(cp["calendar"])
+        df_box = read_table(cp["db_boxscore"], cp["boxscore"])
+        if df_box.empty or df_cal.empty:
+            return JSONResponse(content={"partidos": []})
+        df_box['TEAM'] = df_box['TEAM'].replace(TEAM_FIXES_GLOBAL)
+        team_matches = set(df_box[df_box['TEAM'] == equipo]['MATCHID'].astype(str).tolist())
+        df_cal['MATCHID'] = df_cal['MATCHID'].astype(str)
+        df_equipo = df_cal[df_cal['MATCHID'].isin(team_matches)].copy()
+        partidos = []
+        round_counts = {}
+        for _, row in df_equipo.iterrows():
+            rnd   = str(row['ROUND'])
+            score = str(row.get('SCORE_STR', ''))
+            jugado = bool(re.search(r'\d+\s*[-–]\s*\d+', score))
+            try:
+                rnd_int = int(rnd)
+                label = f"Jornada {rnd_int}"
+                value = str(rnd_int)
+            except ValueError:
+                round_counts[rnd] = round_counts.get(rnd, 0) + 1
+                n = round_counts[rnd]
+                score_str = f" ({score})" if jugado else ""
+                label = f"{rnd} - Partido {n}{score_str}"
+                value = f"MATCHID:{row['MATCHID']}"
+            partidos.append({"match_id": str(row['MATCHID']), "label": label,
+                             "value": value, "jugado": jugado, "round": rnd})
+        return JSONResponse(content={"partidos": partidos})
+    except Exception as e:
+        return JSONResponse(content={"partidos": [], "error": str(e)})
+
+
 # === ENDPOINT: EQUIPOS POR COMPETICIÓN ===
 @app.get("/equipos")
 def equipos_api(competicion: str = Query(default="primerafeb")):
@@ -1724,22 +1793,33 @@ def competiciones_api():
 
 # === MÓDULO 12 ===
 @app.get("/generar", response_class=HTMLResponse)
-def generar_scouting(jornada: int = None, equipo: str = "MOVISTAR ESTUDIANTES", tipo_reporte: str = "quintetos", competicion: str = Query(default="primerafeb")):
+def generar_scouting(jornada: str = None, match_id: str = None, equipo: str = "MOVISTAR ESTUDIANTES", tipo_reporte: str = "quintetos", competicion: str = Query(default="primerafeb")):
     cp = get_comp_paths(competicion)
-    if jornada is None:
-        jornada = _get_jornadas_info(cp)["jornada_actual"]
     cargar_roles_m12(comp_paths=cp)
     if not os.path.exists(cp["logos"]): extraer_diccionario_logos(cal_url=cp["cal_url"], logos_path=cp["logos"])
 
-    partido = buscar_partido_en_csv(equipo, jornada, comp_paths=cp)
-    if partido is None:
-        partido = obtener_partido_por_scraping(equipo, jornada, cal_url=cp["cal_url"])
+    # Prioridad: match_id directo > jornada
+    partido = None
+    if match_id:
+        partido = buscar_partido_por_match_id(match_id, comp_paths=cp)
+        if partido is None:
+            raise HTTPException(status_code=404, detail=f"No se encontró el partido {match_id}.")
+    else:
+        if jornada is None:
+            jornada = str(_get_jornadas_info(cp)["jornada_actual"])
+        partido = buscar_partido_en_csv(equipo, jornada, comp_paths=cp)
+        if partido is None:
+            try:
+                jornada_int = int(jornada)
+                partido = obtener_partido_por_scraping(equipo, jornada_int, cal_url=cp["cal_url"])
+            except (ValueError, TypeError):
+                pass
     if partido is None:
         raise HTTPException(status_code=404, detail=f"No se encontró el partido de {equipo} en la jornada {jornada}.")
     if not partido['jugado']:
         raise HTTPException(status_code=400, detail="El partido aún no se ha disputado.")
 
-    # Devolver caché de BD si existe
+    jornada_label = match_id if match_id else jornada
     _cache_key = f"{competicion}_{tipo_reporte.lower()}_{partido['match_id']}"
     _cached    = get_html_cache(_cache_key)
     if _cached: return HTMLResponse(content=_cached, status_code=200)
@@ -1747,7 +1827,7 @@ def generar_scouting(jornada: int = None, equipo: str = "MOVISTAR ESTUDIANTES", 
     if not extraer_partido_api(partido['match_id'], comp_slug=competicion):
         raise HTTPException(status_code=500, detail="Error al descargar datos del partido.")
     ruta_pbp_clean, ruta_box_clean = limpiar_y_avanzadas(
-        partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], jornada
+        partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], jornada_label
     )
     if tipo_reporte.lower() == "quintetos":
         ruta_final = generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], partido['fecha'], comp_paths=cp)
