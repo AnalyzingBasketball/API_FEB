@@ -92,7 +92,7 @@
   },
   "2004637": {
     "PLAYER_NAME": "G. Pardos Martinez",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2004637",
     "TEAM": "ALFINDÉN CB"
@@ -1499,7 +1499,7 @@
   },
   "2148935": {
     "PLAYER_NAME": "T. Kohan López",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2148935",
     "TEAM": "IBERSOL CB TARRAGONA"
@@ -1765,7 +1765,7 @@
   },
   "1778486": {
     "PLAYER_NAME": "J. Malo Montorio",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1778486",
     "TEAM": "LETRA CORPOREA BARBASTRO"
@@ -2640,7 +2640,7 @@
   },
   "2557004": {
     "PLAYER_NAME": "D. Pérez De San Román",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2557004",
     "TEAM": "TEKNEI BIZKAIA ZORNOTZA"

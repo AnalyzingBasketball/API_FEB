@@ -76,18 +76,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2642482",
     "TEAM": "BARÇA ATLÈTIC"
   },
-  "2550554": {
-    "PLAYER_NAME": "S. Keita",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2550554",
-    "TEAM": "BARÇA ATLÈTIC"
-  },
   "2647995": {
     "PLAYER_NAME": "M. Keita",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2647995",
+    "TEAM": "BARÇA ATLÈTIC"
+  },
+  "2550554": {
+    "PLAYER_NAME": "S. Keita",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2550554",
     "TEAM": "BARÇA ATLÈTIC"
   },
   "2743264": {
@@ -258,18 +258,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2690845",
     "TEAM": "BURGOS GRUPO DE SANTIAGO"
   },
-  "2535384": {
-    "PLAYER_NAME": "M. Bella Cabañas",
-    "POSITION": "SG",
-    "POS_ORDER": 2,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2535384",
-    "TEAM": "BURGOS GRUPO DE SANTIAGO"
-  },
   "2103560": {
     "PLAYER_NAME": "A. Reyes Abad",
     "POSITION": "SG",
     "POS_ORDER": 2,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2103560",
+    "TEAM": "BURGOS GRUPO DE SANTIAGO"
+  },
+  "2535384": {
+    "PLAYER_NAME": "M. Bella Cabañas",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2535384",
     "TEAM": "BURGOS GRUPO DE SANTIAGO"
   },
   "2220551": {
@@ -321,6 +321,83 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2210291",
     "TEAM": "BURGOS GRUPO DE SANTIAGO"
   },
+  "2059345": {
+    "PLAYER_NAME": "S. Juher Valdayo",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2059345",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "2189953": {
+    "PLAYER_NAME": "J. Esqueu Porras",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2189953",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "2191243": {
+    "PLAYER_NAME": "O. Molist Segalés",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2191243",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "2076102": {
+    "PLAYER_NAME": "P. Coll Quintanas",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2076102",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "2735828": {
+    "PLAYER_NAME": "K. Brunot",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2735828",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "1928511": {
+    "PLAYER_NAME": "O. Fuentes Pelufo",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1928511",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "2148652": {
+    "PLAYER_NAME": "E. Sanmartin Soria",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2148652",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "1938336": {
+    "PLAYER_NAME": "J. Llinas Terradas",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1938336",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "2151522": {
+    "PLAYER_NAME": "I. Soler Valenzuela",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2151522",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "2461266": {
+    "PLAYER_NAME": "A. Serkan Stefanov",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2461266",
+    "TEAM": "BÀSQUET GIRONA"
+  },
+  "2148183": {
+    "PLAYER_NAME": "B. Vinyet Riera",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2148183",
+    "TEAM": "BÀSQUET GIRONA"
+  },
   "2438847": {
     "PLAYER_NAME": "A. Savkov",
     "POSITION": "PG",
@@ -356,13 +433,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1975428",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
-  "2016757": {
-    "PLAYER_NAME": "P. Campo Teruel",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2016757",
-    "TEAM": "CASADEMONT ZARAGOZA"
-  },
   "2073295": {
     "PLAYER_NAME": "R. Valero Lopez",
     "POSITION": "SF",
@@ -375,6 +445,13 @@
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2084765",
+    "TEAM": "CASADEMONT ZARAGOZA"
+  },
+  "2016757": {
+    "PLAYER_NAME": "P. Campo Teruel",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2016757",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
   "2199699": {
@@ -517,6 +594,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2362551",
     "TEAM": "FUNDACIÓN CB CANARIAS"
   },
+  "2817776": {
+    "PLAYER_NAME": "I. Beton",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2817776",
+    "TEAM": "FUNDACIÓN CB CANARIAS"
+  },
   "2064159": {
     "PLAYER_NAME": "M. Crujeiras Moreiras",
     "POSITION": "C",
@@ -536,13 +620,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2229563",
-    "TEAM": "FUNDACIÓN CB CANARIAS"
-  },
-  "2817776": {
-    "PLAYER_NAME": "I. Beton",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2817776",
     "TEAM": "FUNDACIÓN CB CANARIAS"
   },
   "2819094": {
@@ -908,5 +985,68 @@
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2386746",
     "TEAM": "REAL MADRID"
+  },
+  "2024478": {
+    "PLAYER_NAME": "A. Blanco Cardona",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2024478",
+    "TEAM": "VALENCIA BASKET"
+  },
+  "2377844": {
+    "PLAYER_NAME": "G. Tazo Camacho",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2377844",
+    "TEAM": "VALENCIA BASKET"
+  },
+  "2087872": {
+    "PLAYER_NAME": "V. Iglesias Martinez",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2087872",
+    "TEAM": "VALENCIA BASKET"
+  },
+  "2171580": {
+    "PLAYER_NAME": "M. Grau Maeso",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2171580",
+    "TEAM": "VALENCIA BASKET"
+  },
+  "2180937": {
+    "PLAYER_NAME": "T. Talcis Grikietis",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2180937",
+    "TEAM": "VALENCIA BASKET"
+  },
+  "2649709": {
+    "PLAYER_NAME": "N. Tolan",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2649709",
+    "TEAM": "VALENCIA BASKET"
+  },
+  "2144461": {
+    "PLAYER_NAME": "J. Carot Hernandez",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2144461",
+    "TEAM": "VALENCIA BASKET"
+  },
+  "2558496": {
+    "PLAYER_NAME": "D. Osayi James",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2558496",
+    "TEAM": "VALENCIA BASKET"
+  },
+  "2743397": {
+    "PLAYER_NAME": "M. Leitao Ribeiro Do Sacramento E",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2743397",
+    "TEAM": "VALENCIA BASKET"
   }
 }
