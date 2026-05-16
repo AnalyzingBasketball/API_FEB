@@ -1114,6 +1114,27 @@ def cargar_datos_m13(comp_paths: dict = None):
 def create_signatures_m13(row):
     return _create_signatures(row, map_role_m13)
 
+def _resolver_matchid_desde_rnd(rnd_str: str, eq: str, df_lineups) -> int:
+    """Convierte un valor de rnd ('22' o 'MATCHID:2513251') a un match_id numérico."""
+    if str(rnd_str).startswith("MATCHID:"):
+        return int(str(rnd_str).split(":", 1)[1])
+    try:
+        rnd_int = int(rnd_str)
+        # Buscar el MATCHID del partido de ese equipo en esa jornada numérica
+        eq_rows = df_lineups[pd.to_numeric(df_lineups['ROUND'], errors='coerce') == rnd_int]
+        if eq != "TODOS" and not eq_rows.empty:
+            eq_rows = eq_rows[eq_rows['TEAM'] == eq]
+        if not eq_rows.empty:
+            return int(eq_rows['MATCHID'].iloc[0])
+        # Fallback: buscar cualquier matchid de esa jornada
+        any_rows = df_lineups[pd.to_numeric(df_lineups['ROUND'], errors='coerce') == rnd_int]
+        if not any_rows.empty:
+            return int(any_rows['MATCHID'].iloc[0])
+    except Exception:
+        pass
+    return 0
+
+
 def generar_html_splits(s_rnd, e_rnd, eq, m_filt, comp_paths: dict = None):
     cargar_datos_m13(comp_paths=comp_paths)
 
@@ -1127,14 +1148,23 @@ def generar_html_splits(s_rnd, e_rnd, eq, m_filt, comp_paths: dict = None):
         if col not in df_lineups_master.columns: df_lineups_master[col] = ""
         else: df_lineups_master[col] = df_lineups_master[col].apply(safe_id)
 
-    if 'ROUND' in df_lineups_master.columns:
-        df_lineups_master['ROUND_NUM'] = pd.to_numeric(df_lineups_master['ROUND'], errors='coerce').fillna(0).astype(int)
-        df_split = df_lineups_master[(df_lineups_master['ROUND_NUM'] >= s_rnd) & (df_lineups_master['ROUND_NUM'] <= e_rnd)].copy()
+    # Filtro por rango: soporta jornadas numéricas ("22") y playoffs ("MATCHID:2513251")
+    s_str, e_str = str(s_rnd), str(e_rnd)
+    has_matchid = s_str.startswith("MATCHID:") or e_str.startswith("MATCHID:")
+    if has_matchid or not (s_str.lstrip('-').isdigit() and e_str.lstrip('-').isdigit()):
+        s_mid = _resolver_matchid_desde_rnd(s_str, eq, df_lineups_master)
+        e_mid = _resolver_matchid_desde_rnd(e_str, eq, df_lineups_master)
+        df_split = df_lineups_master[
+            (df_lineups_master['MATCHID'].astype(int) >= s_mid) &
+            (df_lineups_master['MATCHID'].astype(int) <= e_mid)
+        ].copy()
     else:
-        df_split = df_lineups_master.copy()
+        s_int, e_int = int(s_str), int(e_str)
+        df_lineups_master['ROUND_NUM'] = pd.to_numeric(df_lineups_master['ROUND'], errors='coerce').fillna(0).astype(int)
+        df_split = df_lineups_master[(df_lineups_master['ROUND_NUM'] >= s_int) & (df_lineups_master['ROUND_NUM'] <= e_int)].copy()
 
     if eq != "TODOS": df_split = df_split[df_split['TEAM'] == eq].copy()
-    if df_split.empty: raise HTTPException(status_code=404, detail=f"No hay datos para {eq} en jornadas {s_rnd}-{e_rnd}.")
+    if df_split.empty: raise HTTPException(status_code=404, detail=f"No hay datos para {eq} en el rango seleccionado.")
 
     df_split[['ARCHETYPE','REAL_LINEUP']] = df_split.apply(create_signatures_m13, axis=1)
     df_valid = df_split[df_split['ARCHETYPE'] != "Incomplete"].copy()
@@ -1838,11 +1868,10 @@ def generar_scouting(jornada: str = None, match_id: str = None, equipo: str = "M
 
 # === MÓDULO 13 ===
 @app.get("/splits", response_class=HTMLResponse)
-def splits_api(s_rnd: int = 1, e_rnd: int = None, eq: str = "MOVISTAR ESTUDIANTES", m_filt: int = 10, competicion: str = Query(default="primerafeb")):
+def splits_api(s_rnd: str = "1", e_rnd: str = None, eq: str = "MOVISTAR ESTUDIANTES", m_filt: int = 10, competicion: str = Query(default="primerafeb")):
     cp = get_comp_paths(competicion)
     if e_rnd is None:
-        e_rnd = _get_jornadas_info(cp)["jornada_actual"]
-    if s_rnd > e_rnd: raise HTTPException(status_code=400, detail="La jornada de inicio no puede ser posterior a la jornada final.")
+        e_rnd = str(_get_jornadas_info(cp)["jornada_actual"])
     ruta_final = generar_html_splits(s_rnd, e_rnd, eq, m_filt, comp_paths=cp)
     with open(ruta_final, "r", encoding="utf-8") as f: html_content = f.read()
     return HTMLResponse(content=html_content, status_code=200)
@@ -1870,7 +1899,7 @@ def generar_contextual(eq: str = "MOVISTAR ESTUDIANTES", venue: str = "ALL", n_g
     if df_team_games.empty:
         raise HTTPException(status_code=404, detail=f"No hay partidos para '{eq}' con venue={venue}.")
 
-    df_team_games    = df_team_games.sort_values('ROUND', ascending=False).head(n_games)
+    df_team_games    = df_team_games.sort_values('MATCHID', ascending=False).head(n_games)
     jornadas_validas = df_team_games['ROUND'].tolist()
     match_ids_int    = df_team_games['MATCHID'].tolist()
     jornadas_count   = len(jornadas_validas)
@@ -1889,7 +1918,7 @@ def generar_contextual(eq: str = "MOVISTAR ESTUDIANTES", venue: str = "ALL", n_g
 
         df_split = df_lineups_master[
             (df_lineups_master['TEAM'] == eq) &
-            (pd.to_numeric(df_lineups_master['ROUND'], errors='coerce').isin(jornadas_validas))
+            (df_lineups_master['MATCHID'].isin(match_ids_int))
         ].copy()
         if df_split.empty:
             raise HTTPException(status_code=404, detail="No hay datos de quintetos registrados para esas jornadas.")
