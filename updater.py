@@ -53,25 +53,72 @@ def build_paths(comp: dict) -> dict:
     raw_dir = os.path.join(RAW_API_DIR, slug)
     os.makedirs(raw_dir, exist_ok=True)
     return {
-        "slug":         slug,
-        "label":        label,
-        "cal_url":      f"https://www.feb.es/competiciones/calendario/{slug}/{comp['id']}/{comp['url_year']}",
-        "raw_dir":      raw_dir,
-        "roster":       os.path.join(DATA_DIR, f"ROSTER_{label}_2526.csv"),
-        "calendar":     os.path.join(DATA_DIR, f"CALENDAR_{label}_2526.csv"),
-        "roles":        os.path.join(DATA_DIR, f"PLAYER_ROLES_FINAL_2526_{label}.csv"),
-        "photos":       os.path.join(DATA_DIR, "raw_data", f"PLAYER_NAMES_DICT_{label}.json"),
-        "boxscore":     os.path.join(DATA_DIR, f"BOXSCORE_{label}_2526.csv"),
-        "teamstats":    os.path.join(DATA_DIR, f"TEAMSTATS_{label}_2526.csv"),
-        "pbp":          os.path.join(DATA_DIR, f"PLAYBYPLAY_{label}_2526.csv"),
-        "lineups":      os.path.join(DATA_DIR, f"LINEUPS_{label}_2526.csv"),
-        "logos":        os.path.join(DATA_DIR, f"logos_{slug}.json"),
-        "db_boxscore":  f"boxscore_{slug}",
-        "db_lineups":   f"lineups_{slug}",
-        "db_pbp":       f"pbp_{slug}",
-        "db_teamstats": f"teamstats_{slug}",
-        "db_roster":    f"roster_{slug}",
+        "slug":            slug,
+        "label":           label,
+        "cal_url":         f"https://www.feb.es/competiciones/calendario/{slug}/{comp['id']}/{comp['url_year']}",
+        "raw_dir":         raw_dir,
+        "roster":          os.path.join(DATA_DIR, f"ROSTER_{label}_2526.csv"),
+        "calendar":        os.path.join(DATA_DIR, f"CALENDAR_{label}_2526.csv"),
+        "roles":           os.path.join(DATA_DIR, f"PLAYER_ROLES_FINAL_2526_{label}.csv"),
+        "photos":          os.path.join(DATA_DIR, "raw_data", f"PLAYER_NAMES_DICT_{label}.json"),
+        "boxscore":        os.path.join(DATA_DIR, f"BOXSCORE_{label}_2526.csv"),
+        "teamstats":       os.path.join(DATA_DIR, f"TEAMSTATS_{label}_2526.csv"),
+        "pbp":             os.path.join(DATA_DIR, f"PLAYBYPLAY_{label}_2526.csv"),
+        "lineups":         os.path.join(DATA_DIR, f"LINEUPS_{label}_2526.csv"),
+        "logos":           os.path.join(DATA_DIR, f"logos_{slug}.json"),
+        "db_boxscore":     f"boxscore_{slug}",
+        "db_lineups":      f"lineups_{slug}",
+        "db_pbp":          f"pbp_{slug}",
+        "db_teamstats":    f"teamstats_{slug}",
+        "db_roster":       f"roster_{slug}",
+        "playoff_series":  comp.get("playoff_series", []),
     }
+
+# ==============================================================================
+# PLAYOFFS: SCRAPING DE SERIES
+# ==============================================================================
+def _mapear_ronda_playoff(texto: str) -> str:
+    t = texto.lower()
+    if "1/4" in t or "cuarto" in t:
+        return "Cuartos de Final"
+    if "1/2" in t or "semi" in t:
+        return "Semifinal"
+    if "final" in t:
+        return "Final"
+    return "Playoff"
+
+
+def scrape_playoff_series(series_id: int) -> list:
+    """
+    Parsea https://baloncestoenvivo.feb.es/series/{series_id} y devuelve
+    lista de dicts {MATCHID, ROUND, SCORE_STR} para todos los partidos.
+    """
+    url = f"https://baloncestoenvivo.feb.es/series/{series_id}"
+    r   = requests.get(url, headers=HEADERS_WEB, timeout=15)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    datos = []
+    for col in soup.find_all('div', class_='columna'):
+        h1 = col.find('h1', class_='titulo-modulo')
+        if not h1:
+            continue
+        round_name = _mapear_ronda_playoff(h1.get_text(strip=True))
+        tabla = col.find('table')
+        if not tabla:
+            continue
+        for fila in tabla.find_all('tr'):
+            if fila.find('th'):
+                continue
+            a_partido = fila.find('a', href=re.compile(r'[Pp]artido\.aspx\?p=', re.IGNORECASE))
+            if not a_partido:
+                continue
+            m = re.search(r'p=(\d+)', a_partido['href'], re.IGNORECASE)
+            if not m:
+                continue
+            match_id  = m.group(1)
+            resultado = a_partido.get_text(strip=True)
+            datos.append({"MATCHID": match_id, "ROUND": round_name, "SCORE_STR": resultado})
+    return datos
+
 
 # ==============================================================================
 # FASE 1: DESCARGA DE CALENDARIO Y JSONS RAW
@@ -106,6 +153,29 @@ def actualizar_calendario_y_jsons(paths: dict):
         if not os.path.exists(paths["calendar"]): return
         df_cal = pd.read_csv(paths["calendar"])
 
+    # ── PLAYOFFS ──────────────────────────────────────────────────────────────
+    playoff_series_ids = paths.get("playoff_series", [])
+    if playoff_series_ids:
+        print("🏆 Scrapeando series de playoffs...")
+        playoff_rows = []
+        for sid in playoff_series_ids:
+            try:
+                rows = scrape_playoff_series(sid)
+                playoff_rows.extend(rows)
+                print(f"   Serie {sid}: {len(rows)} partidos encontrados")
+            except Exception as e:
+                print(f"   ⚠️ Error scrapeando serie {sid}: {e}")
+        if playoff_rows:
+            df_playoffs = pd.DataFrame(playoff_rows).drop_duplicates(subset=['MATCHID'])
+            ids_existentes = set(df_cal['MATCHID'].astype(str))
+            df_playoffs_new = df_playoffs[~df_playoffs['MATCHID'].astype(str).isin(ids_existentes)]
+            if not df_playoffs_new.empty:
+                df_cal = pd.concat([df_cal, df_playoffs_new], ignore_index=True)
+                df_cal.to_csv(paths["calendar"], index=False, encoding='utf-8-sig')
+                print(f"   ✅ {len(df_playoffs_new)} partidos de playoffs añadidos al calendario.")
+            else:
+                print("   ℹ️ Playoffs ya registrados en el calendario, sin cambios.")
+
     print("\n📡 Buscando partidos finalizados para descargar JSONs...")
     jugados = df_cal[df_cal['SCORE_STR'].astype(str).str.contains(r'\d+\s*-\s*\d+', regex=True, na=False)]
     session = requests.Session()
@@ -123,6 +193,11 @@ def actualizar_calendario_y_jsons(paths: dict):
                 res_web     = session.get(url_web)
                 soup        = BeautifulSoup(res_web.text, 'html.parser')
                 token_input = soup.find('input', id='_ctl0_token')
+                if not token_input:
+                    url_alt = f"https://baloncestoenvivo.feb.es/Partido.aspx?p={match_id}"
+                    res_alt = session.get(url_alt)
+                    soup2   = BeautifulSoup(res_alt.text, 'html.parser')
+                    token_input = soup2.find('input', id='_ctl0_token')
                 if not token_input: continue
                 token = token_input['value'].strip()
                 session.headers.update({"Authorization": f"Bearer {token}", "Origin": BASE_URL,

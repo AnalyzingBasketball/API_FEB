@@ -1659,13 +1659,15 @@ def _get_jornadas_info(comp_paths: dict) -> dict:
     try:
         df_cal = pd.read_csv(comp_paths["calendar"])
         if 'ROUND' in df_cal.columns:
-            total_jornadas = int(df_cal['ROUND'].max())
+            _rounds_num    = pd.to_numeric(df_cal['ROUND'], errors='coerce')
+            total_jornadas = int(_rounds_num.max()) if not _rounds_num.isna().all() else 34
     except Exception:
         pass
     try:
         df_box = read_table(comp_paths["db_boxscore"], comp_paths["boxscore"])
         if not df_box.empty and 'ROUND' in df_box.columns:
-            jornada_actual = int(df_box['ROUND'].max())
+            _rounds_num   = pd.to_numeric(df_box['ROUND'], errors='coerce')
+            jornada_actual = int(_rounds_num.max()) if not _rounds_num.isna().all() else 0
     except Exception:
         pass
     return {"jornada_actual": jornada_actual, "total_jornadas": total_jornadas}
