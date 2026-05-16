@@ -1760,8 +1760,7 @@ def partidos_equipo_api(equipo: str, competicion: str = Query(default="primerafe
             except ValueError:
                 round_counts[rnd] = round_counts.get(rnd, 0) + 1
                 n = round_counts[rnd]
-                score_str = f" ({score})" if jugado else ""
-                label = f"{rnd} - Partido {n}{score_str}"
+                label = f"{rnd} - Partido {n}"
                 value = f"MATCHID:{row['MATCHID']}"
             partidos.append({"match_id": str(row['MATCHID']), "label": label,
                              "value": value, "jugado": jugado, "round": rnd})
