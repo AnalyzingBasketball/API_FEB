@@ -27,7 +27,7 @@ COMPETITIONS = {
         "label":          "LFCHALLENGE",
         "url_year":       2025,
         "name":           "LF Challenge",
-        "playoff_series": [],
+        "playoff_series": [44445],
     },
     "segundafeb": {
         "id":             2,
@@ -35,7 +35,7 @@ COMPETITIONS = {
         "label":          "SEGUNDAFEB",
         "url_year":       2025,
         "name":           "Segunda FEB",
-        "playoff_series": [],
+        "playoff_series": [44451, 44452, 44453],
     },
     "lf2": {
         "id":             9,
@@ -43,7 +43,7 @@ COMPETITIONS = {
         "label":          "LF2",
         "url_year":       2025,
         "name":           "LF-2",
-        "playoff_series": [],
+        "playoff_series": [44785, 44786],
     },
     "tercerafeb": {
         "id":             3,
@@ -59,6 +59,6 @@ COMPETITIONS = {
         "label":          "LIGAU",
         "url_year":       2025,
         "name":           "Liga U",
-        "playoff_series": [],
+        "playoff_series": [44857],
     },
 }
