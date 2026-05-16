@@ -19,7 +19,7 @@ COMPETITIONS = {
         "label":          "LFENDESA",
         "url_year":       2025,
         "name":           "LF Endesa",
-        "playoff_series": [],
+        "playoff_series": [44443],
     },
     "lfchallenge": {
         "id":             67,
