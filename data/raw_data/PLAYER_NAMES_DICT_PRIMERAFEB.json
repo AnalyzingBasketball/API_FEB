@@ -1833,18 +1833,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1909300",
     "TEAM": "PALMER BASKET MALLORCA PALMA"
   },
-  "2276415": {
-    "PLAYER_NAME": "A. Wintering",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2276415",
-    "TEAM": "SÚPER AGROPAL PALENCIA"
-  },
   "2533871": {
     "PLAYER_NAME": "I. Jakovics",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2533871",
+    "TEAM": "SÚPER AGROPAL PALENCIA"
+  },
+  "2276415": {
+    "PLAYER_NAME": "A. Wintering",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2276415",
     "TEAM": "SÚPER AGROPAL PALENCIA"
   },
   "1750421": {
