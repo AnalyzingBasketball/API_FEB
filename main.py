@@ -1683,12 +1683,22 @@ def info_liga_api(competicion: str = Query(default="primerafeb")):
     if not df.empty:
         df['TEAM'] = df['TEAM'].replace(TEAM_FIXES_GLOBAL)
         equipos = sorted(df['TEAM'].dropna().unique().tolist())
+    rondas_playoff = []
+    try:
+        df_cal = pd.read_csv(cp["calendar"])
+        if 'ROUND' in df_cal.columns:
+            no_numericas = df_cal[pd.to_numeric(df_cal['ROUND'], errors='coerce').isna()]['ROUND'].dropna().unique().tolist()
+            orden = ["Cuartos de Final", "Semifinal", "Final"]
+            rondas_playoff = [r for r in orden if r in no_numericas] + [r for r in no_numericas if r not in orden]
+    except Exception:
+        pass
     return JSONResponse(content={
         "competicion": competicion,
         "nombre": COMPETITIONS.get(competicion, {}).get("name", competicion),
         "jornada_actual": info["jornada_actual"],
         "total_jornadas": info["total_jornadas"],
         "equipos": equipos,
+        "rondas_playoff": rondas_playoff,
     })
 
 # === ENDPOINT: EQUIPOS POR COMPETICIÓN ===

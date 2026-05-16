@@ -97,14 +97,12 @@ def scrape_playoff_series(series_id: int) -> list:
     r   = requests.get(url, headers=HEADERS_WEB, timeout=15)
     soup = BeautifulSoup(r.text, 'html.parser')
     datos = []
-    for col in soup.find_all('div', class_='columna'):
-        h1 = col.find('h1', class_='titulo-modulo')
-        if not h1:
-            continue
-        round_name = _mapear_ronda_playoff(h1.get_text(strip=True))
-        tabla = col.find('table')
-        if not tabla:
-            continue
+    # La página usa tablas con id seriesRepeater__ctl{N}_partidosDataGrid,
+    # cada una precedida por un h1.titulo-modulo con el nombre de la ronda.
+    tablas = soup.find_all('table', id=re.compile(r'seriesRepeater.*partidosDataGrid', re.IGNORECASE))
+    for tabla in tablas:
+        h1 = tabla.find_previous_sibling('h1', class_='titulo-modulo')
+        round_name = _mapear_ronda_playoff(h1.get_text(strip=True)) if h1 else "Playoff"
         for fila in tabla.find_all('tr'):
             if fila.find('th'):
                 continue
