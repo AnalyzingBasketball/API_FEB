@@ -209,18 +209,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2819700",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
-  "1572736": {
-    "PLAYER_NAME": "L. Flores Costa",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1572736",
-    "TEAM": "CASADEMONT ZARAGOZA"
-  },
   "703084": {
     "PLAYER_NAME": "M. Ortiz Vives",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=703084",
+    "TEAM": "CASADEMONT ZARAGOZA"
+  },
+  "1572736": {
+    "PLAYER_NAME": "L. Flores Costa",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1572736",
     "TEAM": "CASADEMONT ZARAGOZA"
   },
   "2814809": {
