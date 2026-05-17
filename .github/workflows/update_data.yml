@@ -2,8 +2,16 @@ name: Robot de Actualizacion FEB
 
 on:
   schedule:
-    # Se ejecuta automáticamente todos los martes a las 04:00 AM (Hora UTC)
-  - cron: '0 4 * * 1,4'
+    # 06:30 UTC (08:30 España) — antes de la sesión matutina (primer partido 9:30)
+    - cron: '30 6 * * *'
+    # 11:00 UTC (13:00 España) — tras los partidos de 9:30 y 10:30
+    - cron: '0 11 * * *'
+    # 13:00 UTC (15:00 España) — tras los partidos de 11:30 y 12:30
+    - cron: '0 13 * * *'
+    # 19:00 UTC (21:00 España) — tras el partido de tarde de 17:30 (~1.5h duración)
+    - cron: '0 19 * * *'
+    # 21:30 UTC (23:30 España) — tras el partido de noche de 19:30 + ligas FEB nocturnas
+    - cron: '30 21 * * *'
   workflow_dispatch:
     # Esto nos permite ejecutar el robot manualmente con un botón cuando queramos
 
