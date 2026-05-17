@@ -62,6 +62,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2374402",
     "TEAM": "ALFINDÉN CB"
   },
+  "2004637": {
+    "PLAYER_NAME": "G. Pardos Martinez",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2004637",
+    "TEAM": "ALFINDÉN CB"
+  },
   "2697386": {
     "PLAYER_NAME": "A. Gomes Correia",
     "POSITION": "",
@@ -88,13 +95,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1826981",
-    "TEAM": "ALFINDÉN CB"
-  },
-  "2004637": {
-    "PLAYER_NAME": "G. Pardos Martinez",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2004637",
     "TEAM": "ALFINDÉN CB"
   },
   "1799323": {
@@ -442,7 +442,7 @@
   },
   "2194530": {
     "PLAYER_NAME": "P. Marrón Rosa",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2194530",
     "TEAM": "C.B.ROSER"
@@ -1406,6 +1406,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2060201",
     "TEAM": "IBERSOL CB TARRAGONA"
   },
+  "2148935": {
+    "PLAYER_NAME": "T. Kohan López",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2148935",
+    "TEAM": "IBERSOL CB TARRAGONA"
+  },
   "1685661": {
     "PLAYER_NAME": "D. Fernandez Stefanuto",
     "POSITION": "SG",
@@ -1495,13 +1502,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815825",
-    "TEAM": "IBERSOL CB TARRAGONA"
-  },
-  "2148935": {
-    "PLAYER_NAME": "T. Kohan López",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2148935",
     "TEAM": "IBERSOL CB TARRAGONA"
   },
   "2093358": {
@@ -1749,6 +1749,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1779707",
     "TEAM": "LETRA CORPOREA BARBASTRO"
   },
+  "1778486": {
+    "PLAYER_NAME": "J. Malo Montorio",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1778486",
+    "TEAM": "LETRA CORPOREA BARBASTRO"
+  },
   "2759642": {
     "PLAYER_NAME": "C. Diop",
     "POSITION": "PF",
@@ -1761,13 +1768,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1893753",
-    "TEAM": "LETRA CORPOREA BARBASTRO"
-  },
-  "1778486": {
-    "PLAYER_NAME": "J. Malo Montorio",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1778486",
     "TEAM": "LETRA CORPOREA BARBASTRO"
   },
   "2641992": {
@@ -2603,6 +2603,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082687",
     "TEAM": "TEKNEI BIZKAIA ZORNOTZA"
   },
+  "2557004": {
+    "PLAYER_NAME": "D. Pérez De San Román",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2557004",
+    "TEAM": "TEKNEI BIZKAIA ZORNOTZA"
+  },
   "1352695": {
     "PLAYER_NAME": "B. Mendia Sangroniz",
     "POSITION": "PF",
@@ -2636,13 +2643,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1323166",
-    "TEAM": "TEKNEI BIZKAIA ZORNOTZA"
-  },
-  "2557004": {
-    "PLAYER_NAME": "D. Pérez De San Román",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2557004",
     "TEAM": "TEKNEI BIZKAIA ZORNOTZA"
   },
   "1957927": {
