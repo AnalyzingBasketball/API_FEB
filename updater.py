@@ -146,6 +146,31 @@ def scrape_bev_calendario(cal_bev_url: str) -> list:
     datos = []
     matchids_vistos = set()
 
+    # La página GET inicial ya muestra el primer grupo (PRIMERA FASE A en cadete).
+    # ASP.NET no re-renderiza si se hace PostBack con el mismo grupo seleccionado,
+    # así que parseamos el GET antes de entrar al bucle.
+    if grupos:
+        primer_nombre = grupos[0][1]
+        n_antes = len(datos)
+        for tabla in soup.find_all('table', id=re.compile(r'DataGrid3', re.IGNORECASE)):
+            for fila in tabla.find_all('tr'):
+                if fila.find('th'): continue
+                a_p = fila.find('a', href=re.compile(r'[Pp]artido\.aspx\?p=', re.IGNORECASE))
+                if not a_p: continue
+                m2 = re.search(r'p=(\d+)', a_p['href'], re.IGNORECASE)
+                if not m2: continue
+                mid = m2.group(1)
+                if mid in matchids_vistos: continue
+                matchids_vistos.add(mid)
+                score_str = a_p.get_text(strip=True)
+                td_l = fila.find('td', class_=re.compile(r'local', re.I))
+                td_v = fila.find('td', class_=re.compile(r'visitante', re.I))
+                local = td_l.find('a').get_text(strip=True) if td_l and td_l.find('a') else ''
+                visit = td_v.find('a').get_text(strip=True) if td_v and td_v.find('a') else ''
+                datos.append({'MATCHID': mid, 'ROUND': primer_nombre,
+                              'LOCAL': local, 'VISITANTE': visit, 'SCORE_STR': score_str})
+        print(f"   Grupo {primer_nombre} (inicial GET): {len(datos) - n_antes} partidos")
+
     for grupo_id, grupo_nombre in grupos:
         post_data = {
             '__EVENTTARGET':   '_ctl0$MainContentPlaceHolderMaster$gruposDropDownList',
