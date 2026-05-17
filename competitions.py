@@ -61,4 +61,13 @@ COMPETITIONS = {
         "name":           "Liga U",
         "playoff_series": [44857],
     },
+    "cespclubescadmasc": {
+        "id":             35,
+        "slug":           "cespclubescadmasc",
+        "label":          "CESPCLUBESCADMASC",
+        "url_year":       2025,
+        "name":           "Cto. España Cadete Masc.",
+        "playoff_series": [],
+        "cal_bev":        "https://baloncestoenvivo.feb.es/calendario/cespclubescadmasc/35/2025",
+    },
 }

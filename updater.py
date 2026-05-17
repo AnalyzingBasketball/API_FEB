@@ -72,6 +72,7 @@ def build_paths(comp: dict) -> dict:
         "db_teamstats":    f"teamstats_{slug}",
         "db_roster":       f"roster_{slug}",
         "playoff_series":  comp.get("playoff_series", []),
+        "cal_bev":         comp.get("cal_bev", None),
     }
 
 # ==============================================================================
@@ -119,33 +120,109 @@ def scrape_playoff_series(series_id: int) -> list:
 
 
 # ==============================================================================
+# CALENDARIO BEV: ASP.NET PostBack (para competiciones en baloncestoenvivo.feb.es)
+# ==============================================================================
+def scrape_bev_calendario(cal_bev_url: str) -> list:
+    """
+    Scrapeea el calendario de baloncestoenvivo.feb.es iterando todos los grupos
+    del dropdown mediante ASP.NET PostBack.
+    Devuelve lista de dicts {MATCHID, ROUND, LOCAL, VISITANTE, SCORE_STR}.
+    """
+    session = requests.Session()
+    r = session.get(cal_bev_url, headers=HEADERS_WEB, timeout=20)
+    soup = BeautifulSoup(r.text, 'html.parser')
+
+    def _get_field(s, field_id):
+        el = s.find('input', {'id': field_id})
+        return el['value'] if el else ''
+
+    viewstate     = _get_field(soup, '__VIEWSTATE')
+    viewstate_gen = _get_field(soup, '__VIEWSTATEGENERATOR')
+    event_val     = _get_field(soup, '__EVENTVALIDATION')
+
+    sel_grupos = soup.find('select', {'id': '_ctl0_MainContentPlaceHolderMaster_gruposDropDownList'})
+    grupos = [(opt['value'], opt.get_text(strip=True)) for opt in sel_grupos.find_all('option')] if sel_grupos else []
+
+    datos = []
+    matchids_vistos = set()
+
+    for grupo_id, grupo_nombre in grupos:
+        post_data = {
+            '__EVENTTARGET':   '_ctl0$MainContentPlaceHolderMaster$gruposDropDownList',
+            '__EVENTARGUMENT': '',
+            '__VIEWSTATE':     viewstate,
+            '__VIEWSTATEGENERATOR': viewstate_gen,
+            '__EVENTVALIDATION': event_val,
+            '_ctl0:MainContentPlaceHolderMaster:gruposDropDownList': grupo_id,
+            '_ctl0:MainContentPlaceHolderMaster:temporadasDropDownList': '2025',
+        }
+        try:
+            rg = session.post(cal_bev_url, data=post_data, headers=HEADERS_WEB, timeout=20)
+            soup_g = BeautifulSoup(rg.text, 'html.parser')
+            viewstate     = _get_field(soup_g, '__VIEWSTATE') or viewstate
+            viewstate_gen = _get_field(soup_g, '__VIEWSTATEGENERATOR') or viewstate_gen
+            event_val     = _get_field(soup_g, '__EVENTVALIDATION') or event_val
+            n_antes = len(datos)
+            for tabla in soup_g.find_all('table', id=re.compile(r'DataGrid3', re.IGNORECASE)):
+                for fila in tabla.find_all('tr'):
+                    if fila.find('th'): continue
+                    a_partido = fila.find('a', href=re.compile(r'[Pp]artido\.aspx\?p=', re.IGNORECASE))
+                    if not a_partido: continue
+                    m = re.search(r'p=(\d+)', a_partido['href'], re.IGNORECASE)
+                    if not m: continue
+                    match_id = m.group(1)
+                    if match_id in matchids_vistos: continue
+                    matchids_vistos.add(match_id)
+                    score_str = a_partido.get_text(strip=True)
+                    td_local = fila.find('td', class_=re.compile(r'local', re.I))
+                    td_visit = fila.find('td', class_=re.compile(r'visitante', re.I))
+                    local = td_local.find('a').get_text(strip=True) if td_local and td_local.find('a') else ''
+                    visit = td_visit.find('a').get_text(strip=True) if td_visit and td_visit.find('a') else ''
+                    datos.append({'MATCHID': match_id, 'ROUND': grupo_nombre,
+                                  'LOCAL': local, 'VISITANTE': visit, 'SCORE_STR': score_str})
+            print(f"   Grupo {grupo_nombre}: {len(datos) - n_antes} partidos")
+        except Exception as e:
+            print(f"   ⚠️ Error en grupo {grupo_nombre}: {e}")
+    return datos
+
+
+# ==============================================================================
 # FASE 1: DESCARGA DE CALENDARIO Y JSONS RAW
 # ==============================================================================
 def actualizar_calendario_y_jsons(paths: dict):
     print("🗓️ Actualizando Calendario Maestro...")
     try:
-        r    = requests.get(paths["cal_url"], headers=HEADERS_WEB)
-        soup = BeautifulSoup(r.text, 'html.parser')
-        datos = []
-        for col in soup.find_all('div', class_='columna'):
-            h1 = col.find('h1', class_='titulo-modulo')
-            if not h1: continue
-            texto_cabecera = h1.get_text(strip=True)
-            match_jornada  = re.search(r'Jornada\s+(\d+)', texto_cabecera, re.IGNORECASE)
-            jornada = match_jornada.group(1) if match_jornada else "0"
-            tabla = col.find('table')
-            if not tabla: continue
-            for fila in tabla.find_all('tr'):
-                if fila.find('th') or 'LOCAL' in fila.get_text(strip=True).upper(): continue
-                a_eq = fila.find_all('a', href=re.compile(r'Equipo\.aspx'))
-                a_p  = fila.find('a', href=re.compile(r'Partido\.aspx\?p='))
-                if a_p and len(a_eq) >= 2:
-                    match_id  = re.search(r'p=(\d+)', a_p['href']).group(1)
-                    resultado = a_p.get_text(strip=True)
-                    datos.append({"MATCHID": match_id, "ROUND": jornada, "SCORE_STR": resultado})
-        df_cal = pd.DataFrame(datos).drop_duplicates(subset=['MATCHID'])
-        df_cal.to_csv(paths["calendar"], index=False, encoding='utf-8-sig')
-        print(f"✅ Calendario actualizado: {len(df_cal)} partidos registrados.")
+        # ── Competiciones con calendario en baloncestoenvivo.feb.es (PostBack) ──
+        if paths.get("cal_bev"):
+            print(f"   📡 Usando scraper BEV para {paths['slug']}...")
+            datos = scrape_bev_calendario(paths["cal_bev"])
+            df_cal = pd.DataFrame(datos).drop_duplicates(subset=['MATCHID'])
+            df_cal.to_csv(paths["calendar"], index=False, encoding='utf-8-sig')
+            print(f"✅ Calendario BEV actualizado: {len(df_cal)} partidos registrados.")
+        else:
+            # ── Flujo normal: feb.es ───────────────────────────────────────────
+            r    = requests.get(paths["cal_url"], headers=HEADERS_WEB)
+            soup = BeautifulSoup(r.text, 'html.parser')
+            datos = []
+            for col in soup.find_all('div', class_='columna'):
+                h1 = col.find('h1', class_='titulo-modulo')
+                if not h1: continue
+                texto_cabecera = h1.get_text(strip=True)
+                match_jornada  = re.search(r'Jornada\s+(\d+)', texto_cabecera, re.IGNORECASE)
+                jornada = match_jornada.group(1) if match_jornada else "0"
+                tabla = col.find('table')
+                if not tabla: continue
+                for fila in tabla.find_all('tr'):
+                    if fila.find('th') or 'LOCAL' in fila.get_text(strip=True).upper(): continue
+                    a_eq = fila.find_all('a', href=re.compile(r'Equipo\.aspx'))
+                    a_p  = fila.find('a', href=re.compile(r'Partido\.aspx\?p='))
+                    if a_p and len(a_eq) >= 2:
+                        match_id  = re.search(r'p=(\d+)', a_p['href']).group(1)
+                        resultado = a_p.get_text(strip=True)
+                        datos.append({"MATCHID": match_id, "ROUND": jornada, "SCORE_STR": resultado})
+            df_cal = pd.DataFrame(datos).drop_duplicates(subset=['MATCHID'])
+            df_cal.to_csv(paths["calendar"], index=False, encoding='utf-8-sig')
+            print(f"✅ Calendario actualizado: {len(df_cal)} partidos registrados.")
     except Exception as e:
         print(f"⚠️ Error al actualizar calendario: {e}")
         if not os.path.exists(paths["calendar"]): return
