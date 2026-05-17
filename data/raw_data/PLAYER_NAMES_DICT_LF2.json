@@ -279,6 +279,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1749591",
     "TEAM": "CB CLARET BENIMACLET"
   },
+  "2345472": {
+    "PLAYER_NAME": "S. Osarenmwinda Anuge",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2345472",
+    "TEAM": "CB CLARET BENIMACLET"
+  },
   "2281500": {
     "PLAYER_NAME": "L. Liern Ruiz",
     "POSITION": "PF",
@@ -326,13 +333,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2163612",
-    "TEAM": "CB CLARET BENIMACLET"
-  },
-  "2345472": {
-    "PLAYER_NAME": "S. Osarenmwinda Anuge",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2345472",
     "TEAM": "CB CLARET BENIMACLET"
   },
   "2009630": {
@@ -1595,6 +1595,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2187027",
     "TEAM": "MIPELLETYMAS B.F. LEON"
   },
+  "2115639": {
+    "PLAYER_NAME": "M. Ferreras Menendez",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2115639",
+    "TEAM": "MIPELLETYMAS B.F. LEON"
+  },
   "2107076": {
     "PLAYER_NAME": "D. Díaz Gómez",
     "POSITION": "SF",
@@ -1649,13 +1656,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1843042",
-    "TEAM": "MIPELLETYMAS B.F. LEON"
-  },
-  "2115639": {
-    "PLAYER_NAME": "M. Ferreras Menendez",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2115639",
     "TEAM": "MIPELLETYMAS B.F. LEON"
   },
   "2337689": {

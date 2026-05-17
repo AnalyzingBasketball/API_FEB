@@ -1,4 +1,88 @@
 {
+  "2478961": {
+    "PLAYER_NAME": "R. Arada Juan",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2478961",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2481800": {
+    "PLAYER_NAME": "D. Gomez Gutierrez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2481800",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2617807": {
+    "PLAYER_NAME": "N. Alija Perez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2617807",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2351563": {
+    "PLAYER_NAME": "M. Garcia Gomez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2351563",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2338194": {
+    "PLAYER_NAME": "D. Lozano Lopez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2338194",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2478393": {
+    "PLAYER_NAME": "H. Calzado Marcos",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2478393",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2478490": {
+    "PLAYER_NAME": "M. San Francisco Álvarez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2478490",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2478511": {
+    "PLAYER_NAME": "A. Álvarez De La Varga",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2478511",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2478921": {
+    "PLAYER_NAME": "R. Llamazares De La Puente",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2478921",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2478434": {
+    "PLAYER_NAME": "J. Casares Termenón",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2478434",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2478491": {
+    "PLAYER_NAME": "M. San Francisco Álvarez",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2478491",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
+  "2478669": {
+    "PLAYER_NAME": "R. González Alonso-Gasco",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2478669",
+    "TEAM": "CYD-LEONESA - COL. LEONÉS A"
+  },
   "2573616": {
     "PLAYER_NAME": "G. Gil Vargas",
     "POSITION": "",
@@ -75,6 +159,90 @@
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2572474",
     "TEAM": "INSOLAC CB ALCALÁ CAJA87 2010"
+  },
+  "2287040": {
+    "PLAYER_NAME": "C. Arpón Carmona",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2287040",
+    "TEAM": "LA SALLE"
+  },
+  "2198836": {
+    "PLAYER_NAME": "J. Santos Garcia",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2198836",
+    "TEAM": "LA SALLE"
+  },
+  "2231480": {
+    "PLAYER_NAME": "A. Ortega Crespo",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2231480",
+    "TEAM": "LA SALLE"
+  },
+  "2288519": {
+    "PLAYER_NAME": "D. Aubia Benayas",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2288519",
+    "TEAM": "LA SALLE"
+  },
+  "2231479": {
+    "PLAYER_NAME": "J. Mora Gallego",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2231479",
+    "TEAM": "LA SALLE"
+  },
+  "2337672": {
+    "PLAYER_NAME": "A. Saenz De Rodrigañez Herrero",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2337672",
+    "TEAM": "LA SALLE"
+  },
+  "2341304": {
+    "PLAYER_NAME": "M. Saura Salido",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2341304",
+    "TEAM": "LA SALLE"
+  },
+  "2334868": {
+    "PLAYER_NAME": "A. Itouhamein Achadlein",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2334868",
+    "TEAM": "LA SALLE"
+  },
+  "2584852": {
+    "PLAYER_NAME": "R. Mohamed Mehamed",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2584852",
+    "TEAM": "LA SALLE"
+  },
+  "2294194": {
+    "PLAYER_NAME": "R. Mohamed Amar",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2294194",
+    "TEAM": "LA SALLE"
+  },
+  "2295993": {
+    "PLAYER_NAME": "B. Ebn Allal Larousi",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2295993",
+    "TEAM": "LA SALLE"
+  },
+  "2337704": {
+    "PLAYER_NAME": "D. Sanchez Chocron",
+    "POSITION": "",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2337704",
+    "TEAM": "LA SALLE"
   },
   "2440427": {
     "PLAYER_NAME": "C. Elordi Espi",
