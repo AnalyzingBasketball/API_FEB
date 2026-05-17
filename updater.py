@@ -454,7 +454,8 @@ def procesar_estadisticas_acumuladas(paths: dict):
                         'AST':   to_float(p.get('assist',0)), 'TOV': to_float(p.get('to',0)),
                         'STL':   to_float(p.get('st',0)),   'BLK':   to_float(p.get('bs',0)), 'BLKA': to_float(p.get('tc',0)),
                         'PF':    to_float(p.get('pf',0)),   'PFD':   to_float(p.get('rf',0)),
-                        'PIR':   to_float(p.get('val',0)),  'PLUS_MINUS': to_float(p.get('pllss',0))
+                        'PIR':   to_float(p.get('val',0)),  'PLUS_MINUS': to_float(p.get('pllss',0)),
+                        'DORSAL': str(p.get('no', ''))
                     })
 
             df_match = pd.DataFrame(match_players)
@@ -818,6 +819,14 @@ def generar_roster_maestro(paths: dict):
         PIR           = ('PIR','sum'),   PLUS_MINUS = ('PLUS_MINUS','sum'),
     ).reset_index()
 
+    # Dorsal más reciente por jugador (desde boxscore)
+    if 'DORSAL' in df_box.columns:
+        _dorsal_map = (
+            df_box[df_box['DORSAL'].fillna('').astype(str).str.strip() != '']
+            .groupby('PLAYER_ID')['DORSAL'].last().to_dict()
+        )
+        agg['DORSAL'] = agg['PLAYER_ID'].map(_dorsal_map).fillna('')
+
     # Per game
     for c in ['PTS','FGM_2','FGA_2','FGM_3','FGA_3','FGM','FGA','FTM','FTA',
               'ORB','DRB','TRB','AST','TOV','STL','BLK','BLKA','PF','PFD','PIR','PLUS_MINUS']:
@@ -912,14 +921,17 @@ def generar_roster_maestro(paths: dict):
         except Exception as e:
             print(f"  ⚠️ No se pudo leer PLAYER_ROLES_FINAL_2526.csv: {e}")
     else:
-        agg['ROLE_NAME'] = 'N/A'
+        if 'DORSAL' in agg.columns:
+            agg['ROLE_NAME'] = agg['DORSAL'].apply(lambda d: str(d).strip() if str(d).strip() else 'N/A')
+        else:
+            agg['ROLE_NAME'] = 'N/A'
 
     # ── 4. ORDENAR COLUMNAS Y GUARDAR ──────────────────────────────────────────
     final_cols = [
         # Identificación
         'PLAYER_ID', 'PLAYER_NAME', 'TEAM_ID', 'TEAM',
         # Perfil
-        'POSITION', 'POS_ORDER', 'ROLE_NAME', 'PHOTO_URL',
+        'POSITION', 'POS_ORDER', 'ROLE_NAME', 'DORSAL', 'PHOTO_URL',
         # Participación
         'GP', 'GS', 'MIN_PG',
         # Per game tradicionales

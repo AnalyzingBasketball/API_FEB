@@ -1801,13 +1801,15 @@ def partidos_equipo_api(equipo: str, competicion: str = Query(default="primerafe
 
 # === ENDPOINT: EQUIPOS POR COMPETICIÓN ===
 @app.get("/equipos")
-def equipos_api(competicion: str = Query(default="primerafeb")):
-    """Devuelve la lista de equipos de una competición."""
+def equipos_api(competicion: str = Query(default="primerafeb"), grupo: str = Query(default=None)):
+    """Devuelve la lista de equipos de una competición, opcionalmente filtrada por grupo/fase."""
     cp = get_comp_paths(competicion)
     df = read_table(cp["db_boxscore"], cp["boxscore"])
     if df.empty:
         return JSONResponse(content={"competicion": competicion, "equipos": []})
     df['TEAM'] = df['TEAM'].replace(TEAM_FIXES_GLOBAL)
+    if grupo:
+        df = df[df['ROUND'].astype(str) == grupo]
     equipos = sorted(df['TEAM'].dropna().unique().tolist())
     return JSONResponse(content={"competicion": competicion, "equipos": equipos})
 

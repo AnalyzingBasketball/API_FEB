@@ -1,0 +1,493 @@
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  .ml-container * { box-sizing: border-box; }
+  .ml-container { font-family: 'Ubuntu', sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; }
+  .ml-league-bar { background: linear-gradient(135deg, #0047ff 0%, #0033cc 100%); padding: 24px 30px; border-radius: 8px; margin-bottom: 28px; box-shadow: 0 4px 15px rgba(0,71,255,0.25); text-align: center; }
+  .ml-league-bar .ml-league-title { color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+  .ml-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) { .ml-grid { grid-template-columns: 1fr; } }
+  .ml-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .ml-card h3 { color: #0047ff; margin: 0 0 8px 0; text-align: center; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ml-card p.ml-desc { font-size: 14px; color: #555; text-align: justify; margin-bottom: 12px; line-height: 1.5; }
+  .ml-card label { display: block; font-size: 14px; font-weight: 700; color: #333; text-transform: uppercase; margin-bottom: 4px; }
+  .ml-card select, .ml-card input[type="number"] { width: 100%; height: 48px; padding: 8px 12px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 0; background: #fff; font-family: 'Ubuntu', sans-serif; font-size: 16px; color: #333; }
+  .ml-card .ml-row { display: flex; gap: 10px; }
+  .ml-card .ml-row > div { flex: 1; }
+  .ml-card .ml-row select, .ml-card .ml-row input[type="number"] { margin-bottom: 16px; }
+  .ml-btn { width: 100%; font-family: 'Ubuntu', sans-serif; background-color: #0047ff; color: #fff; padding: 16px; border: none; border-radius: 4px; font-size: 16px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: background-color 0.3s; }
+  .ml-btn:hover { background-color: #0033cc; }
+</style>
+
+<div class="ml-container">
+
+  <div class="ml-league-bar">
+    <div class="ml-league-title">Campeonato de España Cadete Masculino</div>
+  </div>
+
+  <div class="ml-grid">
+
+    <!-- CARD 1: SCOUTING DE PARTIDO -->
+    <div class="ml-card">
+      <h3>Scouting de Partido</h3>
+      <p class="ml-desc">Informe avanzado de un partido: boxscore con metricas avanzadas o analisis de quintetos en tiempo real.</p>
+
+      <label for="grupo_cd_scouting">Grupo / Fase</label>
+      <select id="grupo_cd_scouting" onchange="cambiarGrupo_cd('scouting')">
+        <option value="">Cargando grupos...</option>
+      </select>
+
+      <label for="equipo_cd_scouting">Equipo</label>
+      <select id="equipo_cd_scouting" onchange="cargarPartidos_cd()">
+        <option value="">Selecciona un equipo</option>
+      </select>
+
+      <label for="partido_cd_scouting">Partido</label>
+      <select id="partido_cd_scouting">
+        <option value="">Selecciona un partido</option>
+      </select>
+
+      <div class="ml-row">
+        <div>
+          <label for="formato_cd_scouting">Formato</label>
+          <select id="formato_cd_scouting">
+            <option value="quintetos">Quintetos</option>
+            <option value="boxscore" selected>Boxscore Avz.</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" id="btnScouting_cd" class="ml-btn" onclick="procesarScouting_cd()">Generar Informe de Partido</button>
+      <div id="resultado_scouting_cd"></div>
+    </div>
+
+    <!-- CARD 2: SPLITS TACTICOS -->
+    <div class="ml-card">
+      <h3>Splits Tacticos</h3>
+      <p class="ml-desc">Analisis tactico por arquetipos de quintetos: agrupa combinaciones por rol y muestra eficiencia por rango de partidos.</p>
+
+      <label for="grupo_cd_splits">Grupo / Fase</label>
+      <select id="grupo_cd_splits" onchange="cambiarGrupo_cd('splits')">
+        <option value="">Cargando grupos...</option>
+      </select>
+
+      <label for="equipo_cd_splits">Equipo</label>
+      <select id="equipo_cd_splits" onchange="cargarDesdeHasta_cd()">
+        <option value="">Selecciona un equipo</option>
+      </select>
+
+      <div class="ml-row">
+        <div>
+          <label for="desde_cd">Desde Partido</label>
+          <select id="desde_cd" onchange="sincronizarHasta_cd()">
+            <option value="">-</option>
+          </select>
+        </div>
+        <div>
+          <label for="hasta_cd">Hasta Partido</label>
+          <select id="hasta_cd">
+            <option value="">-</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="ml-row">
+        <div>
+          <label for="m_filt_splits_cd">Min. Min.</label>
+          <input type="number" id="m_filt_splits_cd" value="10" min="1" max="200">
+        </div>
+      </div>
+
+      <button type="button" id="btnSplits_cd" class="ml-btn" onclick="procesarSplits_cd()">Generar Splits Tacticos</button>
+      <div id="resultado_splits_cd"></div>
+    </div>
+
+    <!-- CARD 3: SCOUTING CONTEXTUAL -->
+    <div class="ml-card">
+      <h3>Scouting Contextual</h3>
+      <p class="ml-desc">Informe contextual: analiza los ultimos N partidos filtrando por local/visitante, boxscore o quintetos.</p>
+
+      <label for="grupo_cd_contextual">Grupo / Fase</label>
+      <select id="grupo_cd_contextual" onchange="cambiarGrupo_cd('contextual')">
+        <option value="">Cargando grupos...</option>
+      </select>
+
+      <label for="equipo_cd_contextual">Equipo</label>
+      <select id="equipo_cd_contextual">
+        <option value="">Selecciona un equipo</option>
+      </select>
+
+      <div class="ml-row">
+        <div>
+          <label for="n_games_cd">Ultimos N</label>
+          <select id="n_games_cd">
+            <option value="3" selected>3 partidos</option>
+            <option value="5">5 partidos</option>
+            <option value="10">10 partidos</option>
+            <option value="99">Toda la temp.</option>
+          </select>
+        </div>
+        <div>
+          <label for="venue_cd">Venue</label>
+          <select id="venue_cd">
+            <option value="ALL" selected>Todos</option>
+            <option value="HOME">Local</option>
+            <option value="AWAY">Visitante</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="ml-row">
+        <div>
+          <label for="formato_cd_contextual">Formato</label>
+          <select id="formato_cd_contextual">
+            <option value="quintetos">Quintetos</option>
+            <option value="boxscore" selected>Boxscore Avz.</option>
+          </select>
+        </div>
+        <div>
+          <label for="m_filt_ctx_cd">Min. Min.</label>
+          <input type="number" id="m_filt_ctx_cd" value="10" min="1" max="200">
+        </div>
+      </div>
+
+      <button type="button" id="btnContextual_cd" class="ml-btn" onclick="procesarContextual_cd()">Generar Scouting Contextual</button>
+      <div id="resultado_ctx_cd"></div>
+    </div>
+
+    <!-- CARD 4: LIGA LINEUPS -->
+    <div class="ml-card">
+      <h3>Liga Lineups</h3>
+      <p class="ml-desc">Mega-informe de todos los quintetos de la liga: los 3 mejores y 3 peores por NET Rating de cada equipo.</p>
+
+      <label for="m_filt_liga_cd">Minutos Minimos</label>
+      <select id="m_filt_liga_cd">
+        <option value="5">5 min (All lineups)</option>
+        <option value="10">10 min (Low rotation)</option>
+        <option value="15" selected>15 min (Regular rotation)</option>
+        <option value="25">25 min (Core lineups)</option>
+        <option value="40">40 min (High usage)</option>
+        <option value="60">60 min (Starters only)</option>
+        <option value="100">100 min (Top lineups)</option>
+      </select>
+
+      <button type="button" id="btnLiga_cd" class="ml-btn" onclick="procesarLiga_cd()">Generar Informe Liga Completa</button>
+      <div id="resultado_liga_cd"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+
+  var API_BASE = "https://api-feb.onrender.com";
+  var COMP = "cespclubescadmasc";
+  var gruposDisponibles_cd = [];
+  var partidosCache_cd = {};
+
+  // ─── Utilidades de UI ────────────────────────────────────────────────────────
+
+  function resetBtn(id, label) {
+    var btn = document.getElementById(id);
+    if (!btn) return;
+    btn.innerHTML = label;
+    btn.style.backgroundColor = "#0047ff";
+    btn.style.cursor = "pointer";
+    btn.disabled = false;
+  }
+
+  function setLoading(id, msg) {
+    var btn = document.getElementById(id);
+    if (!btn) return;
+    btn.innerHTML = msg;
+    btn.style.backgroundColor = "#666666";
+    btn.style.cursor = "wait";
+    btn.disabled = true;
+  }
+
+  function showError(divId, msg) {
+    var div = document.getElementById(divId);
+    if (div) div.innerHTML = '<p style="color:#e53e3e;text-align:center;margin-top:15px;font-size:16px;font-weight:700;">Error: ' + msg + '</p>';
+  }
+
+  function showLink(divId, blobUrl, text) {
+    var div = document.getElementById(divId);
+    if (div) div.innerHTML = '<a href="' + blobUrl + '" target="_blank" style="display:block;text-align:center;margin-top:18px;padding:14px;background-color:#0047ff;color:#fff;text-decoration:none;font-weight:700;border-radius:4px;font-size:16px;text-transform:uppercase;">' + text + '</a>';
+  }
+
+  // ─── Carga de grupos ─────────────────────────────────────────────────────────
+
+  function cargarGrupos_cd() {
+    fetch(API_BASE + '/info_liga?competicion=' + COMP)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        gruposDisponibles_cd = data.rondas_playoff || [];
+        ['scouting', 'splits', 'contextual'].forEach(function(card) {
+          var sel = document.getElementById('grupo_cd_' + card);
+          if (!sel) return;
+          sel.innerHTML = '';
+          gruposDisponibles_cd.forEach(function(g) {
+            var opt = document.createElement('option');
+            opt.value = g; opt.textContent = g;
+            sel.appendChild(opt);
+          });
+        });
+        if (gruposDisponibles_cd.length > 0) {
+          cargarEquipos_cd(gruposDisponibles_cd[0]);
+        }
+      })
+      .catch(function() {
+        cargarEquipos_cd('');
+      });
+  }
+
+  // ─── Cambio de grupo (sincroniza los tres selectores) ────────────────────────
+
+  window.cambiarGrupo_cd = function(fromCard) {
+    var grupo = document.getElementById('grupo_cd_' + fromCard).value;
+    ['scouting', 'splits', 'contextual'].forEach(function(c) {
+      var s = document.getElementById('grupo_cd_' + c);
+      if (s) s.value = grupo;
+    });
+    partidosCache_cd = {};
+    cargarEquipos_cd(grupo);
+  };
+
+  // ─── Carga de equipos filtrados por grupo ────────────────────────────────────
+
+  function cargarEquipos_cd(grupo) {
+    var url = API_BASE + '/equipos?competicion=' + COMP;
+    if (grupo) url += '&grupo=' + encodeURIComponent(grupo);
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var equipos = data.equipos || [];
+        ['scouting', 'splits', 'contextual'].forEach(function(card) {
+          var sel = document.getElementById('equipo_cd_' + card);
+          if (!sel) return;
+          var prev = sel.value;
+          sel.innerHTML = '';
+          equipos.forEach(function(eq) {
+            var opt = document.createElement('option');
+            opt.value = eq; opt.textContent = eq;
+            sel.appendChild(opt);
+          });
+          var stillValid = Array.from(sel.options).some(function(o) { return o.value === prev; });
+          if (stillValid) sel.value = prev;
+        });
+        cargarPartidos_cd();
+        cargarDesdeHasta_cd();
+      });
+  }
+
+  // ─── Scouting de Partido: selector de partido vía /partidos_equipo ───────────
+
+  window.cargarPartidos_cd = function() {
+    var equipo = document.getElementById('equipo_cd_scouting').value;
+    if (!equipo) return;
+    if (partidosCache_cd[equipo]) {
+      poblarPartidos_cd(partidosCache_cd[equipo]);
+      return;
+    }
+    fetch(API_BASE + '/partidos_equipo?equipo=' + encodeURIComponent(equipo) + '&competicion=' + COMP)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        partidosCache_cd[equipo] = data.partidos || [];
+        poblarPartidos_cd(partidosCache_cd[equipo]);
+      });
+  };
+
+  function poblarPartidos_cd(partidos) {
+    var sel = document.getElementById('partido_cd_scouting');
+    if (!sel) return;
+    sel.innerHTML = '';
+    var jugados = partidos.filter(function(p) { return p.jugado; });
+    var pendientes = partidos.filter(function(p) { return !p.jugado; });
+    if (jugados.length > 0) {
+      var grpJ = document.createElement('optgroup'); grpJ.label = '--- Jugados ---';
+      jugados.forEach(function(p) {
+        var opt = document.createElement('option'); opt.value = p.value; opt.textContent = p.label;
+        grpJ.appendChild(opt);
+      });
+      sel.appendChild(grpJ);
+    }
+    if (pendientes.length > 0) {
+      var grpP = document.createElement('optgroup'); grpP.label = '--- Pendientes ---';
+      pendientes.forEach(function(p) {
+        var opt = document.createElement('option'); opt.value = p.value; opt.textContent = p.label;
+        grpP.appendChild(opt);
+      });
+      sel.appendChild(grpP);
+    }
+    if (jugados.length > 0) sel.selectedIndex = jugados.length - 1;
+  }
+
+  // ─── Splits: selectores Desde/Hasta via /partidos_equipo ────────────────────
+
+  window.cargarDesdeHasta_cd = function() {
+    var equipo = document.getElementById('equipo_cd_splits').value;
+    if (!equipo) return;
+    if (partidosCache_cd[equipo]) {
+      poblarDesdeHasta_cd(partidosCache_cd[equipo]);
+      return;
+    }
+    fetch(API_BASE + '/partidos_equipo?equipo=' + encodeURIComponent(equipo) + '&competicion=' + COMP)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        partidosCache_cd[equipo] = data.partidos || [];
+        poblarDesdeHasta_cd(partidosCache_cd[equipo]);
+      });
+  };
+
+  function poblarDesdeHasta_cd(partidos) {
+    var jugados = partidos.filter(function(p) { return p.jugado; });
+    var selDesde = document.getElementById('desde_cd');
+    var selHasta = document.getElementById('hasta_cd');
+    if (!selDesde || !selHasta) return;
+    selDesde.innerHTML = ''; selHasta.innerHTML = '';
+    jugados.forEach(function(p) {
+      var o1 = document.createElement('option'); o1.value = p.value; o1.textContent = p.label; selDesde.appendChild(o1);
+      var o2 = document.createElement('option'); o2.value = p.value; o2.textContent = p.label; selHasta.appendChild(o2);
+    });
+    if (jugados.length > 0) {
+      selDesde.selectedIndex = 0;
+      selHasta.selectedIndex = jugados.length - 1;
+    }
+    sincronizarHasta_cd();
+  }
+
+  window.sincronizarHasta_cd = function() {
+    var selDesde = document.getElementById('desde_cd');
+    var selHasta = document.getElementById('hasta_cd');
+    if (!selDesde || !selHasta) return;
+    var desdeVal = selDesde.value;
+    var prevHasta = selHasta.value;
+    var allOpts = Array.from(selDesde.options);
+    selHasta.innerHTML = '';
+    var desdeIdx = allOpts.findIndex(function(o) { return o.value === desdeVal; });
+    if (desdeIdx < 0) desdeIdx = 0;
+    allOpts.slice(desdeIdx).forEach(function(o) {
+      var opt = document.createElement('option'); opt.value = o.value; opt.textContent = o.textContent;
+      selHasta.appendChild(opt);
+    });
+    var found = Array.from(selHasta.options).some(function(o) { return o.value === prevHasta; });
+    if (found) selHasta.value = prevHasta;
+    else selHasta.selectedIndex = selHasta.options.length - 1;
+  };
+
+  // ─── 1. SCOUTING DE PARTIDO ──────────────────────────────────────────────────
+
+  window.procesarScouting_cd = async function() {
+    var btn = "btnScouting_cd";
+    var res = "resultado_scouting_cd";
+    var equipo = document.getElementById('equipo_cd_scouting').value;
+    var partidoVal = document.getElementById('partido_cd_scouting').value;
+    var tipo = document.getElementById('formato_cd_scouting').value;
+    if (!equipo || !partidoVal) { showError(res, "Selecciona un equipo y un partido."); return; }
+    setLoading(btn, "Generando informe...");
+    document.getElementById(res).innerHTML = '';
+    var url = API_BASE + '/generar?competicion=' + COMP + '&equipo=' + encodeURIComponent(equipo) + '&tipo_reporte=' + tipo;
+    if (partidoVal.indexOf('MATCHID:') === 0) {
+      url += '&match_id=' + partidoVal.split(':')[1];
+    } else {
+      url += '&jornada=' + encodeURIComponent(partidoVal);
+    }
+    try {
+      var response = await fetch(url);
+      if (!response.ok) throw new Error("No se encontraron datos para ese partido o aun no se ha disputado.");
+      var blob = await response.blob();
+      var blobUrl = URL.createObjectURL(blob);
+      resetBtn(btn, "Generar Informe de Partido");
+      showLink(res, blobUrl, tipo === "quintetos" ? "Ver Analisis de Quintetos" : "Ver Boxscore Avanzado");
+    } catch (error) {
+      resetBtn(btn, "Generar Informe de Partido");
+      showError(res, error.message);
+    }
+  };
+
+  // ─── 2. SPLITS TACTICOS ──────────────────────────────────────────────────────
+
+  window.procesarSplits_cd = async function() {
+    var btn = "btnSplits_cd";
+    var res = "resultado_splits_cd";
+    var equipo = document.getElementById('equipo_cd_splits').value;
+    var sRnd = document.getElementById('desde_cd').value;
+    var eRnd = document.getElementById('hasta_cd').value;
+    var mFilt = document.getElementById('m_filt_splits_cd').value;
+    if (!equipo) { showError(res, "Selecciona un equipo."); return; }
+    setLoading(btn, "Generando splits...");
+    document.getElementById(res).innerHTML = '';
+    var url = API_BASE + '/splits?competicion=' + COMP + '&eq=' + encodeURIComponent(equipo)
+      + '&s_rnd=' + encodeURIComponent(sRnd) + '&e_rnd=' + encodeURIComponent(eRnd)
+      + '&m_filt=' + encodeURIComponent(mFilt);
+    try {
+      var response = await fetch(url);
+      if (!response.ok) throw new Error("No se encontraron datos para esos parametros.");
+      var blob = await response.blob();
+      var blobUrl = URL.createObjectURL(blob);
+      resetBtn(btn, "Generar Splits Tacticos");
+      showLink(res, blobUrl, "Ver Splits Tacticos");
+    } catch (error) {
+      resetBtn(btn, "Generar Splits Tacticos");
+      showError(res, error.message);
+    }
+  };
+
+  // ─── 3. SCOUTING CONTEXTUAL ──────────────────────────────────────────────────
+
+  window.procesarContextual_cd = async function() {
+    var btn = "btnContextual_cd";
+    var res = "resultado_ctx_cd";
+    var equipo = document.getElementById('equipo_cd_contextual').value;
+    var nGames = document.getElementById('n_games_cd').value;
+    var venue = document.getElementById('venue_cd').value;
+    var tipo = document.getElementById('formato_cd_contextual').value;
+    var mFilt = document.getElementById('m_filt_ctx_cd').value;
+    if (!equipo) { showError(res, "Selecciona un equipo."); return; }
+    setLoading(btn, "Generando informe...");
+    document.getElementById(res).innerHTML = '';
+    var url = API_BASE + '/contextual?competicion=' + COMP
+      + '&eq=' + encodeURIComponent(equipo)
+      + '&n_games=' + nGames + '&venue=' + venue
+      + '&tipo_reporte=' + tipo + '&m_filt=' + mFilt;
+    try {
+      var response = await fetch(url);
+      if (!response.ok) throw new Error("No se encontraron datos para esos parametros.");
+      var blob = await response.blob();
+      var blobUrl = URL.createObjectURL(blob);
+      resetBtn(btn, "Generar Scouting Contextual");
+      showLink(res, blobUrl, tipo === "quintetos" ? "Ver Quintetos Contextuales" : "Ver Boxscore Contextual");
+    } catch (error) {
+      resetBtn(btn, "Generar Scouting Contextual");
+      showError(res, error.message);
+    }
+  };
+
+  // ─── 4. LIGA LINEUPS ─────────────────────────────────────────────────────────
+
+  window.procesarLiga_cd = async function() {
+    var btn = "btnLiga_cd";
+    var res = "resultado_liga_cd";
+    var mFilt = document.getElementById('m_filt_liga_cd').value;
+    setLoading(btn, "Generando informe de liga...");
+    document.getElementById(res).innerHTML = '';
+    var url = API_BASE + '/liga_lineups?competicion=' + COMP + '&m_filt=' + mFilt;
+    try {
+      var response = await fetch(url);
+      if (!response.ok) throw new Error("No se encontraron datos.");
+      var blob = await response.blob();
+      var blobUrl = URL.createObjectURL(blob);
+      resetBtn(btn, "Generar Informe Liga Completa");
+      showLink(res, blobUrl, "Ver Informe Liga Completa");
+    } catch (error) {
+      resetBtn(btn, "Generar Informe Liga Completa");
+      showError(res, error.message);
+    }
+  };
+
+  // ─── Inicialización ──────────────────────────────────────────────────────────
+
+  cargarGrupos_cd();
+
+})();
+</script>
