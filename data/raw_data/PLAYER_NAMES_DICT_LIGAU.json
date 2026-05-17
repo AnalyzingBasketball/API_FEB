@@ -6,18 +6,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2082056",
     "TEAM": "BARÇA ATLÈTIC"
   },
-  "2256034": {
-    "PLAYER_NAME": "J. Cerdan Palacios",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2256034",
-    "TEAM": "BARÇA ATLÈTIC"
-  },
   "2642172": {
     "PLAYER_NAME": "J. Siftar",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2642172",
+    "TEAM": "BARÇA ATLÈTIC"
+  },
+  "2256034": {
+    "PLAYER_NAME": "J. Cerdan Palacios",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2256034",
     "TEAM": "BARÇA ATLÈTIC"
   },
   "2166517": {
@@ -69,18 +69,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2642481",
     "TEAM": "BARÇA ATLÈTIC"
   },
-  "2642482": {
-    "PLAYER_NAME": "A. Kone",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2642482",
-    "TEAM": "BARÇA ATLÈTIC"
-  },
   "2647995": {
     "PLAYER_NAME": "M. Keita",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2647995",
+    "TEAM": "BARÇA ATLÈTIC"
+  },
+  "2642482": {
+    "PLAYER_NAME": "A. Kone",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2642482",
     "TEAM": "BARÇA ATLÈTIC"
   },
   "2550554": {
