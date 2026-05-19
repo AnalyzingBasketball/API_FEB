@@ -1259,18 +1259,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340542",
     "TEAM": "GAZTE BERRIAK"
   },
-  "2562371": {
-    "PLAYER_NAME": "X. Sorozabal Echeverria",
-    "POSITION": "SG",
-    "POS_ORDER": 2,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2562371",
-    "TEAM": "GAZTE BERRIAK"
-  },
   "2625424": {
     "PLAYER_NAME": "G. Lopez Salas",
     "POSITION": "SG",
     "POS_ORDER": 2,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2625424",
+    "TEAM": "GAZTE BERRIAK"
+  },
+  "2562371": {
+    "PLAYER_NAME": "X. Sorozabal Echeverria",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2562371",
     "TEAM": "GAZTE BERRIAK"
   },
   "2388636": {
@@ -1317,7 +1317,7 @@
   },
   "2340547": {
     "PLAYER_NAME": "I. Aspurz Galan",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2340547",
     "TEAM": "GAZTE BERRIAK"
@@ -1511,18 +1511,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2571881",
     "TEAM": "INSOLAC CB ALCALÁ CAJA87 2010"
   },
-  "2447645": {
-    "PLAYER_NAME": "J. Cuscó Fernández",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2447645",
-    "TEAM": "INSOLAC CB ALCALÁ CAJA87 2010"
-  },
   "2572474": {
     "PLAYER_NAME": "F. Bermudez Garcia",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2572474",
+    "TEAM": "INSOLAC CB ALCALÁ CAJA87 2010"
+  },
+  "2447645": {
+    "PLAYER_NAME": "J. Cuscó Fernández",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2447645",
     "TEAM": "INSOLAC CB ALCALÁ CAJA87 2010"
   },
   "2068439": {
@@ -1546,18 +1546,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2573753",
     "TEAM": "INSOLAC CB ALCALÁ CAJA87 2010"
   },
-  "2417084": {
-    "PLAYER_NAME": "A. Delgado Borrallo",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2417084",
-    "TEAM": "INSOLAC CB ALCALÁ CAJA87 2010"
-  },
   "2417150": {
     "PLAYER_NAME": "G. Pedros Ayago",
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2417150",
+    "TEAM": "INSOLAC CB ALCALÁ CAJA87 2010"
+  },
+  "2417084": {
+    "PLAYER_NAME": "A. Delgado Borrallo",
+    "POSITION": "SF",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2417084",
     "TEAM": "INSOLAC CB ALCALÁ CAJA87 2010"
   },
   "2592719": {
@@ -1651,18 +1651,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2394180",
     "TEAM": "JOVENTUT BADALONA A"
   },
+  "2294194": {
+    "PLAYER_NAME": "R. Mohamed Amar",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2294194",
+    "TEAM": "LA SALLE"
+  },
   "2231480": {
     "PLAYER_NAME": "A. Ortega Crespo",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2231480",
-    "TEAM": "LA SALLE"
-  },
-  "2334868": {
-    "PLAYER_NAME": "A. Itouhamein Achadlein",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2334868",
     "TEAM": "LA SALLE"
   },
   "2288519": {
@@ -1672,11 +1672,11 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2288519",
     "TEAM": "LA SALLE"
   },
-  "2294194": {
-    "PLAYER_NAME": "R. Mohamed Amar",
+  "2334868": {
+    "PLAYER_NAME": "A. Itouhamein Achadlein",
     "POSITION": "PG",
     "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2294194",
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2334868",
     "TEAM": "LA SALLE"
   },
   "2341304": {
@@ -1980,18 +1980,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2365029",
     "TEAM": "REAL MADRID ´A´"
   },
-  "2443370": {
-    "PLAYER_NAME": "M. Arceredillo Diez",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2443370",
-    "TEAM": "SPB PREVENNOVA"
-  },
   "2382519": {
     "PLAYER_NAME": "E. Martin Diez",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2382519",
+    "TEAM": "SPB PREVENNOVA"
+  },
+  "2443370": {
+    "PLAYER_NAME": "M. Arceredillo Diez",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2443370",
     "TEAM": "SPB PREVENNOVA"
   },
   "2848693": {
@@ -2043,23 +2043,23 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2443297",
     "TEAM": "SPB PREVENNOVA"
   },
-  "2382518": {
-    "PLAYER_NAME": "E. Lopez Ubierna",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2382518",
-    "TEAM": "SPB PREVENNOVA"
-  },
   "2478757": {
     "PLAYER_NAME": "S. Moreno Robador",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2478757",
     "TEAM": "SPB PREVENNOVA"
   },
+  "2382518": {
+    "PLAYER_NAME": "E. Lopez Ubierna",
+    "POSITION": "SF",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2382518",
+    "TEAM": "SPB PREVENNOVA"
+  },
   "2659906": {
     "PLAYER_NAME": "L. Cerezo Moreno",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2659906",
     "TEAM": "SPB PREVENNOVA"
