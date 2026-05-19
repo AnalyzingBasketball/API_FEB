@@ -225,16 +225,23 @@
   },
   "2319141": {
     "PLAYER_NAME": "J. Martin Lopez",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2319141",
     "TEAM": "BARÇA"
   },
   "2734668": {
     "PLAYER_NAME": "S. Nagórski",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2734668",
+    "TEAM": "BARÇA"
+  },
+  "2659612": {
+    "PLAYER_NAME": "E. Destom Alger",
+    "POSITION": "PF",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2659612",
     "TEAM": "BARÇA"
   },
   "2276968": {
@@ -242,13 +249,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2276968",
-    "TEAM": "BARÇA"
-  },
-  "2659612": {
-    "PLAYER_NAME": "E. Destom Alger",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2659612",
     "TEAM": "BARÇA"
   },
   "2737570": {
@@ -342,13 +342,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2353280",
     "TEAM": "BÀSQUET GIRONA U16"
   },
-  "2194313": {
-    "PLAYER_NAME": "A. Perez Carreras",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2194313",
-    "TEAM": "BÀSQUET GIRONA U16"
-  },
   "2242537": {
     "PLAYER_NAME": "A. Escosa Benítez",
     "POSITION": "PG",
@@ -361,6 +354,13 @@
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2156173",
+    "TEAM": "BÀSQUET GIRONA U16"
+  },
+  "2194313": {
+    "PLAYER_NAME": "A. Perez Carreras",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2194313",
     "TEAM": "BÀSQUET GIRONA U16"
   },
   "2256225": {
@@ -400,7 +400,7 @@
   },
   "2460083": {
     "PLAYER_NAME": "G. Rabert Verdaguer",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2460083",
     "TEAM": "BÀSQUET GIRONA U16"
@@ -414,7 +414,7 @@
   },
   "2197685": {
     "PLAYER_NAME": "A. Pons Delgado",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2197685",
     "TEAM": "BÀSQUET GIRONA U16"
@@ -531,18 +531,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2344965",
     "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
   },
-  "2770289": {
-    "PLAYER_NAME": "I. Embwo Kasol",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2770289",
-    "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
-  },
   "2842768": {
     "PLAYER_NAME": "A. Maiga",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2842768",
+    "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
+  },
+  "2770289": {
+    "PLAYER_NAME": "I. Embwo Kasol",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2770289",
     "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
   },
   "2345111": {
@@ -552,11 +552,25 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2345111",
     "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
   },
+  "2137271": {
+    "PLAYER_NAME": "N. Tena Grijalba",
+    "POSITION": "PF",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2137271",
+    "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
+  },
   "2867522": {
     "PLAYER_NAME": "D. Kabamba Kabamba",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2867522",
+    "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
+  },
+  "2414877": {
+    "PLAYER_NAME": "Á. Adán Fariña",
+    "POSITION": "PG",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2414877",
     "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
   },
   "2345195": {
@@ -566,25 +580,11 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2345195",
     "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
   },
-  "2137271": {
-    "PLAYER_NAME": "N. Tena Grijalba",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2137271",
-    "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
-  },
   "2581151": {
     "PLAYER_NAME": "M. García Afonso",
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2581151",
-    "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
-  },
-  "2414877": {
-    "PLAYER_NAME": "Á. Adán Fariña",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2414877",
     "TEAM": "CAJASIETE FUNDACIÓN CB CANARIAS"
   },
   "2134621": {
@@ -615,18 +615,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2289078",
     "TEAM": "CANTERBURY SCHOOL"
   },
-  "2843849": {
-    "PLAYER_NAME": "K. Samake",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2843849",
-    "TEAM": "CANTERBURY SCHOOL"
-  },
   "2740852": {
     "PLAYER_NAME": "C. Traore",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2740852",
+    "TEAM": "CANTERBURY SCHOOL"
+  },
+  "2843849": {
+    "PLAYER_NAME": "K. Samake",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2843849",
     "TEAM": "CANTERBURY SCHOOL"
   },
   "2444784": {
@@ -650,6 +650,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2289254",
     "TEAM": "CANTERBURY SCHOOL"
   },
+  "2289347": {
+    "PLAYER_NAME": "E. Cabrera Morales",
+    "POSITION": "SF",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2289347",
+    "TEAM": "CANTERBURY SCHOOL"
+  },
   "2134622": {
     "PLAYER_NAME": "F. Rivero Garcia",
     "POSITION": "",
@@ -657,32 +664,25 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2134622",
     "TEAM": "CANTERBURY SCHOOL"
   },
-  "2289347": {
-    "PLAYER_NAME": "E. Cabrera Morales",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2289347",
-    "TEAM": "CANTERBURY SCHOOL"
-  },
   "2380392": {
     "PLAYER_NAME": "N. Martinez Vera",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2380392",
     "TEAM": "CANTERBURY SCHOOL"
-  },
-  "2207618": {
-    "PLAYER_NAME": "I. Arzoz Abad",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2207618",
-    "TEAM": "CASADEMONT ZARAGOZA A"
   },
   "2266556": {
     "PLAYER_NAME": "P. Llompart Bernal",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2266556",
+    "TEAM": "CASADEMONT ZARAGOZA A"
+  },
+  "2207618": {
+    "PLAYER_NAME": "I. Arzoz Abad",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2207618",
     "TEAM": "CASADEMONT ZARAGOZA A"
   },
   "2125565": {
@@ -736,7 +736,7 @@
   },
   "2383827": {
     "PLAYER_NAME": "M. Moreno Sanagustin",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2383827",
     "TEAM": "CASADEMONT ZARAGOZA A"
@@ -750,7 +750,7 @@
   },
   "2255572": {
     "PLAYER_NAME": "D. Iglesias Gracia",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2255572",
     "TEAM": "CASADEMONT ZARAGOZA A"
@@ -1000,18 +1000,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2830322",
     "TEAM": "EBA"
   },
-  "2207101": {
-    "PLAYER_NAME": "P. Blanco Jurado",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2207101",
-    "TEAM": "EBG MÁLAGA´10"
-  },
   "2207203": {
     "PLAYER_NAME": "J. Berrocal Ortega",
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2207203",
+    "TEAM": "EBG MÁLAGA´10"
+  },
+  "2207101": {
+    "PLAYER_NAME": "P. Blanco Jurado",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2207101",
     "TEAM": "EBG MÁLAGA´10"
   },
   "2332361": {
@@ -1051,35 +1051,35 @@
   },
   "2207058": {
     "PLAYER_NAME": "N. Uroz Garcia",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2207058",
     "TEAM": "EBG MÁLAGA´10"
   },
   "2331906": {
     "PLAYER_NAME": "C. Criado Puerto",
-    "POSITION": "",
+    "POSITION": "SG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2331906",
     "TEAM": "EBG MÁLAGA´10"
   },
-  "2206302": {
-    "PLAYER_NAME": "H. Ruiz Ortiz",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2206302",
-    "TEAM": "EBG MÁLAGA´10"
-  },
   "2333174": {
     "PLAYER_NAME": "S. Bermejo Rodríguez",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2333174",
     "TEAM": "EBG MÁLAGA´10"
   },
+  "2206302": {
+    "PLAYER_NAME": "H. Ruiz Ortiz",
+    "POSITION": "SF",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2206302",
+    "TEAM": "EBG MÁLAGA´10"
+  },
   "2332837": {
     "PLAYER_NAME": "M. Bermejo Guillén",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2332837",
     "TEAM": "EBG MÁLAGA´10"
@@ -1105,13 +1105,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2379368",
     "TEAM": "EDM-AZUL-TVGA"
   },
-  "2379366": {
-    "PLAYER_NAME": "P. Rosino Sanz",
-    "POSITION": "PG",
-    "POS_ORDER": 1,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2379366",
-    "TEAM": "EDM-AZUL-TVGA"
-  },
   "2661721": {
     "PLAYER_NAME": "J. Perez Perez",
     "POSITION": "PG",
@@ -1124,6 +1117,13 @@
     "POSITION": "PG",
     "POS_ORDER": 1,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2342116",
+    "TEAM": "EDM-AZUL-TVGA"
+  },
+  "2379366": {
+    "PLAYER_NAME": "P. Rosino Sanz",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2379366",
     "TEAM": "EDM-AZUL-TVGA"
   },
   "2560229": {
@@ -1224,6 +1224,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2744278",
     "TEAM": "FUNDACION BILBAO BASKET FUNDAZIOA"
   },
+  "2650140": {
+    "PLAYER_NAME": "A. Morón Gutiérrez",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2650140",
+    "TEAM": "FUNDACION BILBAO BASKET FUNDAZIOA"
+  },
   "2744279": {
     "PLAYER_NAME": "A. Iglesias Galan",
     "POSITION": "C",
@@ -1236,13 +1243,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2744280",
-    "TEAM": "FUNDACION BILBAO BASKET FUNDAZIOA"
-  },
-  "2650140": {
-    "PLAYER_NAME": "A. Morón Gutiérrez",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2650140",
     "TEAM": "FUNDACION BILBAO BASKET FUNDAZIOA"
   },
   "2790898": {
@@ -1350,13 +1350,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2494662",
     "TEAM": "GB PERFORMANCE RADO PAKOLO"
   },
-  "2494656": {
-    "PLAYER_NAME": "L. Montero Calero",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2494656",
-    "TEAM": "GB PERFORMANCE RADO PAKOLO"
-  },
   "2422717": {
     "PLAYER_NAME": "F. Sanchez Morcillo",
     "POSITION": "SF",
@@ -1369,6 +1362,13 @@
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2494658",
+    "TEAM": "GB PERFORMANCE RADO PAKOLO"
+  },
+  "2494656": {
+    "PLAYER_NAME": "L. Montero Calero",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2494656",
     "TEAM": "GB PERFORMANCE RADO PAKOLO"
   },
   "2494651": {
@@ -1387,7 +1387,7 @@
   },
   "2494652": {
     "PLAYER_NAME": "M. Jimenez Valiente",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2494652",
     "TEAM": "GB PERFORMANCE RADO PAKOLO"
@@ -1401,7 +1401,7 @@
   },
   "2737395": {
     "PLAYER_NAME": "A. Cantos Alfaro",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2737395",
     "TEAM": "GB PERFORMANCE RADO PAKOLO"
@@ -1469,13 +1469,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2790694",
     "TEAM": "GRAN CANARIA"
   },
-  "2815521": {
-    "PLAYER_NAME": "D. Kona",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815521",
-    "TEAM": "GRAN CANARIA"
-  },
   "2819114": {
     "PLAYER_NAME": "M. Mohammed Nurudeen",
     "POSITION": "C",
@@ -1483,9 +1476,16 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2819114",
     "TEAM": "GRAN CANARIA"
   },
+  "2815521": {
+    "PLAYER_NAME": "D. Kona",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815521",
+    "TEAM": "GRAN CANARIA"
+  },
   "2335705": {
     "PLAYER_NAME": "P. Calderin Rodriguez",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2335705",
     "TEAM": "GRAN CANARIA"
@@ -2129,14 +2129,14 @@
   },
   "2262622": {
     "PLAYER_NAME": "E. Martínez Sánchez",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2262622",
     "TEAM": "TIFÓN MUEBLES NOVOBASKET"
   },
   "2310409": {
     "PLAYER_NAME": "M. Tombo Bosch",
-    "POSITION": "",
+    "POSITION": "PF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2310409",
     "TEAM": "TIFÓN MUEBLES NOVOBASKET"
@@ -2253,6 +2253,20 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2446540",
     "TEAM": "UCAM MURCIA CB \"A\""
   },
+  "2445386": {
+    "PLAYER_NAME": "L. Inocencio Garcia",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2445386",
+    "TEAM": "UCAM MURCIA CB \"A\""
+  },
+  "2302327": {
+    "PLAYER_NAME": "H. Molina Lopez",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2302327",
+    "TEAM": "UCAM MURCIA CB \"A\""
+  },
   "2527514": {
     "PLAYER_NAME": "B. Fickou",
     "POSITION": "C",
@@ -2281,13 +2295,6 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2432184",
     "TEAM": "UCAM MURCIA CB \"A\""
   },
-  "2302327": {
-    "PLAYER_NAME": "H. Molina Lopez",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2302327",
-    "TEAM": "UCAM MURCIA CB \"A\""
-  },
   "2438450": {
     "PLAYER_NAME": "F. Gracia  Meseguer",
     "POSITION": "",
@@ -2300,13 +2307,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2302340",
-    "TEAM": "UCAM MURCIA CB \"A\""
-  },
-  "2445386": {
-    "PLAYER_NAME": "L. Inocencio Garcia",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2445386",
     "TEAM": "UCAM MURCIA CB \"A\""
   },
   "2207243": {
@@ -2367,7 +2367,7 @@
   },
   "2420438": {
     "PLAYER_NAME": "A. Igbokwe Bueno",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2420438",
     "TEAM": "UNICAJA"
@@ -2381,7 +2381,7 @@
   },
   "2416726": {
     "PLAYER_NAME": "J. Sanchez Sanchez",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2416726",
     "TEAM": "UNICAJA"
@@ -2414,6 +2414,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2296995",
     "TEAM": "UNIÓ CONSELLOSETA BLAU A LA LUNA"
   },
+  "2295580": {
+    "PLAYER_NAME": "A. Mas Pascual",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2295580",
+    "TEAM": "UNIÓ CONSELLOSETA BLAU A LA LUNA"
+  },
   "2293827": {
     "PLAYER_NAME": "G. Frau Cerda",
     "POSITION": "SF",
@@ -2426,6 +2433,13 @@
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2297003",
+    "TEAM": "UNIÓ CONSELLOSETA BLAU A LA LUNA"
+  },
+  "2343437": {
+    "PLAYER_NAME": "M. Cifre Moreno",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2343437",
     "TEAM": "UNIÓ CONSELLOSETA BLAU A LA LUNA"
   },
   "2675757": {
@@ -2447,20 +2461,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2350922",
-    "TEAM": "UNIÓ CONSELLOSETA BLAU A LA LUNA"
-  },
-  "2295580": {
-    "PLAYER_NAME": "A. Mas Pascual",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2295580",
-    "TEAM": "UNIÓ CONSELLOSETA BLAU A LA LUNA"
-  },
-  "2343437": {
-    "PLAYER_NAME": "M. Cifre Moreno",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2343437",
     "TEAM": "UNIÓ CONSELLOSETA BLAU A LA LUNA"
   },
   "2339159": {
@@ -2626,7 +2626,7 @@
   },
   "2555558": {
     "PLAYER_NAME": "A. Szmit Szmit",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2555558",
     "TEAM": "ZENTRO BASKET MADRID"
