@@ -69,18 +69,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1853585",
     "TEAM": "ALIMERKA OVIEDO BALONCESTO"
   },
-  "2822578": {
-    "PLAYER_NAME": "D. Shelist",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2822578",
-    "TEAM": "ALIMERKA OVIEDO BALONCESTO"
-  },
   "1662155": {
     "PLAYER_NAME": "R. Cosialls Borras",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1662155",
+    "TEAM": "ALIMERKA OVIEDO BALONCESTO"
+  },
+  "2822578": {
+    "PLAYER_NAME": "D. Shelist",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2822578",
     "TEAM": "ALIMERKA OVIEDO BALONCESTO"
   },
   "2813978": {
