@@ -2477,6 +2477,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2372246",
     "TEAM": "VALENCIA BASKET"
   },
+  "2440427": {
+    "PLAYER_NAME": "C. Elordi Espi",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2440427",
+    "TEAM": "VALENCIA BASKET"
+  },
   "2506694": {
     "PLAYER_NAME": "T. Trush",
     "POSITION": "SF",
@@ -2505,6 +2512,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2336152",
     "TEAM": "VALENCIA BASKET"
   },
+  "2834334": {
+    "PLAYER_NAME": "P. Jelenc",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2834334",
+    "TEAM": "VALENCIA BASKET"
+  },
   "2843465": {
     "PLAYER_NAME": "E. Szewczyk",
     "POSITION": "C",
@@ -2517,20 +2531,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2818150",
-    "TEAM": "VALENCIA BASKET"
-  },
-  "2440427": {
-    "PLAYER_NAME": "C. Elordi Espi",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2440427",
-    "TEAM": "VALENCIA BASKET"
-  },
-  "2834334": {
-    "PLAYER_NAME": "P. Jelenc",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2834334",
     "TEAM": "VALENCIA BASKET"
   },
   "2815089": {
