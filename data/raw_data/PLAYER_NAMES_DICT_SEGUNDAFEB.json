@@ -1238,18 +1238,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2734740",
     "TEAM": "INSOLAC CAJA 87"
   },
-  "1723311": {
-    "PLAYER_NAME": "S. Cecilia Perez",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1723311",
-    "TEAM": "INSOLAC CAJA 87"
-  },
   "2863950": {
     "PLAYER_NAME": "L. Soumbey-Alley",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2863950",
+    "TEAM": "INSOLAC CAJA 87"
+  },
+  "1723311": {
+    "PLAYER_NAME": "S. Cecilia Perez",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1723311",
     "TEAM": "INSOLAC CAJA 87"
   },
   "2816383": {
