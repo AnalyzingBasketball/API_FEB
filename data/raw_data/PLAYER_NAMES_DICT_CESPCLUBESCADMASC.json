@@ -951,6 +951,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2446663",
     "TEAM": "EBA"
   },
+  "2830322": {
+    "PLAYER_NAME": "D. Gomez Garcia",
+    "POSITION": "PF",
+    "POS_ORDER": 4,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2830322",
+    "TEAM": "EBA"
+  },
   "2446653": {
     "PLAYER_NAME": "J. Villajos Márquez",
     "POSITION": "C",
@@ -991,13 +998,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2582677",
-    "TEAM": "EBA"
-  },
-  "2830322": {
-    "PLAYER_NAME": "D. Gomez Garcia",
-    "POSITION": "PF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2830322",
     "TEAM": "EBA"
   },
   "2207203": {
