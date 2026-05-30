@@ -405,9 +405,16 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1675464",
     "TEAM": "C.B. TRES CANTOS"
   },
+  "1589432": {
+    "PLAYER_NAME": "G. Lardies Guillen",
+    "POSITION": "PF",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1589432",
+    "TEAM": "C.B. TRES CANTOS"
+  },
   "2445687": {
     "PLAYER_NAME": "N. Maiga",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2445687",
     "TEAM": "C.B. TRES CANTOS"
@@ -426,16 +433,9 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1755852",
     "TEAM": "C.B. TRES CANTOS"
   },
-  "1589432": {
-    "PLAYER_NAME": "G. Lardies Guillen",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1589432",
-    "TEAM": "C.B. TRES CANTOS"
-  },
   "1589434": {
     "PLAYER_NAME": "R. Lardies Guillen",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1589434",
     "TEAM": "C.B. TRES CANTOS"
@@ -3179,16 +3179,23 @@
   },
   "2451920": {
     "PLAYER_NAME": "L. Cervantes Guerra",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2451920",
     "TEAM": "VELABASKET CB SUECA"
   },
   "2033012": {
     "PLAYER_NAME": "P. Antich Minguez",
-    "POSITION": "",
+    "POSITION": "PG",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2033012",
+    "TEAM": "VELABASKET CB SUECA"
+  },
+  "2163057": {
+    "PLAYER_NAME": "D. Martínez Jurado",
+    "POSITION": "C",
+    "POS_ORDER": 6,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2163057",
     "TEAM": "VELABASKET CB SUECA"
   },
   "2183928": {
@@ -3198,16 +3205,9 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2183928",
     "TEAM": "VELABASKET CB SUECA"
   },
-  "2163057": {
-    "PLAYER_NAME": "D. Martínez Jurado",
-    "POSITION": "",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2163057",
-    "TEAM": "VELABASKET CB SUECA"
-  },
   "1504969": {
     "PLAYER_NAME": "V. Santamatilde Peris",
-    "POSITION": "",
+    "POSITION": "C",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1504969",
     "TEAM": "VELABASKET CB SUECA"
@@ -3268,18 +3268,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2103143",
     "TEAM": "VÍTALY LA MAR BCBADAJOZ"
   },
-  "2030989": {
-    "PLAYER_NAME": "A. Diaz Ferreira",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2030989",
-    "TEAM": "VÍTALY LA MAR BCBADAJOZ"
-  },
   "1818104": {
     "PLAYER_NAME": "S. Idris Igene",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1818104",
+    "TEAM": "VÍTALY LA MAR BCBADAJOZ"
+  },
+  "2030989": {
+    "PLAYER_NAME": "A. Diaz Ferreira",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2030989",
     "TEAM": "VÍTALY LA MAR BCBADAJOZ"
   },
   "2110086": {
@@ -3291,7 +3291,7 @@
   },
   "2172325": {
     "PLAYER_NAME": "J. Paredes Bermejo",
-    "POSITION": "",
+    "POSITION": "SF",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2172325",
     "TEAM": "VÍTALY LA MAR BCBADAJOZ"
