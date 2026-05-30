@@ -1077,6 +1077,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1748049",
     "TEAM": "GEIEG PACISA"
   },
+  "1948948": {
+    "PLAYER_NAME": "B. Oliveras Solivera",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1948948",
+    "TEAM": "GEIEG PACISA"
+  },
   "1667386": {
     "PLAYER_NAME": "C. Morente Lopez",
     "POSITION": "SF",
@@ -1145,13 +1152,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2151755",
-    "TEAM": "GEIEG PACISA"
-  },
-  "1948948": {
-    "PLAYER_NAME": "B. Oliveras Solivera",
-    "POSITION": "PG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1948948",
     "TEAM": "GEIEG PACISA"
   },
   "2055732": {
