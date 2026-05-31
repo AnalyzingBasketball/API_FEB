@@ -34,18 +34,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2816738",
     "TEAM": "AMICS CASTELLÓ"
   },
-  "1627889": {
-    "PLAYER_NAME": "A. Tamayo Lesmes",
-    "POSITION": "SF",
-    "POS_ORDER": 3,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1627889",
-    "TEAM": "AMICS CASTELLÓ"
-  },
   "1817496": {
     "PLAYER_NAME": "P. Garcia Carrero",
     "POSITION": "SF",
     "POS_ORDER": 3,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1817496",
+    "TEAM": "AMICS CASTELLÓ"
+  },
+  "1627889": {
+    "PLAYER_NAME": "A. Tamayo Lesmes",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1627889",
     "TEAM": "AMICS CASTELLÓ"
   },
   "2087878": {
@@ -272,18 +272,18 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2817541",
     "TEAM": "BUENO ARENAS ALBACETE BASKET"
   },
-  "2432412": {
-    "PLAYER_NAME": "J. Hierrezuelo Serer",
-    "POSITION": "C",
-    "POS_ORDER": 5,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2432412",
-    "TEAM": "BUENO ARENAS ALBACETE BASKET"
-  },
   "1981843": {
     "PLAYER_NAME": "B. Vanaclocha Sanchez",
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1981843",
+    "TEAM": "BUENO ARENAS ALBACETE BASKET"
+  },
+  "2432412": {
+    "PLAYER_NAME": "J. Hierrezuelo Serer",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2432412",
     "TEAM": "BUENO ARENAS ALBACETE BASKET"
   },
   "2816390": {
