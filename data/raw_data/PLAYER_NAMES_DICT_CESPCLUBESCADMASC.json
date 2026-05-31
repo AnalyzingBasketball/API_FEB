@@ -1976,7 +1976,7 @@
   "2365029": {
     "PLAYER_NAME": "A. Alonso Alcazar",
     "POSITION": "C",
-    "POS_ORDER": 6,
+    "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2365029",
     "TEAM": "REAL MADRID ´A´"
   },
@@ -2484,6 +2484,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2440427",
     "TEAM": "VALENCIA BASKET"
   },
+  "2815089": {
+    "PLAYER_NAME": "D. Previti",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815089",
+    "TEAM": "VALENCIA BASKET"
+  },
   "2506694": {
     "PLAYER_NAME": "T. Trush",
     "POSITION": "SF",
@@ -2531,13 +2538,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2818150",
-    "TEAM": "VALENCIA BASKET"
-  },
-  "2815089": {
-    "PLAYER_NAME": "D. Previti",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2815089",
     "TEAM": "VALENCIA BASKET"
   },
   "2438227": {

@@ -41,6 +41,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1978540",
     "TEAM": "ALFINDÉN CB"
   },
+  "2117402": {
+    "PLAYER_NAME": "I. Bousalem Garza",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2117402",
+    "TEAM": "ALFINDÉN CB"
+  },
   "2124770": {
     "PLAYER_NAME": "J. Royo Santos",
     "POSITION": "SF",
@@ -74,13 +81,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2697386",
-    "TEAM": "ALFINDÉN CB"
-  },
-  "2117402": {
-    "PLAYER_NAME": "I. Bousalem Garza",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2117402",
     "TEAM": "ALFINDÉN CB"
   },
   "1976794": {
@@ -412,6 +412,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2445687",
     "TEAM": "C.B. TRES CANTOS"
   },
+  "1755852": {
+    "PLAYER_NAME": "D. Gonzalez  Longarela",
+    "POSITION": "C",
+    "POS_ORDER": 5,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1755852",
+    "TEAM": "C.B. TRES CANTOS"
+  },
   "1757193": {
     "PLAYER_NAME": "A. Simon Del Corral",
     "POSITION": "C",
@@ -431,13 +438,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2139861",
-    "TEAM": "C.B. TRES CANTOS"
-  },
-  "1755852": {
-    "PLAYER_NAME": "D. Gonzalez  Longarela",
-    "POSITION": "C",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1755852",
     "TEAM": "C.B. TRES CANTOS"
   },
   "1921814": {
@@ -1819,6 +1819,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2275700",
     "TEAM": "LETRA CORPOREA BARBASTRO"
   },
+  "1830807": {
+    "PLAYER_NAME": "J. Miranda Vargas",
+    "POSITION": "SG",
+    "POS_ORDER": 2,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1830807",
+    "TEAM": "LETRA CORPOREA BARBASTRO"
+  },
   "2648497": {
     "PLAYER_NAME": "B. Zicovich",
     "POSITION": "SF",
@@ -1859,13 +1866,6 @@
     "POSITION": "",
     "POS_ORDER": 6,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2641992",
-    "TEAM": "LETRA CORPOREA BARBASTRO"
-  },
-  "1830807": {
-    "PLAYER_NAME": "J. Miranda Vargas",
-    "POSITION": "SG",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1830807",
     "TEAM": "LETRA CORPOREA BARBASTRO"
   },
   "1679618": {

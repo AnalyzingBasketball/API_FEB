@@ -1455,6 +1455,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1439909",
     "TEAM": "MARISCOS ANTÓN CORTEGADA"
   },
+  "2014327": {
+    "PLAYER_NAME": "G. Jorge Garcia",
+    "POSITION": "SF",
+    "POS_ORDER": 3,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2014327",
+    "TEAM": "MARISCOS ANTÓN CORTEGADA"
+  },
   "2864782": {
     "PLAYER_NAME": "E. Iversen",
     "POSITION": "SF",
@@ -1481,13 +1488,6 @@
     "POSITION": "C",
     "POS_ORDER": 5,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2527916",
-    "TEAM": "MARISCOS ANTÓN CORTEGADA"
-  },
-  "2014327": {
-    "PLAYER_NAME": "G. Jorge Garcia",
-    "POSITION": "SF",
-    "POS_ORDER": 6,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2014327",
     "TEAM": "MARISCOS ANTÓN CORTEGADA"
   },
   "2335768": {
