@@ -1,5 +1,7 @@
 import os
+import io
 import time
+import zipfile
 import requests
 import pandas as pd
 import numpy as np
@@ -9,7 +11,7 @@ import base64
 import unicodedata
 from bs4 import BeautifulSoup
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine, text as sql_text
 import uvicorn
@@ -256,6 +258,8 @@ def cargar_roles_m12(comp_paths: dict = None):
                 pid   = safe_id(str(r.get('PLAYER_ID', '')))
                 role  = str(r.get('ROLE_NAME', 'N/A'))
                 if role in ('N/A', '', 'nan'): role = 'Scorer'
+                try: role = str(int(float(role)))
+                except (ValueError, TypeError): pass
                 pos   = str(r.get('POSITION', 'N/A'))
                 map_role_id[pid] = role
                 map_pos_id[pid]  = pos
@@ -581,12 +585,17 @@ def generar_html_quintetos(ruta_pbp_clean, ruta_box_clean, match_id, equipo_loca
                 custom_photos_m12[str(pid_k).strip().replace('.0','')] = info
     except Exception: pass
 
+    _is_cadete_q = bool(comp_paths and comp_paths.get("slug") == "cespclubescadmasc")
     dict_roles = {}
     dict_pos   = {}
     for _, r in df_box.iterrows():
         pid         = safe_id(str(r.get('Player_ID', '')))
         pname_clean = remove_accents(str(r.get('Player', '')).strip().lower())
-        dict_roles[pname_clean] = map_role_id.get(pid, map_role_name.get(pname_clean, "N/A"))
+        _rv = map_role_id.get(pid, map_role_name.get(pname_clean, "N/A"))
+        if _is_cadete_q:
+            try: _rv = str(int(float(_rv))) if str(_rv) not in ("N/A","nan","None","") else _rv
+            except (ValueError, TypeError): pass
+        dict_roles[pname_clean] = _rv
         # Prioridad posición: JSON curado → FILE_ROLES → vacío
         pos_json  = custom_photos_m12.get(pid, {}).get('POSITION', '')
         pos_roles = map_pos_id.get(pid, map_pos_name.get(pname_clean, ''))
@@ -883,6 +892,9 @@ def generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, match_id, equipo_local
             pid = str(safe_get(row,['Player_ID'],""))
             if pid.endswith('.0'): pid = pid[:-2]
             role  = map_role_id.get(pid, map_role_name.get(remove_accents(player_raw.strip().lower()),"N/A"))
+            if is_cadete:
+                try: role = str(int(float(role))) if str(role) not in ("N/A","nan","None","") else role
+                except (ValueError, TypeError): pass
             pos   = map_pos_id.get(pid,  map_pos_name.get(remove_accents(player_raw.strip().lower()),""))
             if pos in ('N/A', 'nan', 'None'): pos = ''
             foto  = safe_get(row,['Logo_URL'])
@@ -1828,6 +1840,196 @@ def competiciones_api():
     for slug, comp in COMPETITIONS.items():
         result.append({"slug": slug, "name": comp["name"], "id": comp["id"]})
     return JSONResponse(content=result)
+
+# ==============================================================================
+# EXPORTADOR DE CSV CANÓNICOS (esquema de AnalyzingBasketball/REPORT_SCRIPT,
+# ver schema/ESQUEMA.md en ese repo). Reaprovecha la misma lógica ya depurada
+# de adapters/feb.py de REPORT_SCRIPT (vocabulario ACTION_TYPE, el bug de
+# "Inveready" en sustituciones, el .cummax() para el marcador, la detección
+# de lado de canasta en la carta de tiro), adaptada para leer de read_table()
+# (Supabase con fallback a CSV) en vez de pd.read_csv directo, porque este
+# backend puede servir desde cualquiera de los dos según el despliegue.
+#
+# Solo funciona para partidos que ya están en el CSV/tabla agregada de la
+# temporada (BOXSCORE_*/PLAYBYPLAY_*), es decir, los mismos que ya ofrecen
+# /info_liga y /partidos_equipo — no hace scraping en vivo de partidos nuevos.
+# ==============================================================================
+_ACTION_TO_KIND_CSV = {
+    "2PT Made": "2PT_MADE", "2PT Missed": "2PT_MISS",
+    "3PT Made": "3PT_MADE", "3PT Missed": "3PT_MISS",
+    "FT Made": "FT_MADE", "FT Missed": "FT_MISS",
+    "Off. Reb": "OREB", "Def. Reb": "DREB",
+    "Assist": "AST", "Turnover": "TOV",
+}
+_HOOP_Y_CSV = 1.575  # distancia del aro a la línea de fondo, norma FIBA
+
+
+def _cargar_logos_equipo(comp_paths: dict) -> dict:
+    """Diccionario {nombre_equipo_en_minúsculas: url_logo}, si existe el
+    fichero de logos scrapeado para esta competición."""
+    try:
+        with open(comp_paths["logos"], encoding="utf-8") as f:
+            crudo = json.load(f)
+        return {str(k).lower(): v for k, v in crudo.items()}
+    except Exception:
+        return {}
+
+
+def _equipo_meta_csv(nombre: str, logos: dict) -> dict:
+    return {
+        "name": nombre, "short": nombre[:3].upper(),
+        "logo": logos.get(nombre.lower()), "color": "#8a8a8a", "colorDark": None,
+    }
+
+
+def construir_csv_partido(match_id: str, competicion: str):
+    """Devuelve (boxscore_rows, pbp_rows, shot_rows, meta) en formato
+    canónico para un partido, o levanta ValueError si no hay datos."""
+    cp = get_comp_paths(competicion)
+    box_all = read_table(cp["db_boxscore"], cp["boxscore"])
+    pbp_all = read_table(cp["db_pbp"], cp["pbp"])
+    if box_all.empty or pbp_all.empty:
+        raise ValueError("no hay boxscore o play-by-play para esta competición")
+
+    box = box_all[box_all.MATCHID.astype(str) == str(match_id)].copy()
+    pbp = pbp_all[pbp_all.MATCHID.astype(str) == str(match_id)].reset_index(drop=True)
+    if box.empty or pbp.empty:
+        raise ValueError(f"no hay datos para el partido {match_id} en {competicion}")
+
+    box["TEAM"] = box["TEAM"].replace(TEAM_FIXES_GLOBAL)
+    # el marcador tiene algún punto suelto donde retrocede un instante (ruido
+    # de la fuente, visto ya en Gipuzkoa-Obradoiro) — el esquema exige
+    # monótono no decreciente, se corrige con el máximo acumulado.
+    pbp["SCORE_H"] = pd.to_numeric(pbp["SCORE_H"], errors="coerce").ffill().fillna(0).cummax()
+    pbp["SCORE_A"] = pd.to_numeric(pbp["SCORE_A"], errors="coerce").ffill().fillna(0).cummax()
+
+    home_rows = box[box.LOCATION == "HOME"]
+    away_rows = box[box.LOCATION == "AWAY"]
+    home_name = str(home_rows.TEAM.iloc[0]).title() if not home_rows.empty else "Local"
+    away_name = str(away_rows.TEAM.iloc[0]).title() if not away_rows.empty else "Visitante"
+    ronda = box.ROUND.iloc[0]
+    ronda_label = f"Jornada {ronda}" if str(ronda).isdigit() else str(ronda)
+
+    # ── boxscore ──────────────────────────────────────────────────────────
+    boxscore = []
+    for _, r in box.iterrows():
+        boxscore.append({
+            "TEAM": "H" if r.LOCATION == "HOME" else "A", "PLAYER": r.PLAYER_NAME,
+            "STARTER": int(r.IS_STARTER), "MIN": round(float(r.MIN), 2), "PTS": int(r.PTS),
+            "FGM2": int(r.FGM_2), "FGA2": int(r.FGA_2),
+            "FGM3": int(r.FGM_3), "FGA3": int(r.FGA_3),
+            "FTM": int(r.FTM), "FTA": int(r.FTA),
+            "OREB": int(r.ORB), "DREB": int(r.DRB),
+            "AST": int(r.AST), "TOV": int(r.TOV),
+            "PIR": int(r.PIR), "PLUS_MINUS": int(r.PLUS_MINUS),
+        })
+
+    # ── play-by-play ─────────────────────────────────────────────────────
+    pbp_out = []
+    for r in pbp.itertuples():
+        p = int(r.PERIOD)
+        restante = float(r.SECONDS_REMAINING)
+        team = "H" if r.ACTION_TEAM_LOC == "HOME" else ("A" if r.ACTION_TEAM_LOC == "AWAY" else "")
+        accion = _ACTION_TO_KIND_CSV.get(r.ACTION_TYPE, "")
+        player = ""
+        if isinstance(r.ACTION_TEXT, str) and "Sustitución" in r.ACTION_TEXT:
+            if "Entra a pista" in r.ACTION_TEXT:
+                accion, player = "SUB_IN", r.PLAYER_NAME
+            elif "Sale de pista" in r.ACTION_TEXT:
+                accion, player = "SUB_OUT", r.PLAYER_NAME
+        pbp_out.append({
+            "PERIOD": p, "SECONDS_REMAINING": restante, "TEAM": team,
+            "ACTION_TYPE": accion, "PLAYER": player,
+            "SCORE_H": int(r.SCORE_H), "SCORE_A": int(r.SCORE_A),
+        })
+
+    # ── carta de tiro ────────────────────────────────────────────────────
+    tiros = pbp[pbp.ACTION_TYPE.isin(["2PT Made", "2PT Missed", "3PT Made", "3PT Missed"])].copy()
+    tiros["x"] = pd.to_numeric(tiros.COORD_X, errors="coerce")
+    tiros["y"] = pd.to_numeric(tiros.COORD_Y, errors="coerce")
+    tiros = tiros.dropna(subset=["x", "y"])
+
+    lado = {}
+    dos = tiros[tiros.ACTION_TYPE.str.startswith("2PT")]
+    for (p, loc), grupo in dos.groupby(["PERIOD", "ACTION_TEAM_LOC"]):
+        lado[(p, loc)] = "L" if grupo.x.median() < 50 else "R"
+    for p in tiros.PERIOD.unique():
+        for loc, otro in (("HOME", "AWAY"), ("AWAY", "HOME")):
+            if (p, loc) not in lado and (p, otro) in lado:
+                lado[(p, loc)] = "L" if lado[(p, otro)] == "R" else "R"
+
+    shots = []
+    for _, r in tiros.iterrows():
+        izquierda = lado.get((r.PERIOD, r.ACTION_TEAM_LOC), "L") == "L"
+        prof_m = r.x / 100 * 28 if izquierda else (1 - r.x / 100) * 28
+        lat_m = r.y / 100 * 15 if izquierda else (1 - r.y / 100) * 15
+        restante = float(r.SECONDS_REMAINING)
+        shots.append({
+            "TEAM": "H" if r.ACTION_TEAM_LOC == "HOME" else "A",
+            "PLAYER": str(r.PLAYER_NAME),
+            "PERIOD": int(r.PERIOD), "SECONDS_REMAINING": restante,
+            "POINTS": 3 if r.ACTION_TYPE.startswith("3PT") else 2,
+            "MADE": 1 if r.ACTION_TYPE.endswith("Made") else 0,
+            "LOC_X": round(lat_m - 7.5, 3), "LOC_Y": round(prof_m - _HOOP_Y_CSV, 3),
+        })
+
+    # ── meta ─────────────────────────────────────────────────────────────
+    logos = _cargar_logos_equipo(cp)
+    meta = {
+        "comp": COMPETITIONS.get(competicion, {}).get("name", competicion),
+        "season": "2025/26", "round": ronda_label,
+        "periodLengthMin": 10, "otLengthMin": 5,
+        "home": _equipo_meta_csv(home_name, logos),
+        "away": _equipo_meta_csv(away_name, logos),
+    }
+    return boxscore, pbp_out, shots, meta
+
+
+def _csv_en_memoria(rows: list) -> str:
+    if not rows:
+        return ""
+    columnas = list(rows[0].keys())
+    buf = io.StringIO()
+    buf.write(",".join(columnas) + "\r\n")
+    for r in rows:
+        buf.write(",".join(str(r[c]) for c in columnas) + "\r\n")
+    return buf.getvalue()
+
+
+@app.get("/csv_partido")
+def csv_partido_api(match_id: str, competicion: str = Query(default="primerafeb"),
+                     formato: str = Query(default="zip")):
+    """Los 3 CSV canónicos + meta.json de un partido.
+
+    formato=zip (por defecto): descarga un .zip, para usar con cli.py o
+    subir a mano en report_app.
+    formato=json: los mismos 4 archivos como texto dentro de un JSON, para
+    que descargar_csv.html se los pase directamente a report_app por
+    sessionStorage sin que el usuario tenga que descargar/re-subir nada.
+    """
+    try:
+        boxscore, pbp, shots, meta = construir_csv_partido(match_id, competicion)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+    if formato == "json":
+        return JSONResponse(content={
+            "boxscore_csv": _csv_en_memoria(boxscore),
+            "pbp_csv": _csv_en_memoria(pbp),
+            "shotchart_csv": _csv_en_memoria(shots),
+            "meta": meta,
+        })
+
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("boxscore.csv", _csv_en_memoria(boxscore))
+        z.writestr("play_by_play.csv", _csv_en_memoria(pbp))
+        z.writestr("shotchart.csv", _csv_en_memoria(shots))
+        z.writestr("meta.json", json.dumps(meta, ensure_ascii=False, indent=2))
+    buf.seek(0)
+    nombre = f"csv_{competicion}_{match_id}.zip"
+    return StreamingResponse(buf, media_type="application/zip",
+                              headers={"Content-Disposition": f'attachment; filename="{nombre}"'})
 
 # === MÓDULO 12 ===
 @app.get("/generar", response_class=HTMLResponse)
