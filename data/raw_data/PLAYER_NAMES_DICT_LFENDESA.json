@@ -1196,6 +1196,13 @@
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2080254",
     "TEAM": "PERFUMERIAS AVENIDA"
   },
+  "1590109": {
+    "PLAYER_NAME": "M. Hermida Herraez",
+    "POSITION": "PG",
+    "POS_ORDER": 1,
+    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1590109",
+    "TEAM": "PERFUMERIAS AVENIDA"
+  },
   "1074107": {
     "PLAYER_NAME": "A. Vilaro Aragones",
     "POSITION": "SG",
@@ -1215,13 +1222,6 @@
     "POSITION": "SG",
     "POS_ORDER": 2,
     "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=2814599",
-    "TEAM": "PERFUMERIAS AVENIDA"
-  },
-  "1590109": {
-    "PLAYER_NAME": "M. Hermida Herraez",
-    "POSITION": "SG",
-    "POS_ORDER": 2,
-    "PHOTO_URL": "https://imagenes.feb.es/Foto.aspx?c=1590109",
     "TEAM": "PERFUMERIAS AVENIDA"
   },
   "2524197": {
