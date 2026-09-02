@@ -22,3 +22,14 @@ data/reports/
 data/pbp_[0-9]*.csv
 data/boxscore_[0-9]*.csv
 data/*_clean.csv
+
+# ── Crudo de la FEB: cache de descarga, no datos ─────────────────────────────
+# ~3.800 JSON (595 MB) con la respuesta tal cual de la API de la FEB, uno por
+# partido. El bucle de descarga de updater.py salta el partido si su JSON ya
+# existe, asi que hacen falta entre pasadas, pero persisten en la cache de la
+# Action (ver update_data.yml), no en git: aqui se acumulaban para siempre y
+# viajaban en cada clon de Render, que no los mira.
+# Los PLAYER_NAMES_DICT_*.json de esa misma carpeta si siguen versionados,
+# porque main.py los lee para servir las fotos.
+data/raw_data/**/raw_boxscore_*.json
+data/raw_data/**/raw_pbp_*.json
