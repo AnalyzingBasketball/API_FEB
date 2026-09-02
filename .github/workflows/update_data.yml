@@ -22,6 +22,26 @@ jobs:
       - name: 📥 Descargar el código del repositorio
         uses: actions/checkout@v3
 
+      # data/raw_data son ~3.800 JSON (595 MB) con la respuesta cruda de la FEB,
+      # uno por partido. No son datos publicables: son la caché que evita
+      # volver a descargar lo ya descargado, porque el bucle de descarga salta
+      # el partido si su JSON existe. Sin ella, cada pasada se bajaría la
+      # temporada entera de las ocho competiciones.
+      #
+      # Vivían en git, que es el sitio equivocado: se acumulan para siempre y
+      # viajan en cada clon de Render, que no los usa para nada.
+      - name: ♻️ Restaurar la caché del crudo
+        id: cache_crudo
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw_data
+          key: raw-data-v1-${{ github.run_id }}
+          restore-keys: raw-data-v1-
+
+      - name: 🔢 Contar el crudo antes
+        id: antes
+        run: echo "n=$(find data/raw_data -name 'raw_*.json' 2>/dev/null | wc -l)" >> "$GITHUB_OUTPUT"
+
       - name: 🐍 Configurar Python
         uses: actions/setup-python@v4
         with:
@@ -34,6 +54,23 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: python updater.py
+
+      - name: 🔢 Contar el crudo después
+        id: despues
+        run: echo "n=$(find data/raw_data -name 'raw_*.json' 2>/dev/null | wc -l)" >> "$GITHUB_OUTPUT"
+
+      # Solo se guarda si hay algo nuevo que guardar, o si no había caché que
+      # restaurar (la primera vez). Subir 595 MB en cada una de las cinco
+      # pasadas diarias llenaría el límite de 10 GB del repo en tres días y
+      # obligaría a GitHub a ir descartando las más viejas.
+      # `cache-hit` no sirve para decidir: con restore-keys nunca es 'true'
+      # porque la clave lleva el run_id y jamás casa exacta.
+      - name: 💾 Guardar la caché del crudo si ha cambiado
+        if: steps.cache_crudo.outputs.cache-matched-key == '' || steps.antes.outputs.n != steps.despues.outputs.n
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw_data
+          key: raw-data-v1-${{ github.run_id }}
 
       - name: 💾 Guardar los nuevos datos en GitHub
         run: |
