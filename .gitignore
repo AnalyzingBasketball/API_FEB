@@ -1,0 +1,11 @@
+
+# ── Temporales por partido, nunca debieron versionarse ───────────────────────
+# La API los escribe al vuelo cuando genera un informe (main.py:438) y los usa
+# como cache: si faltan, vuelve a pedirlos a la FEB. Medido: un partido en frio
+# tarda 9,4 s contra 8,1 s en caliente, o sea que tenerlos en git compraba un
+# segundo a cambio de 52 MB y de reescribirlos en cada pasada del robot.
+# Los patrones piden digito tras el guion bajo para no rozar los canonicos
+# BOXSCORE_*/PLAYBYPLAY_*, que en macOS casarian por ser ignoreCase=true.
+data/pbp_[0-9]*.csv
+data/boxscore_[0-9]*.csv
+data/*_clean.csv
