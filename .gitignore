@@ -1,3 +1,16 @@
+# Entorno y basura del sistema. El repo no tenia .gitignore hasta el
+# 02/09/2026 (vivia solo en la copia local, sin versionar), y por eso el robot
+# se llevaba a git todo lo que apareciera en data/.
+.venv/
+.env
+.envrc
+.direnv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Salidas que la API escribe al vuelo al servir un informe.
+data/reports/
 
 # ── Temporales por partido, nunca debieron versionarse ───────────────────────
 # La API los escribe al vuelo cuando genera un informe (main.py:438) y los usa

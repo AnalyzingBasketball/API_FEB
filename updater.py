@@ -24,14 +24,6 @@ OUT_TEAMSTATS = os.path.join(DATA_DIR, "TEAMSTATS_PRIMERAFEB_2526.csv")
 OUT_PBP       = os.path.join(DATA_DIR, "PLAYBYPLAY_PRIMERAFEB_2526.csv")
 OUT_LINEUPS   = os.path.join(DATA_DIR, "LINEUPS_PRIMERAFEB_2526.csv")
 
-# ── Conexión a Supabase (opcional — si no hay DATABASE_URL usa solo CSVs) ─────
-from sqlalchemy import create_engine, text as sql_text
-_DB_URL = os.environ.get("DATABASE_URL")
-_engine  = create_engine(_DB_URL) if _DB_URL else None
-
-def db_ok():
-    return _engine is not None
-
 HEADERS_WEB = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
 BASE_URL    = "https://www.feb.es"
 
@@ -695,66 +687,13 @@ def procesar_estadisticas_acumuladas(paths: dict):
             continue
 
     # E) APPEND ACUMULATIVO
-    def append_and_save(new_data_list, filepath, tabla=None, conflict_cols=None):
+    def append_and_save(new_data_list, filepath):
         if not new_data_list: return
         df_new = pd.concat(new_data_list, ignore_index=True) \
                  if isinstance(new_data_list[0], pd.DataFrame) \
                  else pd.DataFrame(new_data_list)
 
-        # ── Escritura en Supabase ─────────────────────────────────────────────
-        if db_ok() and tabla:
-            try:
-                df_db = df_new.copy()
-                df_db.columns = df_db.columns.str.lower()
-                # Normalizar MATCHID → match_id para que coincida con conflict_cols
-                df_db = df_db.rename(columns={'matchid': 'match_id'})
-                staging = f"{tabla}_staging"
-                df_db.to_sql(staging, _engine, if_exists='replace',
-                             index=False, method='multi', chunksize=200)
-                # Verificar si la tabla destino existe
-                with _engine.connect() as conn:
-                    exists = conn.execute(sql_text(
-                        "SELECT EXISTS (SELECT FROM information_schema.tables "
-                        "WHERE table_schema='public' AND table_name=:t)"
-                    ), {"t": tabla}).scalar()
-                if not exists:
-                    # Primera vez: crear tabla + índice único + insertar todo de golpe
-                    with _engine.connect() as conn:
-                        conn.execute(sql_text(
-                            f"CREATE TABLE {tabla} AS SELECT * FROM {staging} WHERE FALSE"
-                        ))
-                        if conflict_cols:
-                            idx_cols = ", ".join(conflict_cols)
-                            conn.execute(sql_text(
-                                f"CREATE UNIQUE INDEX {tabla}_pk ON {tabla} ({idx_cols})"
-                            ))
-                        conn.execute(sql_text(
-                            f"INSERT INTO {tabla} SELECT * FROM {staging}; "
-                            f"DROP TABLE IF EXISTS {staging};"
-                        ))
-                        conn.commit()
-                elif conflict_cols:
-                    conflict_str = ", ".join(conflict_cols)
-                    with _engine.connect() as conn:
-                        conn.execute(sql_text(f"""
-                            INSERT INTO {tabla}
-                            SELECT * FROM {staging}
-                            ON CONFLICT ({conflict_str}) DO NOTHING;
-                            DROP TABLE IF EXISTS {staging};
-                        """))
-                        conn.commit()
-                else:
-                    with _engine.connect() as conn:
-                        conn.execute(sql_text(f"""
-                            INSERT INTO {tabla} SELECT * FROM {staging};
-                            DROP TABLE IF EXISTS {staging};
-                        """))
-                        conn.commit()
-                print(f"  ✅ BD actualizada: tabla '{tabla}'")
-            except Exception as e:
-                print(f"  ⚠️ Error escribiendo en BD ({tabla}): {e}")
-
-        # ── Escritura CSV (backup) ────────────────────────────────────────────
+        # ── Escritura del CSV, que es el unico destino de los datos ──────────
         if os.path.exists(filepath):
             try:
                 df_old   = pd.read_csv(filepath, dtype=str)
@@ -771,16 +710,11 @@ def procesar_estadisticas_acumuladas(paths: dict):
                         float_format='%.1f')
 
     if all_boxscores:
-        append_and_save(all_boxscores, paths["boxscore"],
-                        tabla=paths["db_boxscore"],
-                        conflict_cols=['match_id', 'player_id'])
+        append_and_save(all_boxscores, paths["boxscore"])
     if all_teamstats:
-        append_and_save(all_teamstats, paths["teamstats"],
-                        tabla=paths["db_teamstats"],
-                        conflict_cols=['match_id', 'team_id'])
+        append_and_save(all_teamstats, paths["teamstats"])
     if all_pbp:
-        append_and_save(all_pbp, paths["pbp"],
-                        tabla=paths["db_pbp"])
+        append_and_save(all_pbp, paths["pbp"])
     if all_lineups:
         df_lu = pd.DataFrame(all_lineups)
         agrupadores = ['MATCHID','ROUND','TEAM_ID','TEAM','LOCATION',
@@ -790,10 +724,7 @@ def procesar_estadisticas_acumuladas(paths: dict):
         df_lu_final['PTS_FOR_PER40'] = (df_lu_final['PTS_FOR']    *2400/df_lu_final['SECONDS'].replace(0,np.nan)).round(1).fillna(0)
         df_lu_final['PTS_AGT_PER40'] = (df_lu_final['PTS_AGAINST']*2400/df_lu_final['SECONDS'].replace(0,np.nan)).round(1).fillna(0)
         df_lu_final['NET_PER40']     = (df_lu_final['PLUS_MINUS'] *2400/df_lu_final['SECONDS'].replace(0,np.nan)).round(1).fillna(0)
-        append_and_save([df_lu_final], paths["lineups"],
-                        tabla=paths["db_lineups"],
-                        conflict_cols=['match_id', 'team_id',
-                                       'p1_id', 'p2_id', 'p3_id', 'p4_id', 'p5_id'])
+        append_and_save([df_lu_final], paths["lineups"])
 
     return procesados_ahora, errores
 

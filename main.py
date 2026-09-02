@@ -13,51 +13,21 @@ from bs4 import BeautifulSoup
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import create_engine, text as sql_text
 import uvicorn
 from competitions import COMPETITIONS
 
 # ==============================================================================
-# 0. CONEXIÓN A SUPABASE (opcional — si no hay DATABASE_URL usa solo ficheros)
+# 0. ORIGEN DE LOS DATOS
 # ==============================================================================
-_DB_URL = os.environ.get("DATABASE_URL")
-_engine  = create_engine(_DB_URL, pool_pre_ping=True) if _DB_URL else None
-
-def get_html_cache(key: str):
-    """Devuelve HTML cacheado de BD o None si no existe o tiene más de 24h."""
-    if not _engine: return None
-    try:
-        with _engine.connect() as conn:
-            row = conn.execute(sql_text(
-                "SELECT html, created_at FROM html_cache WHERE cache_key = :k"
-            ), {"k": key}).fetchone()
-            if not row: return None
-            age = (pd.Timestamp.utcnow() - pd.Timestamp(row.created_at)).total_seconds()
-            return row.html if age < 86400 else None
-    except Exception: return None
-
-def set_html_cache(key: str, html: str):
-    """Guarda HTML en BD. Silencioso si falla."""
-    if not _engine: return
-    try:
-        with _engine.connect() as conn:
-            conn.execute(sql_text("""
-                INSERT INTO html_cache (cache_key, html)
-                VALUES (:k, :h)
-                ON CONFLICT (cache_key) DO UPDATE
-                SET html = EXCLUDED.html, created_at = NOW()
-            """), {"k": key, "h": html})
-            conn.commit()
-    except Exception: pass
-
-# Mapa de tabla Supabase → CSV fallback
-_TABLE_CSV_MAP = {
-    'boxscore': 'BOXSCORE_PRIMERAFEB_2526.csv',
-    'lineups':  'LINEUPS_PRIMERAFEB_2526.csv',
-}
+# Los datos salen de los CSV de data/ y de nada mas. Hubo una lectura previa
+# desde Supabase que se retiro el 02/09/2026: la base de datos se llenaba con
+# ON CONFLICT DO NOTHING, o sea que solo insertaba partidos nuevos y nunca
+# rellenaba lo viejo, y aun asi read_table la prefería al CSV con un simple
+# `len(df) > 0`. El dia que reconecto, la API paso a servir el 10% de las
+# filas en todas las competiciones sin dar un solo error.
 
 def get_comp_paths(slug: str) -> dict:
-    """Devuelve rutas de ficheros y tablas Supabase para una competición."""
+    """Devuelve las rutas de ficheros de una competición."""
     if slug not in COMPETITIONS:
         slug = "primerafeb"
     comp  = COMPETITIONS[slug]
@@ -82,23 +52,14 @@ def get_comp_paths(slug: str) -> dict:
         "logo_liga":   os.path.join(BASE_DIR, "images", f"{slug}.png"),
     }
 
-_last_read_source = {}  # {tabla: "supabase" | "csv" | "empty"}
+_last_read_source = {}  # {tabla: "csv (N rows)" | "empty"}
 
 def read_table(tabla: str, csv_path: str = None) -> pd.DataFrame:
-    """Lee datos de Supabase si hay conexión, si no de CSV. Columnas en MAYÚSCULAS."""
-    if _engine:
-        try:
-            df = pd.read_sql(f"SELECT * FROM {tabla}", _engine)
-            if len(df) > 0:
-                df.columns = df.columns.str.upper()
-                # Normalizar: en Supabase match_id → MATCH_ID, pero el código espera MATCHID
-                df = df.rename(columns={'MATCH_ID': 'MATCHID'})
-                _last_read_source[tabla] = f"supabase ({len(df)} rows)"
-                return df
-            else:
-                print(f"⚠️ Tabla {tabla} vacía en BD, fallback a CSV")
-        except Exception as e:
-            print(f"⚠️ Error leyendo {tabla} de BD, fallback a CSV: {e}")
+    """Lee una tabla del CSV correspondiente. Columnas en MAYÚSCULAS.
+
+    `tabla` ya no selecciona origen: se conserva como etiqueta para saber por
+    /health de donde salio cada cosa y cuantas filas traia.
+    """
     if csv_path and os.path.exists(csv_path):
         df = pd.read_csv(csv_path)
         _last_read_source[tabla] = f"csv ({len(df)} rows)"
@@ -451,21 +412,9 @@ def extraer_partido_api(match_id, comp_slug: str = "primerafeb"):
     base_url_api = "https://intrafeb.feb.es/LiveStats.API/api/v1"
     try:
         if not os.path.exists(ruta_pbp):
-            # Intentar leer de Supabase primero (más rápido que la API FEB)
-            pbp_from_db = False
-            if _engine:
-                try:
-                    df_pbp_db = pd.read_sql(
-                        f"SELECT * FROM pbp_{comp_slug} WHERE match_id = '{match_id}'", _engine)
-                    if not df_pbp_db.empty:
-                        df_pbp_db.to_csv(ruta_pbp, index=False, encoding='utf-8-sig')
-                        pbp_from_db = True
-                except Exception:
-                    pass
-            if not pbp_from_db:
-                data_pbp  = session.get(f"{base_url_api}/KeyFacts/{match_id}", timeout=10).json()
-                pbp_list  = data_pbp.get('PLAYBYPLAY', {}).get('LINES', [])
-                pd.DataFrame(pbp_list).to_csv(ruta_pbp, index=False, encoding='utf-8-sig')
+            data_pbp  = session.get(f"{base_url_api}/KeyFacts/{match_id}", timeout=10).json()
+            pbp_list  = data_pbp.get('PLAYBYPLAY', {}).get('LINES', [])
+            pd.DataFrame(pbp_list).to_csv(ruta_pbp, index=False, encoding='utf-8-sig')
         if not os.path.exists(ruta_box):
             data_box  = session.get(f"{base_url_api}/BoxScore/{match_id}", timeout=10).json()
             teams_box = data_box.get('BOXSCORE', {}).get('TEAM', [])
@@ -1581,11 +1530,6 @@ def HTML_BOXSCORE_AGREGADO_M14(df_all_box, eq_objetivo, context_str, team_games_
 # MÓDULO 16: MEGA-INFORME LIGA COMPLETA
 # ==============================================================================
 def generar_html_liga_lineups(m_filt: int = 15, comp_paths: dict = None, competicion: str = "primerafeb"):
-    # ── CACHÉ 24H: devolver HTML cacheado de BD si existe ──
-    cache_key = f"{competicion}_liga_lineups_m{m_filt}"
-    cached    = get_html_cache(cache_key)
-    if cached: return cached
-
     cargar_datos_m13(comp_paths=comp_paths)
 
     _lineups_key  = comp_paths["db_lineups"] if comp_paths else "lineups"
@@ -1694,7 +1638,6 @@ def generar_html_liga_lineups(m_filt: int = 15, comp_paths: dict = None, competi
         © 2026 Analyzing Basketball | <a href="https://www.analyzingbasketball.com" target="_blank">www.analyzingbasketball.com</a>
     </div></body></html>"""
 
-    set_html_cache(f"{competicion}_liga_lineups_m{m_filt}", html_content)
     return html_content
 
 # ==============================================================================
@@ -1706,26 +1649,11 @@ app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=False,
 # ── HEALTH ENDPOINT — para keep-alive y UptimeRobot ───────────────────────────
 @app.get("/health")
 def health():
-    db_status = "connected" if _engine else "not configured"
-    if _engine:
-        try:
-            with _engine.connect() as conn:
-                conn.execute(sql_text("SELECT 1"))
-        except Exception:
-            db_status = "error"
-    pbp_status = "not checked"
-    if _engine and db_status == "connected":
-        try:
-            with _engine.connect() as conn:
-                cnt = conn.execute(sql_text("SELECT COUNT(*) FROM pbp")).scalar()
-                pbp_status = f"supabase ({cnt} rows)"
-        except Exception:
-            pbp_status = "table not found"
+    # data_sources dice que tabla se ha leido y con cuantas filas. Es la forma
+    # barata de comprobar desde fuera que un despliegue sirve los datos enteros.
     return JSONResponse(content={
         "status": "ok",
-        "database": db_status,
         "data_sources": _last_read_source,
-        "pbp_cache": pbp_status,
     }, status_code=200)
 
 # === HELPER: INFO DE JORNADAS POR COMPETICIÓN ===
@@ -1847,8 +1775,7 @@ def competiciones_api():
 # de adapters/feb.py de REPORT_SCRIPT (vocabulario ACTION_TYPE, el bug de
 # "Inveready" en sustituciones, el .cummax() para el marcador, la detección
 # de lado de canasta en la carta de tiro), adaptada para leer de read_table()
-# (Supabase con fallback a CSV) en vez de pd.read_csv directo, porque este
-# backend puede servir desde cualquiera de los dos según el despliegue.
+# en vez de pd.read_csv directo, para que el origen quede registrado.
 #
 # Solo funciona para partidos que ya están en el CSV/tabla agregada de la
 # temporada (BOXSCORE_*/PLAYBYPLAY_*), es decir, los mismos que ya ofrecen
@@ -2060,10 +1987,6 @@ def generar_scouting(jornada: str = None, match_id: str = None, equipo: str = "M
         raise HTTPException(status_code=400, detail="El partido aún no se ha disputado.")
 
     jornada_label = match_id if match_id else jornada
-    _cache_key = f"{competicion}_{tipo_reporte.lower()}_{partido['match_id']}"
-    _cached    = get_html_cache(_cache_key)
-    if _cached: return HTMLResponse(content=_cached, status_code=200)
-
     if not extraer_partido_api(partido['match_id'], comp_slug=competicion):
         raise HTTPException(status_code=500, detail="Error al descargar datos del partido.")
     ruta_pbp_clean, ruta_box_clean = limpiar_y_avanzadas(
@@ -2074,7 +1997,6 @@ def generar_scouting(jornada: str = None, match_id: str = None, equipo: str = "M
     else:
         ruta_final = generar_html_boxscore(ruta_box_clean, ruta_pbp_clean, partido['match_id'], partido['equipo_local'], partido['equipo_visitante'], partido['fecha'], comp_paths=cp)
     with open(ruta_final, "r", encoding="utf-8") as f: html_content = f.read()
-    set_html_cache(_cache_key, html_content)
     return HTMLResponse(content=html_content, status_code=200)
 
 # === MÓDULO 13 ===
