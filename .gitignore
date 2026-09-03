@@ -33,3 +33,10 @@ data/*_clean.csv
 # porque main.py los lee para servir las fotos.
 data/raw_data/**/raw_boxscore_*.json
 data/raw_data/**/raw_pbp_*.json
+
+# ── Play-by-play: 387,8 MB que el robot reescribe cinco veces al dia ─────────
+# El 95% del peso de data/ en el 9% de los archivos. Se publican como assets de
+# la release `datos` (scripts/publicar_pbp.py) y se bajan bajo demanda: el
+# robot al empezar, la API la primera vez que alguien pide /csv_partido.
+data/PLAYBYPLAY_*.csv
+data/PLAYBYPLAY_*.csv.gz

@@ -18,6 +18,11 @@ on:
 jobs:
   update-database:
     runs-on: ubuntu-latest
+    # Para subir los play-by-play a la release. Por defecto el token del
+    # workflow puede ser de solo lectura segun la configuracion del repo, y
+    # entonces la subida falla al final de una pasada de veinte minutos.
+    permissions:
+      contents: write
     steps:
       - name: 📥 Descargar el código del repositorio
         uses: actions/checkout@v3
@@ -50,6 +55,15 @@ jobs:
       - name: 📦 Instalar librerías
         run: pip install -r requirements.txt
 
+      # El robot AÑADE al CSV que ya existe. Como los play-by-play ya no viajan
+      # en el repositorio, el checkout llega sin ellos, y sin este paso la
+      # primera pasada con partidos nuevos escribiria un CSV con solo esos y se
+      # llevaria por delante la temporada entera.
+      - name: 📥 Bajar los play-by-play publicados
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/publicar_pbp.py --bajar
+
       - name: 🤖 Ejecutar el Robot (Scraping y Limpieza)
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -71,6 +85,16 @@ jobs:
         with:
           path: data/raw_data
           key: raw-data-v1-${{ github.run_id }}
+
+      # Los ocho PLAYBYPLAY son 387,8 MB de los 409,8 que quedaban en data/.
+      # Van a una release en vez de al arbol: el robot los reescribe enteros
+      # cinco veces al dia y git guardaria cada version para siempre.
+      - name: 📤 Publicar los play-by-play en la release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/publicar_pbp.py \
+            --notas "Actualizado por el robot el $(date -u '+%Y-%m-%d %H:%M UTC')"
 
       - name: 💾 Guardar los nuevos datos en GitHub
         run: |

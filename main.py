@@ -1,5 +1,7 @@
 import os
 import io
+import gzip
+import shutil
 import time
 import zipfile
 import requests
@@ -53,6 +55,52 @@ def get_comp_paths(slug: str) -> dict:
     }
 
 _last_read_source = {}  # {tabla: "csv (N rows)" | "empty"}
+
+# Los play-by-play canonicos no viajan en el repositorio: son 387,8 MB que el
+# robot reescribe cinco veces al dia, y git guardaria una version entera de cada
+# uno cada vez. Se publican como assets de la release `datos`
+# (scripts/publicar_pbp.py) y se bajan aqui la primera vez que hacen falta.
+#
+# Se baja por competicion y bajo demanda, nunca todo al arrancar: la instancia
+# gratuita de Render ya muere por falta de memoria generando informes, asi que
+# no se le puede pedir ademas que cargue cientos de MB en el arranque. El disco
+# del contenedor es efimero, o sea que esto pasa una vez por despliegue y por
+# competicion, no en cada peticion.
+URL_DATOS = "https://github.com/AnalyzingBasketball/API_FEB/releases/download/datos"
+
+
+def asegurar_pbp(cp: dict) -> bool:
+    """Baja el play-by-play de la competición si no está ya en disco."""
+    ruta = cp["pbp"]
+    if os.path.exists(ruta):
+        return True
+    nombre = os.path.basename(ruta)
+    url = f"{URL_DATOS}/{nombre}.gz"
+    comprimido = ruta + ".gz.parcial"
+    parcial = ruta + ".parcial"
+    print(f"⬇️ Bajando {nombre} de la release...")
+    try:
+        with requests.get(url, stream=True, timeout=180) as r:
+            r.raise_for_status()
+            with open(comprimido, "wb") as f:
+                for trozo in r.iter_content(chunk_size=1024 * 1024):
+                    f.write(trozo)
+        # Se descomprime a un temporal y se renombra al final. Si la descarga se
+        # corta a medias, lo que queda es un .parcial que nadie lee, y no un CSV
+        # truncado con pinta de bueno: ese fue exactamente el fallo de Supabase.
+        with gzip.open(comprimido, "rb") as gz, open(parcial, "wb") as f:
+            shutil.copyfileobj(gz, f, length=1024 * 1024)
+        os.replace(parcial, ruta)
+        print(f"✅ {nombre} listo ({os.path.getsize(ruta) / 1e6:.1f} MB)")
+        return True
+    except Exception as e:
+        print(f"⚠️ No se pudo bajar {nombre}: {e}")
+        return False
+    finally:
+        for tmp in (comprimido, parcial):
+            if os.path.exists(tmp):
+                os.remove(tmp)
+
 
 def read_table(tabla: str, csv_path: str = None) -> pd.DataFrame:
     """Lee una tabla del CSV correspondiente. Columnas en MAYÚSCULAS.
@@ -1813,6 +1861,7 @@ def construir_csv_partido(match_id: str, competicion: str):
     """Devuelve (boxscore_rows, pbp_rows, shot_rows, meta) en formato
     canónico para un partido, o levanta ValueError si no hay datos."""
     cp = get_comp_paths(competicion)
+    asegurar_pbp(cp)
     box_all = read_table(cp["db_boxscore"], cp["boxscore"])
     pbp_all = read_table(cp["db_pbp"], cp["pbp"])
     if box_all.empty or pbp_all.empty:
